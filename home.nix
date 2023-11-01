@@ -44,6 +44,7 @@
         tofi
         wl-clipboard
         slurp
+        grim
         waybar
 
         # Fonts
@@ -93,6 +94,10 @@
         kitty = {
             enable = true;
             extraConfig = import ./kitty/config.nix;
+        };
+
+        helix = {
+            theme = "dracula-at-night";
         };
 
         # Librewolf
