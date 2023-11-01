@@ -96,8 +96,12 @@
             extraConfig = import ./kitty/config.nix;
         };
 
+        # Helix
         helix = {
-            theme = "dracula-at-night";
+            enable = true;
+            settings = {
+                theme = "dracula_at_night";
+            };
         };
 
         # Librewolf
