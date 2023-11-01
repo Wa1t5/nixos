@@ -1,0 +1,248 @@
+''
+# __          __   _ _       _       _    _                  _                 _    _____             __ _       
+# \ \        / /  | | |     ( )     | |  | |                | |               | |  / ____|           / _(_)      
+#  \ \  /\  / /_ _| | |_ ___|/ ___  | |__| |_   _ _ __  _ __| | __ _ _ __   __| | | |     ___  _ __ | |_ _  __ _ 
+#   \ \/  \/ / _` | | __|_  / / __| |  __  | | | | '_ \| '__| |/ _` | '_ \ / _` | | |    / _ \| '_ \|  _| |/ _` |
+#    \  /\  / (_| | | |_ / /  \__ \ | |  | | |_| | |_) | |  | | (_| | | | | (_| | | |___| (_) | | | | | | | (_| |
+#     \/  \/ \__,_|_|\__/___| |___/ |_|  |_|\__, | .__/|_|  |_|\__,_|_| |_|\__,_|  \_____\___/|_| |_|_| |_|\__, |
+#                                            __/ | |                                                        __/ | 
+#                                           |___/|_|                                                       |___/  
+###################################################################################################################
+
+# Keys
+$mod = SUPER
+
+# Applications
+$term = kitty
+$top_bar = waybar
+$launcher = $($(tofi-run --width=100% --height=100% --border-width=0 --outline-width=0 --padding-left=35% --padding-top=35% --result-spacing=25 --background-color=000A))
+
+# Commands
+$lock_screen = swaylock --daemonize --screenshot --effect-blur 3x1 --indicator --clock --inside-color 5a0fa6 --inside-clear-color 5a0fa6 --layout-bg-color 5a0fa6 --key-hl-color 5a0fa --text-color ffffff --text-clear-color ffffff --ring-color 000000 --ring-clear-color 000000
+
+# Window borders
+$active_border_col = rgb(5a0fa6) rgb(400180) rgb(cc121e) rgb(ad0a15)
+$inactive_border_col = rgb(595959)
+
+# Scripts
+$wallpaper_cli = ~/.local/src/dotfiles/scripts/wallpaper_cli
+$animate_border = ~/.local/src/dotfiles/scripts/animate_border
+$audio = ~/.local/src/dotfiles/scripts/audio
+
+# Predefined commands
+$notify-low = notify-send -u low -t 600
+$get-sink-volume = wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F'[. ]' '{print $3}'
+$get-source-volume = wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk -F'[. ]' '{print $3}'
+$set-volume = wpctl set-volume
+$toggle-mute = wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+# Start
+exec-once = $wallpaper_cli & # Restore previous wallpaper
+exec-once = $animate_border "$active_border_col" & # Start script to animate window border
+
+# Monitor
+monitor=,preferred,auto,1
+
+# Input
+input {
+    kb_layout 		= br
+    kb_variant		= abnt2
+    follow_mouse 	= 1
+}
+
+# General
+general {
+		# Gaps
+    gaps_in = 5
+    gaps_out = 3
+    border_size = 2
+
+    # Window border
+    col.active_border	= $active_border_col	
+		col.inactive_border	= $inactive_border_col 
+
+    # Layout
+    layout = dwindle
+}
+
+# Decoration
+decoration {
+    # Border rounding
+    rounding = 7
+
+    # Blur
+    blur {
+        enabled = true
+        size = 5
+        passes = 1
+        xray = true
+        new_optimizations = true
+    }
+
+    # Shadows
+    drop_shadow = yes
+    shadow_range = 4
+    shadow_render_power = 3
+    col.shadow = rgba(1a1a1aee)
+}
+
+# Blur layers
+layerrule = blur,waybar
+layerrule = blur,launcher
+
+misc {
+ 	  # Enable vfr (lower refresh rate when nothing is hapenning on the screen)
+	  vfr = true
+
+    # Adptative sync
+    vrr = 1
+
+    # Animate window resizing
+    animate_manual_resizes = true
+
+    # Enable widnow swallowing
+    enable_swallow = true
+
+    # Direct scanout attempts to reduce lag when there is only
+    # one full scren application on the window (can give issues)
+    no_direct_scanout = false
+
+    # (buggy) try to reduce delay rendering before the monitor
+    render_ahead_of_time = false
+}
+
+# Animations
+animations {
+		# Window: open, close, move
+    animation = windowsIn, 1, 4, default, popin 80%
+    animation = windowsOut, 1, 4, default, popin 30%
+		animation = windowsMove, 1, 5, default, slide
+
+		# Fade: in, out
+    animation = fadeIn, 1, 10, default
+		animation = fadeOut, 1, 7, default
+
+		# Border
+    animation = border, 1, 20, default
+
+		# Workspaces
+    animation = workspaces, 1, 3, default, slide
+}
+
+dwindle {
+		pseudotile			= yes
+  	preserve_split 		= yes
+		force_split			= 2
+		no_gaps_when_only 	= false
+}
+
+Lock screen
+bindl	= , switch:Lid Switch, exec, $lock_screen
+bind	= $mod SHIFT, l, exec, $lock_screen
+
+# Main Keybindings
+bind = $mod, T, exec, $term
+bind = $mod, Return, exec, $launcher
+bind = $mod SHIFT, Q, killactive
+bind = $mod SHIFT CTRL, E, exit
+
+# Control screen brightness
+bind = ,XF86MonBrightnessUp,   exec, light -A 10 && light -O && $notify-low "Bright: $(light -G)"
+bind = ,XF86MonBrightnessDown, exec, light -U 10 && light -O && $notify-low "Bright: $(light -G)"
+
+# Music (script)
+bind = $mod,XF86AudioPlay, exec, notify-send -t 600 "$(music info)"
+bind = ,XF86AudioPlay, exec, music pause
+bind = ,XF86AudioNext, exec, music advance 5
+bind = ,XF86AudioPrev, exec, music back 5
+bind = $mod SHIFT, Y, exec, music play 'https://www.youtube.com/watch?v=9yGGNohmAT0' && music seek 132
+
+# Volume
+bind = ,XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05+ && $notify-low "Audio: $($get-sink-volume)"
+bind = ,XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05- && $notify-low "Audio: $($get-sink-volume)"
+
+# Microphone volume
+bind = $mod, XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+ && $notify-low "Microphone: $($get-source-volume)"
+bind = $mod, XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05- && $notify-low "Microphone: $($get-source-volume)"
+
+# Togle Audio | Mic
+bind = ,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low "Audio mute toggled"
+bind = $mod,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ && $notify-low "Microphone mute toggled"
+
+# Reloads
+bind = $mod SHIFT, w, exec, systemctl --user restart $top_bar & # Restart topbar
+bind = $mod SHIFT, w, exec, $wallpaper_cli clipboard & # Swap wallpaper using clipboard 
+#bind = $mod SHIFT, w, exec, $audio & # Reload audio script
+bind = $mod SHIFT, w, exec, $animate_border "$active_border_col" & # Update animated border
+
+# Screenshot
+bind = $mod, p, exec, grim - | wl-copy -t image/png
+bind = $mod SHIFT, p, exec, grim -g "$(slurp)" - | wl-copy -t image/png
+
+# Toggle Floating
+bind = $mod SHIFT, space, togglefloating, active
+
+# Move window
+bind = $mod SHIFT, left, movewindow, l
+bind = $mod SHIFT, right, movewindow, r
+bind = $mod SHIFT, up, movewindow, u
+bind = $mod SHIFT, down, movewindow, d
+
+# Resize mode
+bind = $mod, r, submap, resize
+submap = resize
+
+binde = , right, resizeactive, 10 0
+binde = , left, resizeactive, -10 0
+binde = , up, resizeactive, 0 -10
+binde = , down, resizeactive, 0 10
+
+bind = , escape, submap, reset
+submap = reset
+
+# Move focus with mainMod + arrow keys
+bind = $mod, left, movefocus, l
+bind = $mod, right, movefocus, r
+bind = $mod, up, movefocus, u
+bind = $mod, down, movefocus, d
+
+# Switch workspaces with mainMod + [0-9]
+bind = $mod, 1, workspace, 1
+bind = $mod, 2, workspace, 2
+bind = $mod, 3, workspace, 3
+bind = $mod, 4, workspace, 4
+bind = $mod, 5, workspace, 5
+bind = $mod, 6, workspace, 6
+bind = $mod, 7, workspace, 7
+bind = $mod, 8, workspace, 8
+bind = $mod, 9, workspace, 9
+bind = $mod, 0, workspace, 10
+
+# Move active window to a workspace with mainMod + SHIFT + [0-9]
+bind = $mod SHIFT, 1, movetoworkspace, 1
+bind = $mod SHIFT, 2, movetoworkspace, 2
+bind = $mod SHIFT, 3, movetoworkspace, 3
+bind = $mod SHIFT, 4, movetoworkspace, 4
+bind = $mod SHIFT, 5, movetoworkspace, 5
+bind = $mod SHIFT, 6, movetoworkspace, 6
+bind = $mod SHIFT, 7, movetoworkspace, 7
+bind = $mod SHIFT, 8, movetoworkspace, 8
+bind = $mod SHIFT, 9, movetoworkspace, 9
+bind = $mod SHIFT, 0, movetoworkspace, 10
+
+# Scroll through existing workspaces with mainMod + scroll
+bind = $mod, mouse_down, workspace, e+1
+bind = $mod, mouse_up, workspace, e-1
+
+# Move/resize windows with mainMod + LMB/RMB and dragging
+bindm = $mod, mouse:272, movewindow
+bindm = $mod, mouse:273, resizewindow
+
+debug {
+	damage_tracking = 2
+}
+
+misc {
+	force_default_wallpaper = -1
+}
+''
