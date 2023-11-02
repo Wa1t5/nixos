@@ -15,6 +15,16 @@
   # Hyprland
   programs.hyprland.enable = true;
   programs.light.enable = true;
+
+  # Greetd + Tuigreet
+  services.greetd = {
+      enable = true;
+      settings = {
+          default_session = {
+              command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd Hyprland";
+          };
+      };     
+  };
   
   # XDG desktop portal
   xdg = {
@@ -68,6 +78,8 @@
     dhcpcd
     nano # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    greetd.greetd
+    greetd.tuigreet
   ];
 
   # Base system version

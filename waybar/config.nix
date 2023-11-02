@@ -13,7 +13,7 @@
     modules-left = [ "hyprland/workspaces" ];
 
     # Modules center
-    modules-center = [ "custom/music" ];
+    #modules-center = [ "custom/music" ];
 
     # Modules right
     modules-right = [ "tray" "clock" "custom/calendar" "battery" "temperature" ];
@@ -22,7 +22,7 @@
 
     # Custom/bar = Clock
     "custom/clock" = {
-		    exec = "/home/waltz/.local/src/dotfiles/scripts/bar clock";
+		    exec = "/etc/nixos/waybar/scripts/bar.sh clock";
     };
 
     # Clock
@@ -34,12 +34,12 @@
 
     # Custom/bar = Calendar
     "custom/calendar" = {
-		    exec = "/home/waltz/.local/src/dotfiles/scripts/bar calendar";
+		    exec = "/etc/nixos/waybar/scripts/bar.sh calendar";
     };
 
     # Custom/bar = Battery
     "custom/battery" = {
-		    exec = "/home/waltz/.local/src/dotfiles/scripts/bar  battery";
+		    exec = "/etc/nixos/waybar/scripts/bar.sh  battery";
     };
 
 	# Battery
@@ -57,13 +57,14 @@
 
     # Custom/bar = Temperature
     "custom/temperature" = {
-		    exec = "/home/waltz/.local/src/dotfiles/scripts/bar  temperature";
+		    exec = "/etc/nixos/waybar/scripts/bar.sh  temperature";
     };
 	
     # Temperature
     temperature = {
         thermal-zone = 0;
-        hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+        hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon/";
+        input-filename = "temp1_input";
         critical-threshold = 80;
         format-critical = "{temperatureC}°C ";
         format = "{temperatureC}°C ";
@@ -71,7 +72,7 @@
 
     # Custom/bar = Music
 	  "custom/music" = {
-	     exec = "/home/waltz/.local/src/dotfiles/scripts/bar  music";
+	     exec = "/home/waltz/.local/src/dotfiles/scripts/bar.sh  music";
 		     #on-click = "music pause";
     };
 
