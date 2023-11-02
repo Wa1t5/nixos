@@ -57,7 +57,7 @@
 
     # Custom/bar = Temperature
     "custom/temperature" = {
-		    exec = "/etc/nixos/waybar/scripts/bar.sh  temperature";
+		    exec = "/etc/nixos/waybar/scripts/bar.sh temperature";
     };
 	
     # Temperature
@@ -72,7 +72,7 @@
 
     # Custom/bar = Music
 	  "custom/music" = {
-	     exec = "/home/waltz/.local/src/dotfiles/scripts/bar.sh  music";
+	     exec = "/etc/nixos/waybar/scripts/bar.sh  music";
 		     #on-click = "music pause";
     };
 

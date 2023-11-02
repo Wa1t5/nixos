@@ -19,12 +19,10 @@
         eza
         btop
         fastfetch
-        # ncmpcpp
-        moc
-        termusic
-        
+        ncmpcpp
+                
         # Servers
-        # mpd
+        mpd
         
         # Media
         librewolf
@@ -58,13 +56,26 @@
 
     # Enable wayland for electron ozone apps
     home.sessionVariables = { NIXOS_OZONE_WL = "1"; };
+
+    # Set xdg user dirs
+    xdg.userDirs = {
+        enable = true;
+        documents = "${config.home.homeDirectory}/docs";
+        music = "${config.home.homeDirectory}/music";
+        pictures = "${config.home.homeDirectory}/img";          
+        download = "${config.home.homeDirectory}/downloads";
+     };
     
+       
     # Hyprland
     wayland.windowManager.hyprland = {
         systemd.enable = true;
         enable = true;
         xwayland.enable = false;
-        extraConfig = import ./hyprland/config.nix;
+        extraConfig = '' 
+            # Force electron apps to use wayland backend
+            env NIXOS_OZONE_WL,1
+        '' + import ./hyprland/config.nix;
     };
 
 
@@ -111,9 +122,9 @@
         };
 
         # Ncmpcpp
-        # ncmpcpp = {
-        #     enable = true;
-        # };
+        ncmpcpp = {
+            enable = true;
+        };
 
         # ZSH 
         zsh = {
@@ -125,10 +136,6 @@
                    src = pkgs.zsh-powerlevel10k;
                    file = "/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
                }
-               #{
-               #    name = "zsh-completions";
-               #    src = pkgs.zsh-completions;
-               #}
             ];
             oh-my-zsh = {
                 enable = true;
@@ -165,16 +172,15 @@
         };
  
         # Mpd
-        #mpd = {
-        #    enable = true;
-        #    musicDirectory = "~/music";
-        #    network = { startWhenNeeded = true; };
-        #    extraConfig = ''
-        #        audio_output {
-        #        type "pipewire"
-        #        name "My PipeWire Output"
-        #    }'';
-        #};
+        mpd = {
+            enable = true;
+            network = { startWhenNeeded = true; };
+            extraConfig = ''
+                audio_output {
+                    type "pipewire"
+                    name "Pipewire Output"
+                }'';
+        };
     };
 
     home.stateVersion = "23.05";
