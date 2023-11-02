@@ -74,7 +74,7 @@
         xwayland.enable = false;
         extraConfig = '' 
             # Force electron apps to use wayland backend
-            env NIXOS_OZONE_WL,1
+            env = NIXOS_OZONE_WL,1
         '' + import ./hyprland/config.nix;
     };
 
