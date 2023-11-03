@@ -34,7 +34,7 @@ $notify-low = notify-send -u low -t 600
 $get-sink-volume = wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F'[. ]' '{print $3}'
 $get-source-volume = wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk -F'[. ]' '{print $3}'
 $set-volume = wpctl set-volume
-$toggle-mute = wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+$toggle-mute = wpctl set-mute
 
 # Start
 exec-once = $wallpaper_cli & # Restore previous wallpaper
@@ -167,7 +167,7 @@ bind = $mod, XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05
 
 # Togle Audio | Mic
 bind = ,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low "Audio mute toggled"
-bind = $mod,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ && $notify-low "Microphone mute toggled"
+bind = $mod,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low "Microphone mute toggled"
 
 # Reloads
 bind = $mod SHIFT, w, exec, systemctl --user restart $top_bar & # Restart topbar
