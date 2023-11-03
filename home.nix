@@ -18,7 +18,7 @@
         kitty
         eza
         btop
-        fastfetch
+        #fastfetch # Remove fastfetch until they fix it
         ncmpcpp
                 
         # Servers

@@ -2,6 +2,9 @@
   description = "Emperor(hostname) sysconfig";
 
   inputs = {
+    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs-stable.url = "github:NixOS/nixpkgs/23.05";
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
         url = "github:nix-community/home-manager";
@@ -9,6 +12,7 @@
     };
     hyprland = {
         url = "github:hyprwm/Hyprland";
+        inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

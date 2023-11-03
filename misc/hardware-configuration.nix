@@ -11,19 +11,18 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.blacklistedKernelModules = [ "ideapad-laptop" ];
-  boot.extraModprobeConfig = '' 
-    options snd-hda-intel model=alc255-acer,dell-headset-multi
-  '';
   boot.extraModulePackages = [ ];
 
+  # File system
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b39aa0e8-8ad8-466a-9487-16687a517792";
+    { device = "/dev/disk/by-uuid/31ee403f-abda-4723-a659-f12edcdc0b72";
       fsType = "xfs";
     };
 
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/56e21e9e-8aa7-4fad-b7f5-b7aba86961f6";
+
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F3B4-ADF4";
+    { device = "/dev/disk/by-uuid/A00C-2506";
       fsType = "vfat";
     };
 
@@ -35,7 +34,7 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
+  # networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

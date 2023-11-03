@@ -5,7 +5,9 @@
     [ 
       # Hardware config
       ./misc/hardware-configuration.nix
-      # Newtork config
+      # Kernel configuration
+      ./misc/kernel-configuration.nix
+      # Network config
       ./misc/network-configuration.nix
     ];
     
@@ -24,6 +26,12 @@
               command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd Hyprland";
           };
       };     
+  };
+
+  # Avoid systemd spamming Tuigreet
+  systemd.services.greetd = {
+      serviceConfig.Type = "idle";
+      unitConfig.After = [ "dhcpcd.service" ];
   };
   
   # XDG desktop portal
@@ -47,9 +55,6 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # Enable bcachefs
-  boot.supportedFilesystems = [ "bcachefs" ];
 
   # Hostname
   networking.hostName = "emperor"; 
@@ -78,7 +83,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
-    dhcpcd
     nano # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     greetd.greetd
@@ -86,7 +90,7 @@
   ];
 
   # Base system version
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 
 }
 

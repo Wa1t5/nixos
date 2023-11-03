@@ -243,6 +243,6 @@ debug {
 }
 
 misc {
-	force_default_wallpaper = -1
+	force_default_wallpaper = 0
 }
 ''
