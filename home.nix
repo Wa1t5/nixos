@@ -110,6 +110,7 @@
         # Helix
         helix = {
             enable = true;
+            defaultEditor = true;
             settings = {
                 theme = "dracula_at_night";
             };
