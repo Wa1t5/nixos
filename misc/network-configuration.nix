@@ -6,7 +6,7 @@
         interfaces.wlp1s0.useDHCP = true;
 
         # Set nameservers and disable resolv.conf
-        nameservers = [ "194.242.2.4" ];
+        nameservers = [ "1.1.1.1" ];
         dhcpcd.extraConfig = "nohook resolv.conf";
 
         # Wireless networks
