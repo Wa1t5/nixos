@@ -1,10 +1,4 @@
 { config, services, pkgs, home-manager, ... }:
-let
-    impermanence = builtins.fetchTarball {
-        url = "https://github.com/nix-community/impermanence/archive/master.tar.gz";
-        sha256 = "120775fbfar2x1s5ijkxnvb8p0mmk3dlbq0lzfhsi0csfynp98ki";
-    };
-in
 {
         # Set usrename and home dir
         home.username = "waltz";
@@ -76,31 +70,8 @@ in
             pictures = "${config.home.homeDirectory}/img";          
             download = "${config.home.homeDirectory}/downloads";
             desktop = "${config.home.homeDirectory}/desktop";
-        };  
-        
-        imports = [ "${impermanence}/home-manager.nix" ];
-            
-        # Home persistence
-        home.persistence."/persistent/home/waltz" = {
-            directories = [
-                "downloads"
-                "music"
-                "img"
-                "docs"
-                ".config/VencordDesktop"
-                ".config/syncthing"
-                ".config/keepassxc"
-                ".librewolf"
-                ".gnupg"
-                ".ssh"
-                ".nixops"
-            ];
-            files = [
-                ".p10k.zsh"
-            ];
-            allowOther = false;
-        };
-        
+        }; 
+         
         # Hyprland
         wayland.windowManager.hyprland = {
             systemd.enable = true;
