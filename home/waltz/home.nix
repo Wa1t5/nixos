@@ -15,7 +15,7 @@
             zsh
 
             # Production
-            #qownnote
+            qownnotes
             
             # CLI
             helix
