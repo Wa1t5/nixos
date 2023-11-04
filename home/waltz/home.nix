@@ -1,5 +1,5 @@
 { config, services, pkgs, home-manager, ... }:
-{
+{               
         # Set usrename and home dir
         home.username = "waltz";
         home.homeDirectory = "/home/waltz";
@@ -16,6 +16,7 @@
 
             # Production
             qownnotes
+            kdenlive
             
             # CLI
             helix
@@ -67,6 +68,7 @@
             enable = true;
             documents = "${config.home.homeDirectory}/docs";
             music = "${config.home.homeDirectory}/music";
+            videos = "${config.home.homeDirectory}/video";
             pictures = "${config.home.homeDirectory}/img";          
             download = "${config.home.homeDirectory}/downloads";
             desktop = "${config.home.homeDirectory}/desktop";
@@ -88,8 +90,16 @@
         dconf = {
             enable = true;  
         };
-
-        programs = {    
+        
+        programs = {   
+            # Obs studio
+            obs-studio = {
+                enable = true;
+                plugins = [
+                    pkgs.obs-studio-plugins.obs-pipewire-audio-capture
+                ];
+            };
+             
             # Git
             git = {
                 enable = true;

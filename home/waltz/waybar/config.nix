@@ -91,6 +91,9 @@
         format-disconnected = "Disconnected";
         format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon} Stopped";
         interval = 10;
+
+        title-len = 30;
+        
         consume-icons = {
             on = " ";
         };
