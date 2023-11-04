@@ -25,9 +25,9 @@ $active_border_col = rgb(5a0fa6) rgb(400180) rgb(cc121e) rgb(ad0a15)
 $inactive_border_col = rgb(595959)
 
 # Scripts
-$wallpaper_cli = /etc/nixos/hyprland/scripts/wallpaper_cli.sh
-$animate_border = /etc/nixos/hyprland/scripts/animate_border.sh
-$audio = /etc/nixos/hyprland/scripts/audio.sh
+$wallpaper_cli = /etc/nixos/home/waltz/hyprland/scripts/wallpaper_cli.sh
+$animate_border = /etc/nixos/home/waltz/hyprland/scripts/animate_border.sh
+$audio = /etc/nixos/home/waltz/hyprland/scripts/audio.sh
 
 # Predefined commands
 $notify-low = notify-send -u low -t 600

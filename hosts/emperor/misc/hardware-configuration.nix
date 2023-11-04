@@ -2,10 +2,19 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
-
+let
+    impermanence = builtins.fetchTarball {
+        url = "https://github.com/nix-community/impermanence/archive/master.tar.gz";
+        sha256 = "120775fbfar2x1s5ijkxnvb8p0mmk3dlbq0lzfhsi0csfynp98ki";
+    };
+in
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [ 
+      (modulesPath + "/installer/scan/not-detected.nix")
+
+      # Import nixos impermanence  module
+      "${impermanence}/nixos.nix"
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
@@ -13,6 +22,17 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  # Set files for permamence
+  environment.persistence."/persistent/nixos" = {
+    directories = [
+      "/etc/nixos"
+      "/var/log"
+    ]; 
+    files = [
+      "/etc/machine-id"
+    ];
+  };
+  
   # File system
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/31ee403f-abda-4723-a659-f12edcdc0b72";

@@ -1,5 +1,5 @@
 {
-  description = "Emperor(hostname) sysconfig";
+  description = "General Waltz Config";
 
   inputs = {
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -14,32 +14,38 @@
         url = "github:hyprwm/Hyprland";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    #impermanence = {
+    #    url = "github:nix-community/impermanence";
+    #    inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
-
-  outputs = { self, 
-              nixpkgs, 
-              home-manager, 
-              hyprland, 
-              ... }: {
+  outputs = {   self, 
+                nixpkgs, 
+                home-manager, 
+                hyprland, 
+                #impermanence,
+                ... }: {
     nixosConfigurations = {
+
+        # Emperor Host
         "emperor" = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [ 
                 # Import config.nix
-                ./configuration.nix 
-
+                ./hosts/emperor/configuration.nix
+                               
                 # Home manager
                 home-manager.nixosModules.home-manager
                 {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
-
-                    # Import waltz's config
-                    home-manager.users.waltz = import ./home.nix;
+                
+                    # Import waltzs config
+                    home-manager.users.waltz = import ./home/waltz/home.nix;
                 }
             ];
-        };
+         };
     };
   };
 }
