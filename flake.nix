@@ -14,17 +14,12 @@
         url = "github:hyprwm/Hyprland";
         inputs.nixpkgs.follows = "nixpkgs";
     };
-    #impermanence = {
-    #    url = "github:nix-community/impermanence";
-    #    inputs.nixpkgs.follows = "nixpkgs";
-    #};
   };
 
   outputs = {   self, 
                 nixpkgs, 
                 home-manager, 
                 hyprland, 
-                #impermanence,
                 ... }: {
     nixosConfigurations = {
 

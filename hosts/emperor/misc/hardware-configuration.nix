@@ -3,13 +3,7 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
 {
-  imports =
-    [ 
-      (modulesPath + "/installer/scan/not-detected.nix")
-
-      # Import nixos impermanence  module
-      "${impermanence}/nixos.nix"
-    ];
+  imports =[ (modulesPath + "/installer/scan/not-detected.nix")];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
