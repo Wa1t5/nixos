@@ -150,12 +150,11 @@ bind = $mod SHIFT CTRL, E, exit
 bind = ,XF86MonBrightnessUp,   exec, light -A 10 && light -O && $notify-low "Bright: $(light -G)"
 bind = ,XF86MonBrightnessDown, exec, light -U 10 && light -O && $notify-low "Bright: $(light -G)"
 
-# Music (script)
-bind = $mod,XF86AudioPlay, exec, notify-send -t 600 "$(music info)"
-bind = ,XF86AudioPlay, exec, music pause
-bind = ,XF86AudioNext, exec, music advance 5
-bind = ,XF86AudioPrev, exec, music back 5
-bind = $mod SHIFT, Y, exec, music play 'https://www.youtube.com/watch?v=9yGGNohmAT0' && music seek 132
+# MPD
+bind = $mod,XF86AudioPlay, exec, notify-send -t 600 "$(playerctl -p mpd status)"
+bind = ,XF86AudioPlay, exec, playerctl -p mpd play-pause
+bind = ,XF86AudioNext, exec, playerctl -p mpd position 5+
+bind = ,XF86AudioPrev, exec, playerctl -p mpd position 5-
 
 # Volume
 bind = ,XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05+ && $notify-low "Audio: $($get-sink-volume)"

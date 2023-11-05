@@ -25,6 +25,7 @@
             btop
             #fastfetch # Remove fastfetch until they fix it
             ncmpcpp
+            playerctl
                 
             # Servers
             mpd
@@ -201,7 +202,17 @@
                         type "pipewire"
                         name "Pipewire Output"
                     }'';
-             };
+            };
+
+            # Mpd mpris
+            mpd-mpris = {
+                enable = true;
+            };
+
+            # Playerctld
+            playerctld = {
+                enable = true;
+            };
 
             # Easyeffects
             easyeffects = {
