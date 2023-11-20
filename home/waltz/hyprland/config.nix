@@ -10,24 +10,19 @@
 ###################################################################################################################
 
 # Keys
-$mod = SUPER
+$MOD = SUPER
 
 # Applications
 $term = kitty
-$top_bar = waybar
-$launcher = $($(tofi-run --width=100% --height=100% --border-width=0 --outline-width=0 --padding-left=35% --padding-top=35% --result-spacing=25 --background-color=000A))
+$launcher = $(tofi-run)
 
 # Commands
-$lock_screen = swaylock --daemonize --screenshot --effect-blur 3x1 --indicator --clock --inside-color 5a0fa6 --inside-clear-color 5a0fa6 --layout-bg-color 5a0fa6 --key-hl-color 5a0fa --text-color ffffff --text-clear-color ffffff --ring-color 000000 --ring-clear-color 000000
+$lock_screen = swaylock --daemonize --screenshot --effect-blur 3x1 --indicator --clock --inside-color 5a0fa6 --inside-clear-color 5a0fa6 --layout-bg-color 5a0fa6 --key-hl-color 5a0fa --text-color ffffff --text-clear-color ffffff --ring-color 000000 --ring-clear-color 00000
+$random_wallpaper = $(sh /etc/nixos/home/waltz/hyprland/scripts/random_wallpaper.sh)
+$update_colorscheme = $(sh /etc/nixos/home/waltz/hyprland/scripts/update_colorscheme.sh)
 
-# Window borders
-$active_border_col = rgb(5a0fa6) rgb(400180) rgb(cc121e) rgb(ad0a15)
-$inactive_border_col = rgb(595959)
-
-# Scripts
-$wallpaper_cli = /etc/nixos/home/waltz/hyprland/scripts/wallpaper_cli.sh
-$animate_border = /etc/nixos/home/waltz/hyprland/scripts/animate_border.sh
-$audio = /etc/nixos/home/waltz/hyprland/scripts/audio.sh
+# Pywal
+source=~/.cache/wal/colors-wal-hyprland.conf
 
 # Predefined commands
 $notify-low = notify-send -u low -t 600
@@ -35,10 +30,12 @@ $get-sink-volume = wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F'[. ]' '{print 
 $get-source-volume = wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk -F'[. ]' '{print $3}'
 $set-volume = wpctl set-volume
 $toggle-mute = wpctl set-mute
+$set-bright = brightnessctl s
+$get-bright = brightnessctl g
 
 # Start
-exec-once = $wallpaper_cli & # Restore previous wallpaper
-exec-once = $animate_border "$active_border_col" & # Start script to animate window border
+exec-once = swww init # Inititialie swww daemon
+exec-once = brightnessctl -r & # Restore previous backlight
 
 # Monitor
 monitor=,preferred,auto,1
@@ -56,10 +53,6 @@ general {
     gaps_in = 5
     gaps_out = 3
     border_size = 2
-
-    # Window border
-    col.active_border	= $active_border_col	
-		col.inactive_border	= $inactive_border_col 
 
     # Layout
     layout = dwindle
@@ -136,22 +129,22 @@ dwindle {
 		no_gaps_when_only 	= false
 }
 
-Lock screen
+# Lock screen
 bindl	= , switch:Lid Switch, exec, $lock_screen
-bind	= $mod SHIFT, l, exec, $lock_screen
+bind	= $MOD SHIFT, l, exec, $lock_screen
 
 # Main Keybindings
-bind = $mod, T, exec, $term
-bind = $mod, Return, exec, $launcher
-bind = $mod SHIFT, Q, killactive
-bind = $mod SHIFT CTRL, E, exit
+bind = $MOD, T, exec, $term
+bind = $MOD, Return, exec, $launcher
+bind = $MOD SHIFT, Q, killactive
+bind = $MOD SHIFT CTRL, E, exit
 
 # Control screen brightness
-bind = ,XF86MonBrightnessUp,   exec, light -A 10 && light -O && $notify-low "Bright: $(light -G)"
-bind = ,XF86MonBrightnessDown, exec, light -U 10 && light -O && $notify-low "Bright: $(light -G)"
+bind = ,XF86MonBrightnessUp,   exec, $set-bright +10 && brightnessctl -s && $notify-low "Bright: $($get-bright)"
+bind = ,XF86MonBrightnessDown, exec, $set-bright 10- && brightnessctl -s && $notify-low "Bright: $($get-bright)"
 
 # MPD
-bind = $mod,XF86AudioPlay, exec, notify-send -t 600 "$(playerctl -p mpd status)"
+bind = $MOD,XF86AudioPlay, exec, notify-send -t 600 "$(playerctl -p mpd status)"
 bind = ,XF86AudioPlay, exec, playerctl -p mpd play-pause
 bind = ,XF86AudioNext, exec, playerctl -p mpd position 5+
 bind = ,XF86AudioPrev, exec, playerctl -p mpd position 5-
@@ -161,34 +154,35 @@ bind = ,XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05+ && $n
 bind = ,XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05- && $notify-low "Audio: $($get-sink-volume)"
 
 # Microphone volume
-bind = $mod, XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+ && $notify-low "Microphone: $($get-source-volume)"
-bind = $mod, XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05- && $notify-low "Microphone: $($get-source-volume)"
+bind = $MOD, XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+ && $notify-low "Microphone: $($get-source-volume)"
+bind = $MOD, XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05- && $notify-low "Microphone: $($get-source-volume)"
 
 # Togle Audio | Mic
 bind = ,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low "Audio mute toggled"
-bind = $mod,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low "Microphone mute toggled"
+bind = $MOD,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low "Microphone mute toggled"
 
-# Reloads
-bind = $mod SHIFT, w, exec, systemctl --user restart $top_bar & # Restart topbar
-bind = $mod SHIFT, w, exec, $wallpaper_cli clipboard & # Swap wallpaper using clipboard 
-#bind = $mod SHIFT, w, exec, $audio & # Reload audio script
-bind = $mod SHIFT, w, exec, $animate_border "$active_border_col" & # Update animated border
+# Change wallpaper and generate new colorscheme
+bind = $MOD SHIFT, w, exec, $random_wallpaper &
+bind = $MOD SHIFT, w, exec, $update_colorscheme &
 
 # Screenshot
-bind = $mod, p, exec, grim - | wl-copy -t image/png
-bind = $mod SHIFT, p, exec, grim -g "$(slurp)" - | wl-copy -t image/png
+bind = $MOD, s, exec, grim - | wl-copy -t image/png && $notify-low "Screenshot taken"
+bind = $MOD SHIFT, s, exec, grim -g "$(slurp)" - wl-copy -t image/png && $notify-low "Screenshot taken"
 
 # Toggle Floating
-bind = $mod SHIFT, space, togglefloating, active
+bind = $MOD SHIFT, space, togglefloating, active
+
+# Pin window
+bind = $MOD, p, pin, active
 
 # Move window
-bind = $mod SHIFT, left, movewindow, l
-bind = $mod SHIFT, right, movewindow, r
-bind = $mod SHIFT, up, movewindow, u
-bind = $mod SHIFT, down, movewindow, d
+bind = $MOD SHIFT, left, movewindow, l
+bind = $MOD SHIFT, right, movewindow, r
+bind = $MOD SHIFT, up, movewindow, u
+bind = $MOD SHIFT, down, movewindow, d
 
-# Resize mode
-bind = $mod, r, submap, resize
+# Resize MODe
+bind = $MOD, r, submap, resize
 submap = resize
 
 binde = , right, resizeactive, 10 0
@@ -200,42 +194,42 @@ bind = , escape, submap, reset
 submap = reset
 
 # Move focus with mainMod + arrow keys
-bind = $mod, left, movefocus, l
-bind = $mod, right, movefocus, r
-bind = $mod, up, movefocus, u
-bind = $mod, down, movefocus, d
+bind = $MOD, left, movefocus, l
+bind = $MOD, right, movefocus, r
+bind = $MOD, up, movefocus, u
+bind = $MOD, down, movefocus, d
 
 # Switch workspaces with mainMod + [0-9]
-bind = $mod, 1, workspace, 1
-bind = $mod, 2, workspace, 2
-bind = $mod, 3, workspace, 3
-bind = $mod, 4, workspace, 4
-bind = $mod, 5, workspace, 5
-bind = $mod, 6, workspace, 6
-bind = $mod, 7, workspace, 7
-bind = $mod, 8, workspace, 8
-bind = $mod, 9, workspace, 9
-bind = $mod, 0, workspace, 10
+bind = $MOD, 1, workspace, 1
+bind = $MOD, 2, workspace, 2
+bind = $MOD, 3, workspace, 3
+bind = $MOD, 4, workspace, 4
+bind = $MOD, 5, workspace, 5
+bind = $MOD, 6, workspace, 6
+bind = $MOD, 7, workspace, 7
+bind = $MOD, 8, workspace, 8
+bind = $MOD, 9, workspace, 9
+bind = $MOD, 0, workspace, 10
 
 # Move active window to a workspace with mainMod + SHIFT + [0-9]
-bind = $mod SHIFT, 1, movetoworkspace, 1
-bind = $mod SHIFT, 2, movetoworkspace, 2
-bind = $mod SHIFT, 3, movetoworkspace, 3
-bind = $mod SHIFT, 4, movetoworkspace, 4
-bind = $mod SHIFT, 5, movetoworkspace, 5
-bind = $mod SHIFT, 6, movetoworkspace, 6
-bind = $mod SHIFT, 7, movetoworkspace, 7
-bind = $mod SHIFT, 8, movetoworkspace, 8
-bind = $mod SHIFT, 9, movetoworkspace, 9
-bind = $mod SHIFT, 0, movetoworkspace, 10
+bind = $MOD SHIFT, 1, movetoworkspace, 1
+bind = $MOD SHIFT, 2, movetoworkspace, 2
+bind = $MOD SHIFT, 3, movetoworkspace, 3
+bind = $MOD SHIFT, 4, movetoworkspace, 4
+bind = $MOD SHIFT, 5, movetoworkspace, 5
+bind = $MOD SHIFT, 6, movetoworkspace, 6
+bind = $MOD SHIFT, 7, movetoworkspace, 7
+bind = $MOD SHIFT, 8, movetoworkspace, 8
+bind = $MOD SHIFT, 9, movetoworkspace, 9
+bind = $MOD SHIFT, 0, movetoworkspace, 10
 
 # Scroll through existing workspaces with mainMod + scroll
-bind = $mod, mouse_down, workspace, e+1
-bind = $mod, mouse_up, workspace, e-1
+bind = $MOD, mouse_down, workspace, e+1
+bind = $MOD, mouse_up, workspace, e-1
 
 # Move/resize windows with mainMod + LMB/RMB and dragging
-bindm = $mod, mouse:272, movewindow
-bindm = $mod, mouse:273, resizewindow
+bindm = $MOD, mouse:272, movewindow
+bindm = $MOD, mouse:273, resizewindow
 
 debug {
 	damage_tracking = 2

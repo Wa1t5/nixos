@@ -2,36 +2,38 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
+
 {
-  imports =[ (modulesPath + "/installer/scan/not-detected.nix")];
+  imports =
+    [ (modulesPath + "/installer/scan/not-detected.nix")
+    ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
- # File system
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/31ee403f-abda-4723-a659-f12edcdc0b72";
+    { device = "/dev/disk/by-uuid/b570711c-2bda-44e5-ac9d-dc24dcdcf290";
       fsType = "xfs";
     };
 
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/56e21e9e-8aa7-4fad-b7f5-b7aba86961f6";
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/bbc71e67-07f8-4a98-918f-5e49777e7988";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/A00C-2506";
+    { device = "/dev/disk/by-uuid/AAFC-50FF";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/90ec4a85-5f4a-4480-8182-1eb1896e93ce"; }
+    [ { device = "/dev/disk/by-uuid/764cfc2a-8549-497a-aaa3-9f238f652945"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  # networking.useDHCP = lib.mkDefault true;
+  networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

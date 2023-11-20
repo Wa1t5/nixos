@@ -14,9 +14,11 @@
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Allow unfree
+  nixpkgs.config.allowUnfree = true;
+
   # Hyprland
   programs.hyprland.enable = true;
-  programs.light.enable = true;
 
   # Greetd + Tuigreet
   services.greetd = {
@@ -26,6 +28,13 @@
               command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd Hyprland";
           };
       };     
+  };
+
+  # Podman
+  virtualisation = {
+    podman = {
+      enable = true;
+    };
   };
 
   # Avoid systemd spamming Tuigreet

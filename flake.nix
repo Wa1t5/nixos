@@ -21,7 +21,6 @@
                 hyprland,
                 ... }: {
     nixosConfigurations = {
-
         # Emperor Host
         "emperor" = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";

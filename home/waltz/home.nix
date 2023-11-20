@@ -3,27 +3,42 @@
         # Set usrename and home dir
         home.username = "waltz";
         home.homeDirectory = "/home/waltz";
+       
+        ########## Deploy extra files to home ##########     
+        
+            # pywal templates
+            home.file."wal" = {
+                source = ./wal/templates;
+                target = ".config/wal/templates";
+                recursive = false;
+            };
 
-        # Packages
+            # tofi config
+            home.file."tofi" = {
+                source = ./tofi/config;
+                target = ".config/tofi/config";
+                recursive = false;
+            };
+
+        ########## Packages ##########
         home.packages = with pkgs; [
             # Hyprland
             xdg-desktop-portal-hyprland
-            #hyprland
-            hyprpaper
+            swww
 
             # Shell
             zsh
 
             # Production
-            qownnotes
-            kdenlive
+            obsidian
+            distrobox
             
             # CLI
             helix
             kitty
             eza
             btop
-            #fastfetch # Remove fastfetch until they fix it
+            fastfetch
             ncmpcpp
             playerctl
                 
@@ -32,7 +47,7 @@
         
             # Media
             librewolf
-            vesktop
+            # vesktop # Uncomment this when they fix the broken package
             easyeffects
 
             # Security
@@ -44,8 +59,7 @@
 
             # Componnents
             libnotify
-            light
-            mako
+            brightnessctl
             tofi
             wl-clipboard
             slurp
@@ -62,7 +76,8 @@
         ];
 
         # Enable wayland for electron ozone apps
-        home.sessionVariables = { NIXOS_OZONE_WL = "1"; };
+        # home.sessionVariables = { NIXOS_OZONE_WL = "1"; };
+        home.sessionVariables = { PATH = "/home/waltz/.local/bin:$PATH"; };
 
         # Set xdg user dirs
         xdg.userDirs = {
@@ -74,25 +89,32 @@
             download = "${config.home.homeDirectory}/downloads";
             desktop = "${config.home.homeDirectory}/desktop";
         }; 
-         
+        
         # Hyprland
         wayland.windowManager.hyprland = {
             systemd.enable = true;
             enable = true;
-            xwayland.enable = false;
+            xwayland.enable = true;
             extraConfig = '' 
                 # Force electron apps to use wayland backend
-                env = NIXOS_OZONE_WL,1
+                # env = NIXOS_OZONE_WL,1
+
+                # Add .local/bin to PATH
+                env = PATH,/home/waltz/.local/bin:$PATH
             '' + import ./hyprland/config.nix;
         };
-
 
         # Dconf (for easyeffects)
         dconf = {
             enable = true;  
         };
         
-        programs = {   
+        programs = {       
+            # Pywal
+            pywal = {
+                enable = true;
+            };
+            
             # Obs studio
             obs-studio = {
                 enable = true;
@@ -172,17 +194,19 @@
                 enable = true;
             };
         };
-    
+
+
+        ########## Services ##########
         services = {
             # Syncthing
             syncthing = {
                 enable = true;
             };
 
-            # Mako
-            mako = {
+            # Fnott
+            fnott = {
                 enable = true;
-                extraConfig = import ./mako/config.nix;
+                configFile = "/home/waltz/.cache/wal/colors-fnott.ini";
             };
 
             # GPG Agent
@@ -220,5 +244,5 @@
             };
         };
 
-        home.stateVersion = "23.11";    
+        home.stateVersion = "23.11";
 }

@@ -16,10 +16,6 @@
                 "SO JESUS" = {
                   pskRaw = "fbed1bf8aafb9da805a70449bd03a8f790b7d4cfbb7b0d903d2f5b120cbf0f59";
                 };
-
-                "?" = {
-                  pskRaw = "8c8fffd8b9118c2136ed28051b996d71ef5168e097f2a77920e9ae9831204dcf";
-                };
             };
         };
     };

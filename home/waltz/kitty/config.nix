@@ -1,4 +1,7 @@
 ''
+# Import pywal colorscheme
+include ~/.cache/wal/colors-kitty.conf
+
 # Disable warning when closing window
 confirm_os_window_close 0
 
@@ -11,40 +14,4 @@ background_opacity 0.5
 # Font
 font_family Noto Mono Nerd Font Complete
 font_size 12.0
-
-# Background
-foreground #f8f8f2
-background #0c0d17
-
-# Black
-color0 #5e5d5d
-color8 #6a6b8a
-
-# Red
-color1 #ff4046
-color9 #ff293b
-
-# Green
-color2 #50ff40
-color10 #29ff30
-
-# Yellow
-color3 #f9ff40
-color11 #f4ff29
-
-# Blue
-color4 #4043ff
-color12 #3029ff
-
-# Magenta
-color5 #a640ff
-color131 #8229ff
-
-# Cyan
-color6 #40bcff
-color14 #29eaff
-
-# White
-color7 #c9c9c9
-color15 #ffffff
 ''

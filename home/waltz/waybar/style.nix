@@ -1,4 +1,5 @@
 ''
+@import "/home/waltz/.cache/wal/colors-waybar.css";
 * 
 {
     /* Fonts */
@@ -71,28 +72,15 @@ button:hover {
     margin: 0 4px;
 }
 
-/* Custom/bar: Clock  */
-#custom-clock {
-  	margin-top: 8px;
-  	margin-left: 8px;
-  	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 4px;
-	border-radius: 15px;
-	background-color: #1e7694;
-	/*box-shadow: inset 0 -3px #deb031;*/
-}
-
 /* Clock  */
 #clock {
   	margin-top: 8px;
   	margin-left: 8px;
   	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 4px;
-	border-radius: 15px;
-	background-color: #1e7694;
-	/*box-shadow: inset 0 -3px #deb031;*/
+    padding-right: 10px;
+	  margin-bottom: 4px;
+	  border-radius: 15px;
+	  background-color: @color2;
 }
 
 /* Custom/bar: Calendar */
@@ -100,23 +88,10 @@ button:hover {
   	margin-top: 8px;
   	margin-left: 8px;
   	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 4px;
-	border-radius: 15px;
-	background-color: #2453bf;
-   	/*box-shadow: inset 0 -3px #d8eb2d;*/
-}
-
-/* Custom/bar: Battery */
-#custom-battery {
-  	margin-top: 8px;
-  	margin-left: 8px;
-  	padding-left: 10px;
-	padding-right: 15px;
-	margin-bottom: 4px;
-	border-radius: 15px;
-   	background-color: #502fd4;
-   	/*box-shadow: inset 0 -3px #6328e0;*/
+    padding-right: 10px;
+    margin-bottom: 4px;
+    border-radius: 15px;
+    background-color: @color5;
 }
 
 /* Battery */
@@ -124,71 +99,32 @@ button:hover {
   	margin-top: 8px;
   	margin-left: 8px;
   	padding-left: 10px;
-	padding-right: 15px;
-	margin-bottom: 4px;
-	border-radius: 15px;
-   	background-color: #502fd4;
-   	/*box-shadow: inset 0 -3px #6328e0;*/
-}
-
-/* Custom/bar: Temperature */
-#custom-temperature {
-	margin-top: 8px;
-  	margin-left: 8px;
-  	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 3px;
-	border-radius: 15px;
-   	background-color: #c93434;
-   	/*box-shadow: inset 0 -3px #eb4034;*/
+	  padding-right: 15px;
+	  margin-bottom: 4px;
+	  border-radius: 15px;
+   	background-color: @color1;
 }
 
 /* Temperature */
 #temperature {
-	margin-top: 8px;
+    margin-top: 8px;
   	margin-left: 8px;
   	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 3px;
-	border-radius: 15px;
-   	background-color: #c93434;
-   	/*box-shadow: inset 0 -3px #eb4034;*/
-}
-
-/* Custom/bar: Music */
-#custom-music {
-  	margin-top: 8px;
-  	margin-left: 8px;
-  	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 4px;
-	border-radius: 15px;
-   	background-color: #6d24c7;
-   	/*box-shadow: inset 0 -3px #6d24c7;*/
-}
-
-/* Cava */
-#cava {
-  	margin-top: 8px;
-  	margin-left: 8px;
-  	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 4px;
-	border-radius: 15px;
-   	background-color: #6d24c7;
-   	/*box-shadow: inset 0 -3px #6d24c7;*/
+	  padding-right: 10px;
+    margin-bottom: 3px;
+    border-radius: 15px;
+   	background-color: @color3;
 }
 
 /* Tray */
 #tray {
-  	margin-top: 8px;
-  	margin-left: 8px;
+    margin-top: 8px;
+    margin-left: 8px;
   	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 4px;
-	border-radius: 15px;
-   	background-color: #6d24c7;
-   	/*box-shadow: inset 0 -3px #6d24c7;*/
+	  padding-right: 10px;
+	  margin-bottom: 4px;
+	  border-radius: 15px;
+    background-color: @color6;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
