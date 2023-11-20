@@ -1,5 +1,5 @@
 { config, services, pkgs, home-manager, ... }:
-{               
+{            
         # Set usrename and home dir
         home.username = "waltz";
         home.homeDirectory = "/home/waltz";
@@ -29,24 +29,26 @@
             # Shell
             zsh
 
-            # Production
+            # Text editing / Coding
             obsidian
-            distrobox
-            
-            # CLI
             helix
+
+            # Virtualisation
+            distrobox
+
+            # Terminal
             kitty
+           
+            # CLI
             eza
             btop
             fastfetch
-            ncmpcpp
-            playerctl
+            imagemagick
                 
-            # Servers
-            mpd
         
             # Media
             librewolf
+            playerctl
             # vesktop # Uncomment this when they fix the broken package
             easyeffects
 
@@ -57,7 +59,7 @@
             # Sync
             syncthing
 
-            # Componnents
+            # Complements
             libnotify
             brightnessctl
             tofi
@@ -65,6 +67,7 @@
             slurp
             grim
             waybar
+            wpgtk
 
             # Fonts
             noto-fonts
@@ -114,7 +117,7 @@
             pywal = {
                 enable = true;
             };
-            
+          
             # Obs studio
             obs-studio = {
                 enable = true;
@@ -168,6 +171,17 @@
             # Ncmpcpp
             ncmpcpp = {
                 enable = true;
+                package = (pkgs.ncmpcpp.override { visualizerSupport = true; clockSupport = true; });
+                settings = { 
+                    # Script to show song info
+                    execute_on_song_change = "/etc/nixos/home/waltz/ncmpcpp/scripts/song_info.sh"; 
+
+                    # Enable visualization
+                    visualizer_data_source = "/tmp/mpd.fifo";
+                    visualizer_output_name = "my_fifo";
+                    visualizer_in_stereo = "yes";
+                    visualizer_type = "spectrum";
+               };
             };
 
             # ZSH 
@@ -222,10 +236,19 @@
                 enable = true;
                 network = { startWhenNeeded = true; };
                 extraConfig = ''
+                    # Audio output
                     audio_output {
                         type "pipewire"
                         name "Pipewire Output"
-                    }'';
+                    } 
+                    
+                    audio_output {
+                        type "fifo"
+                        name "my_fifo"
+                        path "/tmp/mpd.fifo"
+                        format "44100:16:2"
+                    }
+                '';
             };
 
             # Mpd mpris

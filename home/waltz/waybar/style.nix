@@ -26,14 +26,11 @@ button {
     /* Avoid rounded borders under each button name */
     border: none;
     border-radius: 0;
-
-    /*box-shadow: inset 0 -3px #372f8a;*/
 }
 
 /* Workspaces hover effect | below the workspace */
 button:hover {
     color: inherit;
-    /*box-shadow: inset 0 -3px #ffffff;*/
 }
 
 #workspaces button {
@@ -48,12 +45,10 @@ button:hover {
 	background: transparent;
 }
 
-/* That bar bottom on workspace */
+/* Current active workspace */
 #workspaces button.active {
-    /*background-color: #5a0fa6;*/
-	background-color: transparent;
-	color: #6328e0;
-    /*box-shadow: inset 0 -3px #ffffff;*/
+    background-color: transparent;
+    color: @color5;
 }
 
 /* Color when a workspace need focus */

@@ -87,9 +87,9 @@
 
     # Music player daemon
     "mpd" = {
-        format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {album} - {title}";
+        format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon} {title}";
         format-disconnected = "Disconnected";
-        format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon} Stopped";
+        format-stopped = "Stopped";
         interval = 10;
 
         title-len = 30;

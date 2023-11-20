@@ -20,6 +20,7 @@ $launcher = $(tofi-run)
 $lock_screen = swaylock --daemonize --screenshot --effect-blur 3x1 --indicator --clock --inside-color 5a0fa6 --inside-clear-color 5a0fa6 --layout-bg-color 5a0fa6 --key-hl-color 5a0fa --text-color ffffff --text-clear-color ffffff --ring-color 000000 --ring-clear-color 00000
 $random_wallpaper = $(sh /etc/nixos/home/waltz/hyprland/scripts/random_wallpaper.sh)
 $update_colorscheme = $(sh /etc/nixos/home/waltz/hyprland/scripts/update_colorscheme.sh)
+$music_status = $(sh /etc/nixos/home/waltz/ncmpcpp/scripts/song_info.sh)
 
 # Pywal
 source=~/.cache/wal/colors-wal-hyprland.conf
@@ -140,26 +141,27 @@ bind = $MOD SHIFT, Q, killactive
 bind = $MOD SHIFT CTRL, E, exit
 
 # Control screen brightness
-bind = ,XF86MonBrightnessUp,   exec, $set-bright +10 && brightnessctl -s && $notify-low "Bright: $($get-bright)"
-bind = ,XF86MonBrightnessDown, exec, $set-bright 10- && brightnessctl -s && $notify-low "Bright: $($get-bright)"
+bind = ,XF86MonBrightnessUp,   exec, $set-bright +10 && brightnessctl -s && $notify-low -a "Display Bright:" -h int:value:$($get-bright) " "
+bind = ,XF86MonBrightnessDown, exec, $set-bright 10- && brightnessctl -s && $notify-low -a "Display Bright:" -h int:value:$($get-bright) " "
 
 # MPD
-bind = $MOD,XF86AudioPlay, exec, notify-send -t 600 "$(playerctl -p mpd status)"
+bind = $MOD,XF86AudioPlay, exec, $music_status
+bind = ,XF86AudioPlay, exec, $music_status
 bind = ,XF86AudioPlay, exec, playerctl -p mpd play-pause
 bind = ,XF86AudioNext, exec, playerctl -p mpd position 5+
 bind = ,XF86AudioPrev, exec, playerctl -p mpd position 5-
 
 # Volume
-bind = ,XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05+ && $notify-low "Audio: $($get-sink-volume)"
-bind = ,XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05- && $notify-low "Audio: $($get-sink-volume)"
+bind = ,XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05+ && $notify-low -a "Audio Output:" -h int:value:$($get-sink-volume) " "
+bind = ,XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05- && $notify-low -a "Audio Output:" -h int:value:$($get-sink-volume) " "
 
 # Microphone volume
-bind = $MOD, XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+ && $notify-low "Microphone: $($get-source-volume)"
-bind = $MOD, XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05- && $notify-low "Microphone: $($get-source-volume)"
+bind = $MOD, XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+ && $notify-low -a "Audio Input:" -h int:value:$($get-source-volume) " "
+bind = $MOD, XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05- && $notify-low -a "Audio Input:" -h int:value:$($get-source-volume) " "
 
 # Togle Audio | Mic
-bind = ,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low "Audio mute toggled"
-bind = $MOD,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low "Microphone mute toggled"
+bind = ,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low -a "Audio Output:" "mute toggled"
+bind = $MOD,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low "Audio Input:" "mute toggled"
 
 # Change wallpaper and generate new colorscheme
 bind = $MOD SHIFT, w, exec, $random_wallpaper &
