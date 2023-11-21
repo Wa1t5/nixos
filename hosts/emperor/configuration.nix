@@ -63,7 +63,11 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
+   boot.initrd.systemd.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Use boot animation
+  boot.plymouth.enable = true;
 
   # Hostname
   networking.hostName = "emperor"; 

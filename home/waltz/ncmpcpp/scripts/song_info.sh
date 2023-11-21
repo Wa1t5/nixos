@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Wait before fetching information
-sleep 5
-
 title="$(playerctl -p mpd metadata  xesam:title)"
 album="$(playerctl -p mpd metadata xesam:album)"
 artist="$(playerctl -p mpd metadata xesam:artist)"

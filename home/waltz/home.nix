@@ -26,9 +26,6 @@
             xdg-desktop-portal-hyprland
             swww
 
-            # Shell
-            zsh
-
             # Text editing / Coding
             obsidian
             helix
@@ -38,6 +35,7 @@
 
             # Terminal
             kitty
+            direnv
            
             # CLI
             eza
@@ -49,7 +47,7 @@
             # Media
             librewolf
             playerctl
-            # vesktop # Uncomment this when they fix the broken package
+            # vesktop 
             easyeffects
 
             # Security
@@ -61,6 +59,7 @@
 
             # Complements
             libnotify
+            xdg-utils
             brightnessctl
             tofi
             wl-clipboard
@@ -112,7 +111,13 @@
             enable = true;  
         };
         
-        programs = {       
+        programs = {
+            # VSCode
+            vscode = {
+                enable = true;
+                package = pkgs.vscode-fhs;
+            };
+             
             # Pywal
             pywal = {
                 enable = true;
@@ -199,7 +204,8 @@
                     enable = true;
                 };
                 initExtra = ''
-                    source .p10k.zsh
+                    source ~/.p10k.zsh
+                    eval "$(direnv hook zsh)"
                 '';
            };
     
