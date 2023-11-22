@@ -20,6 +20,9 @@
   # Hyprland
   programs.hyprland.enable = true;
 
+  # Enable swaylock to unlock session through PAM
+  security.pam.services.swaylock = {};
+
   # Greetd + Tuigreet
   services.greetd = {
       enable = true;
@@ -32,6 +35,7 @@
 
   # Podman
   virtualisation = {
+  
     podman = {
       enable = true;
     };
@@ -63,11 +67,14 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
-   boot.initrd.systemd.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  
+  # Enable initram
+  boot.initrd.systemd.enable = true;
 
   # Use boot animation
   boot.plymouth.enable = true;
+  boot.kernelParams = ["quiet"]; # Remove noise produced by boot log
 
   # Hostname
   networking.hostName = "emperor"; 

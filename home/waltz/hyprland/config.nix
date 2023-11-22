@@ -17,7 +17,6 @@ $term = kitty
 $launcher = $(tofi-run)
 
 # Commands
-$lock_screen = swaylock --daemonize --screenshot --effect-blur 3x1 --indicator --clock --inside-color 5a0fa6 --inside-clear-color 5a0fa6 --layout-bg-color 5a0fa6 --key-hl-color 5a0fa --text-color ffffff --text-clear-color ffffff --ring-color 000000 --ring-clear-color 00000
 $random_wallpaper = $(sh /etc/nixos/home/waltz/hyprland/scripts/random_wallpaper.sh)
 $update_colorscheme = $(sh /etc/nixos/home/waltz/hyprland/scripts/update_colorscheme.sh)
 $music_status = $(sh /etc/nixos/home/waltz/ncmpcpp/scripts/song_info.sh)
@@ -131,8 +130,7 @@ dwindle {
 }
 
 # Lock screen
-bindl	= , switch:Lid Switch, exec, $lock_screen
-bind	= $MOD SHIFT, l, exec, $lock_screen
+bind	= $MOD SHIFT, l, exec, loginctl lock-session
 
 # Main Keybindings
 bind = $MOD, T, exec, $term

@@ -112,6 +112,12 @@
         };
         
         programs = {
+            # Swaylock
+            swaylock = {
+                enable = true;
+                package = pkgs.swaylock-effects;
+            };
+            
             # VSCode
             vscode = {
                 enable = true;
@@ -218,6 +224,15 @@
 
         ########## Services ##########
         services = {
+            # Swayidle
+            swayidle = {
+                enable = true;
+                events = [
+                    { event = "before-sleep"; command = "/etc/nixos/home/waltz/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
+                    { event = "lock"; command = "/etc/nixos/home/waltz/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
+                ];
+            };
+            
             # Syncthing
             syncthing = {
                 enable = true;
