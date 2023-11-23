@@ -25,17 +25,16 @@
 
   # Greetd + Tuigreet
   services.greetd = {
-      enable = true;
-      settings = {
-          default_session = {
-              command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd Hyprland";
-          };
-      };     
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd Hyprland";
+      };
+    };     
   };
 
   # Podman
   virtualisation = {
-  
     podman = {
       enable = true;
     };
@@ -43,8 +42,8 @@
 
   # Avoid systemd spamming Tuigreet
   systemd.services.greetd = {
-      serviceConfig.Type = "idle";
-      unitConfig.After = [ "dhcpcd.service" ];
+    serviceConfig.Type = "idle";
+    unitConfig.After = [ "dhcpcd.service" ];
   };
   
   # XDG desktop portal
@@ -59,10 +58,10 @@
   # Pipewire
   security.rtkit.enable = true;
   services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -99,6 +98,18 @@
     shell = pkgs.zsh;
   };
 
+  # LoginD config 
+  services.logind.extraConfig = ''
+    # don’t shutdown when power button is short-pressed
+    HandlePowerKey=hybrid-sleep
+
+    # Suspend when lid is closed
+    HandleLidSwitch=hybrid-sleep
+
+    # Hibernate delay
+    HibernateDelaySec=600
+  '';
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -111,6 +122,4 @@
 
   # Base system version
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
-

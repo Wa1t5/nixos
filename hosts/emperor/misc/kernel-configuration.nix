@@ -18,4 +18,6 @@
   '';
   boot.extraModulePackages = [ ];
 
+  # Enable resuming from hibernate
+  boot.resumeDevice = "/dev/disk/by-uuid/764cfc2a-8549-497a-aaa3-9f238f652945";
 }

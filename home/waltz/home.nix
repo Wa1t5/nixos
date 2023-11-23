@@ -228,8 +228,9 @@
             swayidle = {
                 enable = true;
                 events = [
-                    { event = "before-sleep"; command = "/etc/nixos/home/waltz/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
                     { event = "lock"; command = "/etc/nixos/home/waltz/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
+                    { event = "after-resume"; command = "/etc/nixos/home/waltz/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
+                    { event = "before-sleep"; command = "/etc/nixos/home/waltz/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
                 ];
             };
             
