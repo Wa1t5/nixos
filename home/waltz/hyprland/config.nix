@@ -167,7 +167,7 @@ bind = $MOD SHIFT, w, exec, $update_colorscheme &
 
 # Screenshot
 bind = $MOD, s, exec, grim - | wl-copy -t image/png && $notify-low "Screenshot taken"
-bind = $MOD SHIFT, s, exec, grim -g "$(slurp)" - wl-copy -t image/png && $notify-low "Screenshot taken"
+bind = $MOD SHIFT, s, exec, grim -g "$(slurp)" - | wl-copy -t image/png && $notify-low "Screenshot taken"
 
 # Toggle Floating
 bind = $MOD SHIFT, space, togglefloating, active

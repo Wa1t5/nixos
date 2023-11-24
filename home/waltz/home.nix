@@ -47,7 +47,7 @@
             # Media
             librewolf
             playerctl
-            # vesktop 
+            vesktop 
             easyeffects
 
             # Security

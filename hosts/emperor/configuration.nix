@@ -64,6 +64,14 @@
     pulse.enable = true;
   };
 
+  # Steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+  hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

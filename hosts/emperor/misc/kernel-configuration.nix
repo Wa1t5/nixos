@@ -1,5 +1,8 @@
-{ config, modulesPath, ... }:
+{ config, modulesPath, pkgs, ... }:
 {  
+  # Use latest kernel version
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  
   # Kernel modules available on initram
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "cryptd" "aesni_intel" ];
 
