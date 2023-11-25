@@ -289,5 +289,5 @@
             };
         };
 
-        home.stateVersion = "24.05";
+        home.stateVersion = "23.11"; # Update this to 24.05 asap
 }
