@@ -42,7 +42,9 @@
             btop
             fastfetch
             imagemagick
-                
+
+            # Torrent
+            qbittorrent
         
             # Media
             librewolf
@@ -66,7 +68,6 @@
             slurp
             grim
             waybar
-            wpgtk
 
             # Fonts
             noto-fonts
@@ -110,14 +111,15 @@
         dconf = {
             enable = true;  
         };
-        
+           
         programs = {
+            
             # Swaylock
             swaylock = {
                 enable = true;
                 package = pkgs.swaylock-effects;
             };
-            
+           
             # VSCode
             vscode = {
                 enable = true;
