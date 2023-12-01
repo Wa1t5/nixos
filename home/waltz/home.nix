@@ -51,6 +51,7 @@
             playerctl
             vesktop 
             easyeffects
+            pavucontrol
 
             # Security
             keepassxc
