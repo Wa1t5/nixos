@@ -4,7 +4,7 @@
         turbo = "never";
     };
     charger = {
-        governor = "schedutil";
+        governor = "powersave";
         turbo = "never";
     };
 }

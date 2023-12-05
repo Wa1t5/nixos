@@ -28,7 +28,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd Hyprland";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd  'dbus-run-session Hyprland'";
       };
     };     
   };
@@ -54,7 +54,7 @@
   # Auto-cpufreq
   services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = import ./misc/auto-cpufreq.nix;
- 
+
   # Pipewire
   security.rtkit.enable = true;
   services.pipewire = {
@@ -110,6 +110,8 @@
   services.logind.extraConfig = ''
     # don’t shutdown when power button is short-pressed
     HandlePowerKey=hybrid-sleep
+    HandleSuspendKey=hybrid-sleep
+    HandleHibernateKey=hybrid-sleep
 
     # Suspend when lid is closed
     HandleLidSwitch=hybrid-sleep

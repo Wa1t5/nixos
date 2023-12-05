@@ -92,7 +92,7 @@
         format-stopped = "Stopped";
         interval = 10;
 
-        title-len = 30;
+        title-len = 35;
         
         consume-icons = {
             on = " ";

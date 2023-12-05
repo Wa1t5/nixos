@@ -16,13 +16,7 @@
   boot.kernelModules = [ "kvm-amd" ];
 
   # Blocked kernel modules
-  boot.blacklistedKernelModules = [ "ideapad-laptop" "uvcvideo"  "sp5100_tco" ];
-
-  # Kernel module config
-  boot.extraModprobeConfig = ''
-      options snd-hda-intel model=alc255-acer,dell-headset-multi
-  '';
-  boot.extraModulePackages = [ ];
+  boot.blacklistedKernelModules = [ "uvcvideo"  "sp5100_tco" ];
 
   # Enable resuming from hibernate
   boot.resumeDevice = "/dev/disk/by-uuid/764cfc2a-8549-497a-aaa3-9f238f652945";

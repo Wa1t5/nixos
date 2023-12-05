@@ -4,6 +4,7 @@
   inputs = {
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs-stable.url = "github:NixOS/nixpkgs/23.11";
+    nixos-hardware.url = "github:wa1t5/nixos-hardware/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
         url = "github:nix-community/home-manager";
@@ -17,6 +18,7 @@
 
   outputs = {   self, 
                 nixpkgs, 
+                nixos-hardware,
                 home-manager, 
                 hyprland,
                 ... }: {
@@ -27,6 +29,9 @@
             modules = [ 
                 # Import config.nix
                 ./hosts/emperor/configuration.nix
+
+                # Load hardware config
+                nixos-hardware.nixosModules.lenovo-ideapad-s145-15api
                                
                 # Home manager
                 home-manager.nixosModules.home-manager 

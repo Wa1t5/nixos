@@ -9,9 +9,9 @@ preview="/tmp/current_song.png"
 
 magick $(playerctl -p mpd metadata mpris:artUrl) -resize 128x128\> "${preview}"
 
-notify-send -a "Music: " -i "${preview}" -u normal -t 6200 "
+sleep 1 && notify-send -a "Music: " -i "${preview}" -u normal -t 6200 "
 Title: ${title}
 Album: ${album} 
 Artist: ${artist}
 Status: ${status}
-"
+" &

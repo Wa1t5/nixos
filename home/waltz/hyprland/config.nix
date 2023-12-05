@@ -139,23 +139,23 @@ bind = $MOD SHIFT, Q, killactive
 bind = $MOD SHIFT CTRL, E, exit
 
 # Control screen brightness
-bind = ,XF86MonBrightnessUp,   exec, $set-bright +10 && brightnessctl -s && $notify-low -a "Display Bright:" -h int:value:$($get-bright) " "
-bind = ,XF86MonBrightnessDown, exec, $set-bright 10- && brightnessctl -s && $notify-low -a "Display Bright:" -h int:value:$($get-bright) " "
+binde = ,XF86MonBrightnessUp,   exec, $set-bright +10 && brightnessctl -s && $notify-low -a "Display Bright:" -h int:value:$($get-bright) " "
+binde = ,XF86MonBrightnessDown, exec, $set-bright 10- && brightnessctl -s && $notify-low -a "Display Bright:" -h int:value:$($get-bright) " "
 
 # MPD
 bind = $MOD,XF86AudioPlay, exec, $music_status
 bind = ,XF86AudioPlay, exec, $music_status
 bind = ,XF86AudioPlay, exec, playerctl -p mpd play-pause
-bind = ,XF86AudioNext, exec, playerctl -p mpd position 5+
-bind = ,XF86AudioPrev, exec, playerctl -p mpd position 5-
+binde = ,XF86AudioNext, exec, playerctl -p mpd position 5+
+binde = ,XF86AudioPrev, exec, playerctl -p mpd position 5-
 
 # Volume
-bind = ,XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05+ && $notify-low -a "Audio Output:" -h int:value:$($get-sink-volume) " "
-bind = ,XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05- && $notify-low -a "Audio Output:" -h int:value:$($get-sink-volume) " "
+binde = ,XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05+ && $notify-low -a "Audio Output:" -h int:value:$($get-sink-volume) " "
+binde = ,XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05- && $notify-low -a "Audio Output:" -h int:value:$($get-sink-volume) " "
 
 # Microphone volume
-bind = $MOD, XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+ && $notify-low -a "Audio Input:" -h int:value:$($get-source-volume) " "
-bind = $MOD, XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05- && $notify-low -a "Audio Input:" -h int:value:$($get-source-volume) " "
+binde = $MOD, XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+ && $notify-low -a "Audio Input:" -h int:value:$($get-source-volume) " "
+binde = $MOD, XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05- && $notify-low -a "Audio Input:" -h int:value:$($get-source-volume) " "
 
 # Togle Audio | Mic
 bind = ,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low -a "Audio Output:" "mute toggled"
@@ -180,6 +180,9 @@ bind = $MOD SHIFT, left, movewindow, l
 bind = $MOD SHIFT, right, movewindow, r
 bind = $MOD SHIFT, up, movewindow, u
 bind = $MOD SHIFT, down, movewindow, d
+
+# Make window fullscreen
+bind = $MOD, f, fullscreen, active
 
 # Resize MODe
 bind = $MOD, r, submap, resize

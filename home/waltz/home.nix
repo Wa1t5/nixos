@@ -38,6 +38,7 @@
             direnv
            
             # CLI
+            aichat
             eza
             btop
             fastfetch
@@ -292,5 +293,5 @@
             };
         };
 
-        home.stateVersion = "23.11"; # Update this to 24.05 asap
+        home.stateVersion = "24.05";
 }
