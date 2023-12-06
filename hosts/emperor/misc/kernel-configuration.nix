@@ -26,4 +26,10 @@
 
   # Mount /tmp on RAM
   boot.tmp.useTmpfs = true;
+
+  # Enable ZRam
+  zramSwap = {
+    enable = true;
+    algorithm = "lz4";
+  };
 }

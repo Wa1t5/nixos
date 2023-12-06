@@ -16,7 +16,7 @@ $MOD = SUPER
 $term = kitty
 $launcher = $(tofi-run)
 
-# Commands
+# Scripts
 $random_wallpaper = $(sh /etc/nixos/home/waltz/hyprland/scripts/random_wallpaper.sh)
 $update_colorscheme = $(sh /etc/nixos/home/waltz/hyprland/scripts/update_colorscheme.sh)
 $music_status = $(sh /etc/nixos/home/waltz/ncmpcpp/scripts/song_info.sh)
@@ -28,6 +28,8 @@ source=~/.cache/wal/colors-wal-hyprland.conf
 $notify-low = notify-send -u low -t 600
 $get-sink-volume = wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F'[. ]' '{print $3}'
 $get-source-volume = wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk -F'[. ]' '{print $3}'
+$get-mic-mute-status = [$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print $3}') \=\= ""] && echo "Unmuted" || echo "Muted"
+$get-mute-status = [$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}') \=\= ""] && echo "Unmuted" || echo "Muted"
 $set-volume = wpctl set-volume
 $toggle-mute = wpctl set-mute
 $set-bright = brightnessctl s
@@ -158,16 +160,16 @@ binde = $MOD, XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.0
 binde = $MOD, XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05- && $notify-low -a "Audio Input:" -h int:value:$($get-source-volume) " "
 
 # Togle Audio | Mic
-bind = ,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low -a "Audio Output:" "mute toggled"
-bind = $MOD,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low "Audio Input:" "mute toggled"
+bind = ,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low -a "Audio Output:" "$($get-mute-status)"
+bind = $MOD,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SOURCE@ toggle && $notify-low -a "Audio Input:" "$($get-mic-mute-status)"
 
 # Change wallpaper and generate new colorscheme
 bind = $MOD SHIFT, w, exec, $random_wallpaper &
 bind = $MOD SHIFT, w, exec, $update_colorscheme &
 
 # Screenshot
-bind = $MOD, s, exec, grim - | wl-copy -t image/png && $notify-low "Screenshot taken"
-bind = $MOD SHIFT, s, exec, grim -g "$(slurp)" - | wl-copy -t image/png && $notify-low "Screenshot taken"
+bind = $MOD, s, exec, grim - | wl-copy -t image/png && $notify-low -a "Screenshot:" "Fullscreen"
+bind = $MOD SHIFT, s, exec, grim -g "$(slurp)" - | wl-copy -t image/png && $notify-low -a "Screenshot" "Partial"
 
 # Toggle Floating
 bind = $MOD SHIFT, space, togglefloating, active

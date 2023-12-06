@@ -214,8 +214,14 @@
                     enable = true;
                 };
                 initExtra = ''
+                    # Load p10k config
                     source ~/.p10k.zsh
+
+                    # Allow direnv
                     eval "$(direnv hook zsh)"
+
+                    # Aliases
+                    alias ls="eza --icons"
                 '';
            };
     
