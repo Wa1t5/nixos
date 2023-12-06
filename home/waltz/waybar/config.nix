@@ -5,44 +5,50 @@
     position = "top";  # (top|bottom|left|right)
 
     # Size
-    height = 4;  # Waybar height (to be removed for auto height)
+    height = 1;  # Waybar height (to be removed for auto height)
     width = 1366; # Waybar width
     spacing = 4;  # Gaps between modules (4px)
 
     # Modules left
-    modules-left = [ "hyprland/workspaces" ];
+    modules-left = [ "clock" "hyprland/workspaces" ];
 
     # Modules center
     modules-center = [ "mpd" ];
 
     # Modules right
-    modules-right = [ "tray" "clock" "custom/calendar" "battery" "temperature" ];
+    modules-right = [ "cava" "tray"  "battery" "temperature" ];
 
     # MODULES CONFIG
 
-    # Custom/bar = Clock
-    "custom/clock" = {
-		    exec = "/etc/nixos/home/waltz/waybar/scripts/bar.sh clock";
-    };
-
     # Clock
     "clock" = {
-        interval = 60;
-        format = "{:%H:%M} ";
-        max-length = 25;
+        format = "{:%H:%M}  ";
+        format-alt = "{:%A, %B %d, %Y (%R)}  ";
+        tooltip-format = "<tt><small>{calendar}</small></tt>";
+        calendar = {
+            mode          = "year";
+            mode-mon-col  = 3;
+            weeks-pos     = "right";
+            on-scroll     = 1;
+            on-click-right = "mode";
+            format = {
+                months =     "<span color='#ffead3'><b>{}</b></span>";
+                days =       "<span color='#ecc6d9'><b>{}</b></span>";
+                weeks =      "<span color='#99ffdd'><b>W{}</b></span>";
+                weekdays =   "<span color='#ffcc66'><b>{}</b></span>";
+                today =      "<span color='#ff6699'><b><u>{}</u></b></span>";
+            };
+        };
+        actions = {
+            on-click-right = "mode";
+            on-click-forward = "tz_up";
+            on-click-backward = "tz_down";
+            on-scroll-up = "shift_up";
+            on-scroll-down = "shift_down";
+        };
     };
-
-    # Custom/bar = Calendar
-    "custom/calendar" = {
-		    exec = "/etc/nixos/home/waltz/waybar/scripts/bar.sh calendar";
-    };
-
-    # Custom/bar = Battery
-    "custom/battery" = {
-		    exec = "/etc/nixos/homw/waltz/waybar/scripts/bar.sh  battery";
-    };
-
-    # Battery
+    
+     # Battery
     battery = {
    	    bat = "BAT0";
         interval = 60;
@@ -61,7 +67,7 @@
     };
 	
     # Temperature
-    temperature = {
+    "temperature" = {
         thermal-zone = 0;
         hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon/";
         input-filename = "temp1_input";
@@ -70,16 +76,13 @@
         format = "{temperatureC}°C ";
     };
 
-   # Custom/bar = Music
-	 "custom/music" = {
-	      exec = "/etc/nixos/home/waltz/waybar/scripts/bar.sh  music";
-	     #on-click = "music pause";
-   };
-
-	  # Hyprland workspaces
-	  "hyprland/workspaces" = {
-		    format = "{icon}";
-	      format-icons = {
+    # Hyprland workspaces
+    "hyprland/workspaces" = {
+	      format = "{icon}";
+        persistent-workspaces = {
+            "*" = [ 0 1 2 3 4 5 6 7 8 9 0 ];
+        };
+        format-icons = {
             active = " ";
             default = "";
         };
@@ -113,6 +116,25 @@
         };
         tooltip-format = "MPD (connected)";
         tooltip-format-disconnected = "MPD (disconnected)";
+    };
+
+    # Cava
+    "cava" = {
+        framerate = 30;
+        autosens = 1;
+        sensitivity = 5;
+        bars = 16;
+        lower_cutoff_freq = 50;
+        higher_cutoff_freq = 10000;
+        method = "pipewire";
+        source = "auto";
+        stereo = true;
+        reverse = false;
+        bar_delimiter = 0;
+        monstercat = false;
+        waves = false;
+        input_delay = 4;
+        format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
     };
 }
 ]

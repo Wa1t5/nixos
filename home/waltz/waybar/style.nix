@@ -19,30 +19,20 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
 
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
-}
-
-/* Workspaces hover effect | below the workspace */
-button:hover {
-    color: inherit;
+/* Workspaces bar */
+#workspaces {
+    border-radius: 15px;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    background-color: @color4;
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 2px;
+    border-radius: 15px;
     background-color: transparent;
     color: #ffffff;
-}
-
-/* Workspace hover effect | color  */
-#workspaces button:hover {
-    /*background: #828282;*/
-	background: transparent;
 }
 
 /* Current active workspace */
@@ -56,20 +46,9 @@ button:hover {
     background-color: #eb4d4b;
 }
 
-/* ??? */
-#mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
-}
-
-/* Workspaces */
-#workspaces {
-    margin: 0 4px;
-}
-
 /* Clock  */
 #clock {
-  	margin-top: 8px;
+  	margin-top: 4px;
   	margin-left: 8px;
   	padding-left: 10px;
     padding-right: 10px;
@@ -78,20 +57,9 @@ button:hover {
 	  background-color: @color2;
 }
 
-/* Custom/bar: Calendar */
-#custom-calendar {
-  	margin-top: 8px;
-  	margin-left: 8px;
-  	padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 4px;
-    border-radius: 15px;
-    background-color: @color5;
-}
-
 /* Battery */
 #battery {
-  	margin-top: 8px;
+  	margin-top: 4px;
   	margin-left: 8px;
   	padding-left: 10px;
 	  padding-right: 15px;
@@ -102,24 +70,47 @@ button:hover {
 
 /* Temperature */
 #temperature {
-    margin-top: 8px;
+    margin-top: 4px;
   	margin-left: 8px;
   	padding-left: 10px;
 	  padding-right: 10px;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
     border-radius: 15px;
    	background-color: @color3;
 }
 
 /* Tray */
 #tray {
-    margin-top: 8px;
+    margin-top: 4px;
     margin-left: 8px;
   	padding-left: 10px;
 	  padding-right: 10px;
 	  margin-bottom: 4px;
 	  border-radius: 15px;
     background-color: @color6;
+}
+
+/* MPD */
+#mpd {
+    margin-top: 4px;
+    margin-left: 8px;
+  	padding-left: 10px;
+	  padding-right: 10px;
+	  margin-bottom: 4px;
+	  border-radius: 15px;
+    background-color: @color7;
+}
+
+
+/* Cava */
+#cava {
+    margin-top: 4px;
+    margin-left: 8px;
+  	padding-left: 10px;
+	  padding-right: 10px;
+	  margin-bottom: 4px;
+	  border-radius: 15px;
+    background-color: @color8;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
