@@ -13,7 +13,7 @@
     modules-left = [ "clock" "hyprland/workspaces" ];
 
     # Modules center
-    modules-center = [ "mpd" ];
+    modules-center = [ "mpris" ];
 
     # Modules right
     modules-right = [ "cava" "tray"  "battery" "temperature" ];
@@ -48,7 +48,7 @@
         };
     };
     
-     # Battery
+    # Battery
     battery = {
    	    bat = "BAT0";
         interval = 60;
@@ -122,8 +122,8 @@
     "cava" = {
         framerate = 30;
         autosens = 1;
-        sensitivity = 5;
-        bars = 16;
+        sensitivity = 1;
+        bars = 10;
         lower_cutoff_freq = 50;
         higher_cutoff_freq = 10000;
         method = "pipewire";
@@ -131,10 +131,27 @@
         stereo = true;
         reverse = false;
         bar_delimiter = 0;
-        monstercat = false;
+        monstercat = true;
         waves = false;
         input_delay = 4;
         format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+    };
+
+    # MPRIS
+    "mpris" = {
+	      format = "{status_icon}{title}";
+	      format-paused = "{status_icon}{title}";
+        format-stopped = "{status}";
+        title-len = 35;
+        player-icons = {
+		        "default" = "▶";
+		        "mpv" = "🎵";
+	      };
+	      status-icons = {
+		        "paused" = "⏸";
+		        "playing" = "▶";
+	      };
+        ignored-players = [ "firefox" ];
     };
 }
 ]

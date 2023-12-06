@@ -46,6 +46,13 @@ window#waybar.hidden {
     background-color: #eb4d4b;
 }
 
+
+/* Workspace hover effect | color  */
+#workspaces button:hover {
+    background-color: inherit;
+    color: inherit;
+}
+
 /* Clock  */
 #clock {
   	margin-top: 4px;
@@ -101,7 +108,16 @@ window#waybar.hidden {
     background-color: @color7;
 }
 
-
+/* MPRIS */
+#mpris {
+    margin-top: 4px;
+    margin-left: 8px;
+  	padding-left: 10px;
+	  padding-right: 10px;
+	  margin-bottom: 4px;
+	  border-radius: 15px;
+    background-color: @color7;
+}
 /* Cava */
 #cava {
     margin-top: 4px;

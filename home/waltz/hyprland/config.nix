@@ -35,6 +35,9 @@ $toggle-mute = wpctl set-mute
 $set-bright = brightnessctl s
 $get-bright = brightnessctl g
 
+# Lists
+$player-list = mpd
+
 # Start
 exec-once = swww init # Inititialie swww daemon
 exec-once = brightnessctl -r & # Restore previous backlight
@@ -147,9 +150,9 @@ binde = ,XF86MonBrightnessDown, exec, $set-bright 10- && brightnessctl -s && $no
 # MPD
 bind = $MOD,XF86AudioPlay, exec, $music_status
 bind = ,XF86AudioPlay, exec, $music_status
-bind = ,XF86AudioPlay, exec, playerctl -p mpd play-pause
-binde = ,XF86AudioNext, exec, playerctl -p mpd position 5+
-binde = ,XF86AudioPrev, exec, playerctl -p mpd position 5-
+bind = ,XF86AudioPlay, exec, playerctl -p $player-list play-pause
+binde = ,XF86AudioNext, exec, playerctl -p $player-list position 5+
+binde = ,XF86AudioPrev, exec, playerctl -p $player-list position 5-
 
 # Volume
 binde = ,XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05+ && $notify-low -a "Audio Output:" -h int:value:$($get-sink-volume) " "
