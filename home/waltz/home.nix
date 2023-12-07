@@ -205,6 +205,8 @@
                     playlist_editor_display_mode = "columns";
                     
                     user_interface = "alternative";                    
+
+                    now_playing_prefix = ">";
                };
             };
 
