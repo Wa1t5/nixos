@@ -39,10 +39,17 @@
            
             # CLI
             aichat
-            eza
             btop
             fastfetch
             imagemagick
+
+            # CLI (GNU tools replacement)            
+            lsd
+            bat
+            dysk
+            delta
+            du-dust
+            fd
 
             # Torrent
             qbittorrent
@@ -232,7 +239,12 @@
                     eval "$(direnv hook zsh)"
 
                     # Aliases
-                    alias ls="eza --icons"
+                    alias ls="lsd"
+                    alias cat="bat"
+                    alias df="dysk"
+                    alias diff="delta"
+                    alias du="dust"
+                    alias find="fd"
                 '';
            };
     

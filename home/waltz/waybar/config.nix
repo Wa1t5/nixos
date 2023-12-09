@@ -61,11 +61,6 @@
     	  max-length = 25;
 	  };
 
-    # Custom/bar = Temperature
-    "custom/temperature" = {
-		    exec = "/etc/nixos/home/waltz/waybar/scripts/bar.sh temperature";
-    };
-	
     # Temperature
     "temperature" = {
         thermal-zone = 0;
@@ -80,7 +75,7 @@
     "hyprland/workspaces" = {
 	      format = "{icon}";
         persistent-workspaces = {
-            "*" = [ 0 1 2 3 4 5 6 7 8 9 0 ];
+            "*" = 10;
         };
         format-icons = {
             active = " ";
@@ -131,7 +126,7 @@
         stereo = true;
         reverse = false;
         bar_delimiter = 0;
-        monstercat = true;
+        monstercat = false;
         waves = false;
         input_delay = 4;
         format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
@@ -148,10 +143,10 @@
 		        "mpv" = "🎵";
 	      };
 	      status-icons = {
-		        "paused" = "⏸";
-		        "playing" = "▶";
+		        "paused" = " ";
+		        "playing" = " ";
 	      };
         ignored-players = [ "firefox" ];
     };
-}
+    }
 ]

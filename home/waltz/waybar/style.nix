@@ -19,7 +19,6 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-
 /* Workspaces bar */
 #workspaces {
     border-radius: 15px;
@@ -30,7 +29,7 @@ window#waybar.hidden {
 
 #workspaces button {
     padding: 0 2px;
-    border-radius: 15px;
+    /*border-radius: 15px;*/
     background-color: transparent;
     color: #ffffff;
 }
@@ -48,9 +47,9 @@ window#waybar.hidden {
 
 
 /* Workspace hover effect | color  */
-#workspaces button:hover {
-    background-color: inherit;
-    color: inherit;
+button:hover {
+    background-color: transparent;
+    color: transparent;
 }
 
 /* Clock  */

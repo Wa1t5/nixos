@@ -152,6 +152,8 @@ bind = $MOD,XF86AudioPlay, exec, $music_status
 bind = ,XF86AudioPlay, exec, $music_status
 bind = ,XF86AudioPlay, exec, playerctl -p $player-list play-pause
 binde = ,XF86AudioNext, exec, playerctl -p $player-list position 5+
+bind = $MOD, XF86AudioNext, exec, playerctl -p $player-list next
+bind = $MOD, XF86AudioPrev, exec, playerctl -p $player-list previous
 binde = ,XF86AudioPrev, exec, playerctl -p $player-list position 5-
 
 # Volume
