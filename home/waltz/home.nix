@@ -1,4 +1,4 @@
-{ config, services, pkgs, home-manager, ... }:
+{ pkgs, ... }:
 {            
         # Set usrename and home dir
         home.username = "waltz";

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   # Extra packages  
   programs = {
