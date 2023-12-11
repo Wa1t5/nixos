@@ -21,6 +21,7 @@
             obsidian
             helix
             godot_4
+            nil # Nix language server
 
             # Virtualisation
             distrobox

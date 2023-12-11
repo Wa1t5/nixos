@@ -1,6 +1,6 @@
 {
   # Script to show song info
-  execute_on_song_change = "/etc/nixos/home/waltz/ncmpcpp/scripts/song_info.sh &>/dev/null"; 
+  execute_on_song_change = "/etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh &>/dev/null"; 
 
   # Enable visualization
   visualizer_data_source = "/tmp/mpd.fifo";
