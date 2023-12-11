@@ -3,32 +3,24 @@
         # Set usrename and home dir
         home.username = "waltz";
         home.homeDirectory = "/home/waltz";
-       
-        ########## Deploy extra files to home ##########     
-        
-            # pywal templates
-            home.file."wal" = {
-                source = ./wal/templates;
-                target = ".config/wal/templates";
-                recursive = false;
-            };
 
-            # tofi config
-            home.file."tofi" = {
-                source = ./tofi/config;
-                target = ".config/tofi/config";
-                recursive = false;
-            };
+        imports = [
+            # Extra paths to add to home
+            ./extra-paths.nix  
+
+            # Specify xdg paths
+            ./xdg-paths.nix            
+        ];
+        
+        ########## Deploy extra files to home ##########     
+
 
         ########## Packages ##########
         home.packages = with pkgs; [
-            # Hyprland
-            xdg-desktop-portal-hyprland
-            swww
-
             # Text editing / Coding
             obsidian
             helix
+            godot_4
 
             # Virtualisation
             distrobox
@@ -55,11 +47,13 @@
             qbittorrent
         
             # Media
-            librewolf
             playerctl
+
+            # Browser
+            librewolf
+
+            # Chat
             vesktop 
-            easyeffects
-            pavucontrol
 
             # Security
             keepassxc
@@ -68,15 +62,23 @@
             # Sync
             syncthing
 
-            # Complements
+            # XDG tools
             libnotify
             xdg-utils
+            xdg-desktop-portal-hyprland
+            
+            # Provide some DE functionalities
             brightnessctl
             tofi
             wl-clipboard
             slurp
             grim
             waybar
+            swww
+            
+            # Manage audio
+            helvum
+            pavucontrol
 
             # Fonts
             noto-fonts
@@ -91,17 +93,7 @@
         # home.sessionVariables = { NIXOS_OZONE_WL = "1"; };
         home.sessionVariables = { PATH = "/home/waltz/.local/bin:$PATH"; };
 
-        # Set xdg user dirs
-        xdg.userDirs = {
-            enable = true;
-            documents = "${config.home.homeDirectory}/docs";
-            music = "${config.home.homeDirectory}/music";
-            videos = "${config.home.homeDirectory}/video";
-            pictures = "${config.home.homeDirectory}/img";          
-            download = "${config.home.homeDirectory}/downloads";
-            desktop = "${config.home.homeDirectory}/desktop";
-        }; 
-        
+       
         # Hyprland
         wayland.windowManager.hyprland = {
             systemd.enable = true;
@@ -113,7 +105,7 @@
 
                 # Add .local/bin to PATH
                 env = PATH,/home/waltz/.local/bin:$PATH
-            '' + import ./hyprland/config.nix;
+            '' + import ./dotfiles/hyprland/config.nix;
         };
 
         # Dconf (for easyeffects)
@@ -161,8 +153,8 @@
             # Waybar
             waybar = {
                 enable = true;
-                style = import ./waybar/style.nix;
-                settings = import ./waybar/config.nix;
+                style = import ./dotfiles/waybar/style.nix;
+                settings = import ./dotfiles/waybar/config.nix;
                 systemd = {
                     enable = true;
                     target = "hyprland-session.target";
@@ -172,7 +164,7 @@
             # Kitty
             kitty = {
                 enable = true;
-                extraConfig = import ./kitty/config.nix;
+                extraConfig = import ./dotfiles/kitty/config.nix;
             };
 
             # Helix
@@ -187,34 +179,14 @@
             # Librewolf
             librewolf = {
                 enable = true;
-                settings = import ./librewolf/config.nix;  
+                settings = import ./dotfiles/librewolf/config.nix;  
             };
 
             # Ncmpcpp
             ncmpcpp = {
                 enable = true;
                 package = (pkgs.ncmpcpp.override { visualizerSupport = true; clockSupport = true; });
-                settings = { 
-                    # Script to show song info
-                    execute_on_song_change = "/etc/nixos/home/waltz/ncmpcpp/scripts/song_info.sh &>/dev/null"; 
-
-                    # Enable visualization
-                    visualizer_data_source = "/tmp/mpd.fifo";
-                    visualizer_output_name = "my_fifo";
-                    visualizer_in_stereo = "yes";
-                    visualizer_type = "spectrum";
-                    visualizer_autoscale = "yes";
-
-                    # Visual options
-                    playlist_display_mode = "columns";
-                    browser_display_mode = "columns";
-                    search_engine_display_mode = "columns";
-                    playlist_editor_display_mode = "columns";
-                    
-                    user_interface = "alternative";                    
-
-                    now_playing_prefix = ">";
-               };
+                settings = import ./dotfiles/ncmpcpp/config.nix;
             };
 
             # ZSH 
@@ -261,9 +233,9 @@
             swayidle = {
                 enable = true;
                 events = [
-                    { event = "lock"; command = "/etc/nixos/home/waltz/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
-                    { event = "after-resume"; command = "/etc/nixos/home/waltz/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
-                    { event = "before-sleep"; command = "/etc/nixos/home/waltz/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
+                    { event = "lock"; command = "/etc/nixos/home/waltz/dotfiles/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
+                    { event = "after-resume"; command = "/etc/nixos/home/waltz/dotfiles/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
+                    { event = "before-sleep"; command = "/etc/nixos/home/waltz/dotfiles/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
                 ];
             };
             
@@ -290,20 +262,7 @@
             mpd = {
                 enable = true;
                 network = { startWhenNeeded = true; };
-                extraConfig = ''
-                    # Audio output
-                    audio_output {
-                        type "pipewire"
-                        name "Pipewire Output"
-                    } 
-                    
-                    audio_output {
-                        type "fifo"
-                        name "my_fifo"
-                        path "/tmp/mpd.fifo"
-                        format "44100:16:2"
-                    }
-                '';
+                extraConfig = import ./dotfiles/mpd/config.nix;
             };
 
             # Mpd mpris
@@ -313,11 +272,6 @@
 
             # Playerctld
             playerctld = {
-                enable = true;
-            };
-
-            # Easyeffects
-            easyeffects = {
                 enable = true;
             };
         };

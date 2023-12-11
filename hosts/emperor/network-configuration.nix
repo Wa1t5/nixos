@@ -1,6 +1,6 @@
-{ config, libs, ...  }:
+{ ... }:
 {
-    networking = {
+   networking = {
         # Enable auto dhcp config
         useDHCP = true;
         interfaces.wlp1s0.useDHCP = true;

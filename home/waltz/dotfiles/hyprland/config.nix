@@ -12,14 +12,17 @@
 # Keys
 $MOD = SUPER
 
+# Use older kernel api that supports tearing
+env = WLR_DRM_NO_ATOMIC,1
+
 # Applications
 $term = kitty
 $launcher = $(tofi-run)
 
 # Scripts
-$random_wallpaper = $(sh /etc/nixos/home/waltz/hyprland/scripts/random_wallpaper.sh)
-$update_colorscheme = $(sh /etc/nixos/home/waltz/hyprland/scripts/update_colorscheme.sh)
-$music_status = $(sh /etc/nixos/home/waltz/ncmpcpp/scripts/song_info.sh)
+$random_wallpaper = $(sh /etc/nixos/home/waltz/dotfiles/hyprland/scripts/random_wallpaper.sh)
+$update_colorscheme = $(sh /etc/nixos/home/waltz/dotfiles/hyprland/scripts/update_colorscheme.sh)
+$music_status = $(sh /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh)
 
 # Pywal
 source=~/.cache/wal/colors-wal-hyprland.conf
@@ -47,41 +50,59 @@ monitor=,preferred,auto,1
 
 # Input
 input {
-    kb_layout 		= br
-    kb_variant		= abnt2
-    follow_mouse 	= 1
+	# Keyboard	
+  kb_layout 		= br
+	kb_variant		= abnt2
+  follow_mouse 	= 1
+
+	# Touchpad
+	touchpad {
+		disable_while_typing = true
+		natural_scroll = true
+	}
 }
+
+# Touchpad specific settings
+#device:elan-touchpad {
+#	gestures {
+#		workspace_swipe = true
+#		workspace_swipe_fingers = 3;
+#	}
+#}
 
 # General
 general {
-		# Gaps
-    gaps_in = 5
-    gaps_out = 3
-    border_size = 2
+	# Gaps
+	gaps_in = 5
+  gaps_out = 3
+  border_size = 2
 
-    # Layout
-    layout = dwindle
+  # Layout
+  layout = dwindle
+
+	# Allow tearing
+	allow_tearing = true
 }
 
 # Decoration
 decoration {
-    # Border rounding
-    rounding = 7
+  # Border rounding
+  rounding = 7
 
-    # Blur
-    blur {
-        enabled = true
-        size = 5
-        passes = 1
-        xray = true
-        new_optimizations = true
-    }
+  # Blur
+  blur {
+  	enabled = true
+    size = 5
+    passes = 1
+    xray = false
+  	new_optimizations = true
+  }
 
-    # Shadows
-    drop_shadow = yes
-    shadow_range = 4
-    shadow_render_power = 3
-    col.shadow = rgba(1a1a1aee)
+  # Shadows
+  drop_shadow = yes
+  shadow_range = 4
+  shadow_render_power = 3
+  col.shadow = rgba(1a1a1aee)
 }
 
 # Blur layers
@@ -100,6 +121,7 @@ misc {
 
     # Enable widnow swallowing
     enable_swallow = true
+		swallow_regex = class:^(kitty)$
 
     # Direct scanout attempts to reduce lag when there is only
     # one full scren application on the window (can give issues)
@@ -111,27 +133,27 @@ misc {
 
 # Animations
 animations {
-		# Window: open, close, move
-    animation = windowsIn, 1, 4, default, popin 80%
-    animation = windowsOut, 1, 4, default, popin 30%
-		animation = windowsMove, 1, 5, default, slide
+	# Window: open, close, move
+	animation = windowsIn, 1, 4, default, popin 80%
+  animation = windowsOut, 1, 4, default, popin 30%
+	animation = windowsMove, 1, 5, default, slide
 
-		# Fade: in, out
-    animation = fadeIn, 1, 10, default
-		animation = fadeOut, 1, 7, default
+	# Fade: in, out
+  animation = fadeIn, 1, 10, default
+	animation = fadeOut, 1, 7, default
 
-		# Border
-    animation = border, 1, 20, default
+	# Border
+  animation = border, 1, 20, default
 
-		# Workspaces
-    animation = workspaces, 1, 3, default, slide
+	# Workspaces
+  animation = workspaces, 1, 3, default, slide
 }
 
 dwindle {
-		pseudotile			= yes
-  	preserve_split 		= yes
-		force_split			= 2
-		no_gaps_when_only 	= false
+	pseudotile			= yes
+  preserve_split 		= yes
+	force_split			= 2
+	no_gaps_when_only 	= false
 }
 
 # Lock screen
@@ -240,6 +262,9 @@ bind = $MOD, mouse_up, workspace, e-1
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $MOD, mouse:272, movewindow
 bindm = $MOD, mouse:273, resizewindow
+
+# Windows to allow tearing
+windowrulev2 = immediate, title:^(Havoc)$
 
 debug {
 	damage_tracking = 2

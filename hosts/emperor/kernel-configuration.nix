@@ -1,7 +1,8 @@
-{ config, modulesPath, pkgs, ... }:
+{ pkgs, ... }:
 {  
   # Use latest kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages-rt_latest;
 
   # Kernel params
   boot.kernelParams = [ "nowatchdog" ];
