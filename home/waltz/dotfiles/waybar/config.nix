@@ -134,8 +134,8 @@
 
     # MPRIS
     "mpris" = {
-	      format = "{status_icon}{title}";
-	      format-paused = "{status_icon}{title}";
+	      format = "{status_icon} {title}";
+	      format-paused = "{status_icon} {title}";
         format-stopped = "{status}";
         title-len = 35;
         player-icons = {

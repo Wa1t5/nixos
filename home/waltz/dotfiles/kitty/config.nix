@@ -9,7 +9,7 @@ confirm_os_window_close 0
 enable_audio_bell no
 
 # BG Opacity
-background_opacity 0.5
+background_opacity 0.2
 
 # Font
 font_family Noto Mono Nerd Font Complete

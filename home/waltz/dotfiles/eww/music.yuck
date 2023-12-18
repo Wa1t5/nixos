@@ -1,0 +1,85 @@
+;; Music info window
+(defwindow music-info-window
+           :monitor 0
+           :geometry (geometry :x "5%"
+                               :y "5%"
+                               :width "10%"
+                               :height "10%"
+                               :anchor "right top")
+           :stacking "bg"
+           :exclusive false
+           :wm-ignore false
+           (music-info))
+
+;; Music info widget
+(defwidget music-info []
+    ;; Overlay buttons and titles over album image
+    (overlay  :valign "center"
+              :halign "center"
+              :class "music_widget"
+              
+              ;; Album cover
+              (image  :class "album_cover"
+                      :path album_cover 
+                      :image-height 260
+                      :image-width 260
+                      :valign "center"
+                      :halign "center")                         
+              ;; Album info
+              (box  :class "music_info" 
+                    :orientation "vertical" 
+                    :valign "start"
+                    :halign "fill"
+                    :space-evenly false
+
+                    (label :halign "start" 
+                          :limit-width 43
+                          :text title)
+                    (label :halign "start" 
+                          :text album))
+              
+              ;; Media control
+              (box :orientation "vertical"
+                  :space-evenly false
+                  :valign "end"
+
+                    ;; Track position slider
+                    (scale  :valign "end" 
+                            :class "track_pos"  
+                            :min 0.0 
+                            :orientation "h" 
+                            :max track_length 
+                            :value track_pos 
+                            :onchange 'playerctl -i firefox position $(({}/1000000))')
+
+                    ;; Buttons
+                    (box  :class "media_control_buttons"
+                          :spacing -190
+                          :space-evenly true
+                          :valign "end"
+                          :halign "fill"
+                  
+                          (button :class "btn_prev" :onclick 'playerctl -i firefox previous' "   ")
+                          (button :class "btn_play" :onclick 'playerctl -i firefox play-pause' play_pause)
+                          (button :class "btn_next" :onclick 'playerctl -i firefox next' "  ")))
+    )
+)
+
+;; Variables
+(defpoll album_cover  :interval "1s"
+                'echo /tmp/current_song_rounded.png')
+
+(defpoll track_length :interval "1s"
+                'playerctl -i firefox metadata mpris:length')
+
+(defpoll track_pos :interval "0s"
+                'playerctl -i firefox position --format "{{ position }}"')
+
+(defpoll title :interval "1s"
+               'playerctl  -i firefox metadata  xesam:title')
+
+(defpoll album :interval "1s"
+               'playerctl  -i firefox metadata  xesam:album')
+
+(defpoll play_pause :interval "0s"
+               '[[ $(playerctl -i firefox status) != "Playing" ]] && echo "  " || echo "  "')

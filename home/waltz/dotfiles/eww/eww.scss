@@ -1,0 +1,36 @@
+@import "/home/waltz/.cache/wal/colors.scss";
+*{
+  all: unset;
+  font-family: Noto Sans;  
+}
+
+.music_info, .album_cover {
+  background-color: #111212 ;//#27292b;
+
+  border-radius: 16px;
+  font-size: 12px;
+  padding: 5px 10px 10px 10px;
+}
+
+.album_cover {  
+  padding: 48px 10px 32px 10px;
+}
+
+.media_control_buttons, {
+  background-color: #111212;
+  color: $color10;
+  border-radius: 16px;
+  font-size: 20px;
+  padding: 5px 0px 5px 0px;
+}
+
+.track_pos trough {
+  padding: 0px 0px 0px 10px;
+}
+.track_pos highlight {
+  all: unset;
+  background-color: $color12;
+  padding: 10px 0px 0px 0px;
+  border-radius: 16px;
+}
+

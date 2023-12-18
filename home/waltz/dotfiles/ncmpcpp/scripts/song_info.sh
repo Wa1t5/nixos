@@ -1,14 +1,30 @@
 #!/usr/bin/env bash
 
+players_i="firefox"
+title_prev=""
+
 function get_info() {
-  title="$(playerctl -p mpd metadata  xesam:title)"
-  album="$(playerctl -p mpd metadata xesam:album)"
-  artist="$(playerctl -p mpd metadata xesam:artist)"
-  art="$(playerctl -p mpd metadata mpris:artUrl)"
-  status="$(playerctl -p mpd status)"
+  title="$(playerctl  -i ${players_i} metadata xesam:title)"
+  album="$(playerctl  -i ${players_i} metadata xesam:album)"
+  artist="$(playerctl -i ${players_i} metadata xesam:artist)"
+  art="$(playerctl    -i ${players_i} metadata mpris:artUrl)"
+  status="$(playerctl -i ${players_i} status)"
   preview="/tmp/current_song.png"
-  magick $(playerctl -p mpd metadata mpris:artUrl) -resize 128x128\> "${preview}"
+  preview_rounded="/tmp/current_song_rounded.png"
+  mask="/tmp/current_song_mask.png"
+
+  if [[ ${title_prev} != ${title} ]]; then
+    # Re-scale image
+    magick $(playerctl   -i ${players_i} metadata mpris:artUrl) -resize 360x360\> "${preview}"
+
+    # Create image mask
+    convert -size 360x360 xc:none -draw "roundrectangle 0,0,360,360,32,23" ${mask}
+
+    # Apply image mask
+    convert ${preview} -matte ${mask} -compose DstIn -composite ${preview_rounded}
+  fi
 }
+
 
 function notify() {
   notify-send -a "Music: " -i "${preview}" -u normal -t 6200 "
@@ -19,14 +35,26 @@ function notify() {
   "
 }
 
+if [[ -z $@ ]]; then
+  $(
+    # Wait 2 seconds before fetching info
+    sleep 2
 
-$(
-  # Wait 3 seconds before fetching info
-  sleep 3
+    # Fetch info
+    get_info
 
-  # Fetch info
+    # Notify
+    notify
+  )& # Now we run this in background to avoid freezing ncmpcpp
+elif [[ $@ == "daemon" ]]; then
+  while (sleep 2); do
+    
+    if [[ $(playerctl -i ${players_i} -l | wc -l) > 0 ]]; then
+      title_prev=${title};
+      get_info
+    fi
+    
+  done  
+else
   get_info
-
-  # Notify
-  notify
-)& # Now we run this in background to avoid freezing ncmpcpp
+fi

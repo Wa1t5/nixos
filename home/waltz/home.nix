@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {            
         # Set usrename and home dir
         home.username = "waltz";
@@ -9,7 +9,10 @@
             ./extra-paths.nix  
 
             # Specify xdg paths
-            ./xdg-paths.nix            
+            ./xdg-paths.nix    
+
+            # import spicetify
+            inputs.spicetify-nix.homeManagerModule            
         ];
         
         ########## Deploy extra files to home ##########     
@@ -34,6 +37,7 @@
             aichat
             btop
             fastfetch
+            yazi
             imagemagick
 
             # CLI (GNU tools replacement)            
@@ -115,6 +119,13 @@
         };
            
         programs = {
+
+            # Eww
+            eww = {
+                enable = true;
+                package = pkgs.eww-wayland;
+                configDir = ./dotfiles/eww;
+            };
             
             # Swaylock
             swaylock = {
@@ -188,6 +199,17 @@
                 enable = true;
                 package = (pkgs.ncmpcpp.override { visualizerSupport = true; clockSupport = true; });
                 settings = import ./dotfiles/ncmpcpp/config.nix;
+            };
+            
+            # Spicetify
+            spicetify = {
+                enable = true;
+                enabledExtensions = with inputs.spicetify-nix.packages."x86_64-linux".default.extensions; [
+                    fullAppDisplay
+                    shuffle # shuffle+ (special characters are sanitized out of ext names)
+                    adblock                    
+                    popupLyrics
+                ];
             };
 
             # ZSH 

@@ -37,7 +37,7 @@ window#waybar.hidden {
 /* Current active workspace */
 #workspaces button.active {
     background-color: transparent;
-    color: @color5;
+    color: @color12;
 }
 
 /* Color when a workspace need focus */
@@ -60,7 +60,7 @@ button:hover {
     padding-right: 10px;
 	  margin-bottom: 4px;
 	  border-radius: 15px;
-	  background-color: @color2;
+	  background-color: @color13;
 }
 
 /* Battery */
@@ -82,7 +82,7 @@ button:hover {
 	  padding-right: 10px;
     margin-bottom: 4px;
     border-radius: 15px;
-   	background-color: @color3;
+   	background-color: @color14;
 }
 
 /* Tray */
@@ -115,7 +115,7 @@ button:hover {
 	  padding-right: 10px;
 	  margin-bottom: 4px;
 	  border-radius: 15px;
-    background-color: @color7;
+    background-color: @color10;
 }
 /* Cava */
 #cava {
@@ -125,7 +125,7 @@ button:hover {
 	  padding-right: 10px;
 	  margin-bottom: 4px;
 	  border-radius: 15px;
-    background-color: @color8;
+    background-color: @color11;
 }
 
 /* If workspaces is the leftmost module, omit left margin */

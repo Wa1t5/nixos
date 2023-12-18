@@ -23,6 +23,7 @@ $launcher = $(tofi-run)
 $random_wallpaper = $(sh /etc/nixos/home/waltz/dotfiles/hyprland/scripts/random_wallpaper.sh)
 $update_colorscheme = $(sh /etc/nixos/home/waltz/dotfiles/hyprland/scripts/update_colorscheme.sh)
 $music_status = $(sh /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh)
+$wallpaper_picker = $(kitty --detach --class=selector yazi ~/img/wallpapers)
 
 # Pywal
 source=~/.cache/wal/colors-wal-hyprland.conf
@@ -39,9 +40,10 @@ $set-bright = brightnessctl s
 $get-bright = brightnessctl g
 
 # Lists
-$player-list = mpd
+$player-ignore-list = firefox
 
 # Start
+exec-once = $music_status "daemon" &
 exec-once = swww init # Inititialie swww daemon
 exec-once = brightnessctl -r & # Restore previous backlight
 
@@ -150,14 +152,17 @@ animations {
 }
 
 dwindle {
-	pseudotile			= yes
+	pseudotile        = yes
   preserve_split 		= yes
-	force_split			= 2
-	no_gaps_when_only 	= false
+	force_split			  = 2
+	no_gaps_when_only = false
 }
 
 # Lock screen
-bind	= $MOD SHIFT, l, exec, loginctl lock-session
+bind	= $MOD SHIFT, L, exec, loginctl lock-session
+
+# Wallpaper picker
+bind = $MOD, W, exec, $wallpaper_picker
 
 # Main Keybindings
 bind = $MOD, T, exec, $term
@@ -172,11 +177,11 @@ binde = ,XF86MonBrightnessDown, exec, $set-bright 10- && brightnessctl -s && $no
 # MPD
 bind = $MOD,XF86AudioPlay, exec, $music_status
 bind = ,XF86AudioPlay, exec, $music_status
-bind = ,XF86AudioPlay, exec, playerctl -p $player-list play-pause
-binde = ,XF86AudioNext, exec, playerctl -p $player-list position 5+
-bind = $MOD, XF86AudioNext, exec, playerctl -p $player-list next
-bind = $MOD, XF86AudioPrev, exec, playerctl -p $player-list previous
-binde = ,XF86AudioPrev, exec, playerctl -p $player-list position 5-
+bind = ,XF86AudioPlay, exec, playerctl -i $player-ignore-list play-pause
+binde = ,XF86AudioNext, exec, playerctl -i $player-ignore-list position 5+
+bind = $MOD, XF86AudioNext, exec, playerctl -i $player-ignore-list next
+bind = $MOD, XF86AudioPrev, exec, playerctl -i $player-ignore-list previous
+binde = ,XF86AudioPrev, exec, playerctl -i $player-ignore-list position 5-
 
 # Volume
 binde = ,XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05+ && $notify-low -a "Audio Output:" -h int:value:$($get-sink-volume) " "
@@ -263,8 +268,14 @@ bind = $MOD, mouse_up, workspace, e-1
 bindm = $MOD, mouse:272, movewindow
 bindm = $MOD, mouse:273, resizewindow
 
-# Windows to allow tearing
+# Window rulez to allow tearing
 windowrulev2 = immediate, title:^(Havoc)$
+
+# Window rules to allow selector classes to be floating
+windowrulev2 = float, class:^(selector)$
+windowrulev2 = pin, class:^(selector)$
+windowrulev2 = size 50% 50%, class:^(selector)$
+windowrulev2 = center 1, class:^(selector)$
 
 debug {
 	damage_tracking = 2
