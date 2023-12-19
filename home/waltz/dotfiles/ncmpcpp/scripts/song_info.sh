@@ -22,6 +22,9 @@ function get_info() {
 
     # Apply image mask
     convert ${preview} -matte ${mask} -compose DstIn -composite ${preview_rounded}
+
+    # Update title_prev
+    title_prev=${title};
   fi
 }
 
@@ -50,7 +53,6 @@ elif [[ $@ == "daemon" ]]; then
   while (sleep 2); do
     
     if [[ $(playerctl -i ${players_i} -l | wc -l) > 0 ]]; then
-      title_prev=${title};
       get_info
     fi
     

@@ -8,7 +8,7 @@
 }
 
 window#waybar {
-    background-color: transparent;
+    background-color: #111212;
     border-bottom: 0px solid rgba(100, 114, 125, 0.5);
     color: #ffffff;
     transition-property: background-color;

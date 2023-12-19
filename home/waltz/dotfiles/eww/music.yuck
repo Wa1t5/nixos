@@ -3,8 +3,8 @@
            :monitor 0
            :geometry (geometry :x "5%"
                                :y "5%"
-                               :width "10%"
-                               :height "10%"
+                               :width "5%"
+                               :height "5%"
                                :anchor "right top")
            :stacking "bg"
            :exclusive false
@@ -17,53 +17,67 @@
     (overlay  :valign "center"
               :halign "center"
               :class "music_widget"
+              :visible {album_cover ? true : false}
               
               ;; Album cover
-              (image  :class "album_cover"
-                      :path album_cover 
-                      :image-height 260
-                      :image-width 260
-                      :valign "center"
-                      :halign "center")                         
-              ;; Album info
-              (box  :class "music_info" 
-                    :orientation "vertical" 
-                    :valign "start"
-                    :halign "fill"
-                    :space-evenly false
+              (image    :class "album_cover"
+                        :path album_cover 
+                        :image-height 200
+                        :image-width 200
+                        :valign "center"
+                        :halign "center")                         
 
-                    (label :halign "start" 
-                          :limit-width 43
-                          :text title)
-                    (label :halign "start" 
-                          :text album))
+                ;; Album info
+                (player_track)
               
-              ;; Media control
-              (box :orientation "vertical"
-                  :space-evenly false
-                  :valign "end"
+                ;; Media control
+                (box      :orientation "vertical"
+                            :space-evenly false
+                            :valign "end"
 
-                    ;; Track position slider
-                    (scale  :valign "end" 
-                            :class "track_pos"  
-                            :min 0.0 
-                            :orientation "h" 
-                            :max track_length 
-                            :value track_pos 
-                            :onchange 'playerctl -i firefox position $(({}/1000000))')
+                            ;; Track position slider
+                            (player_position)
 
-                    ;; Buttons
-                    (box  :class "media_control_buttons"
-                          :spacing -190
-                          :space-evenly true
-                          :valign "end"
-                          :halign "fill"
-                  
-                          (button :class "btn_prev" :onclick 'playerctl -i firefox previous' "   ")
-                          (button :class "btn_play" :onclick 'playerctl -i firefox play-pause' play_pause)
-                          (button :class "btn_next" :onclick 'playerctl -i firefox next' "  ")))
+                            ;; Buttons
+                            (player_options))
     )
 )
+
+(defwidget player_track []
+    (box    :class "music_info" 
+            :orientation "vertical" 
+            :valign "start"
+            :halign "fill"
+            :space-evenly false
+            
+
+            (label      :halign "start" 
+                        :limit-width 29
+                        :text title)
+
+            (label      :halign "start" 
+                        :limit-width 29
+                        :text album))
+)
+(defwidget player_position []
+    (scale  :valign "end" 
+            :class "track_pos"  
+            :min 0.0 
+            :orientation "h" 
+            :max track_length 
+            :value track_pos 
+            :onchange 'playerctl -i firefox position $(({}/1000000))'))
+
+(defwidget player_options []
+    (box    :class "media_control_buttons"
+            :spacing -32
+            :space-evenly true
+            :valign "end"
+            :halign "fill"
+
+            (button :class "btn_prev" :onclick 'playerctl -i firefox previous' "   ")
+            (button :class "btn_play" :onclick 'playerctl -i firefox play-pause' play_pause)
+            (button :class "btn_next" :onclick 'playerctl -i firefox next' "  ")))
 
 ;; Variables
 (defpoll album_cover  :interval "1s"

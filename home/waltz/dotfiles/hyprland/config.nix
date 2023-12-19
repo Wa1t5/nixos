@@ -45,6 +45,7 @@ $player-ignore-list = firefox
 # Start
 exec-once = $music_status "daemon" &
 exec-once = swww init # Inititialie swww daemon
+exec-once = eww open music-info-window
 exec-once = brightnessctl -r & # Restore previous backlight
 
 # Monitor

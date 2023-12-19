@@ -1,0 +1,91 @@
+(defwindow bar-window
+    :monitor 0
+    :geometry (geometry :x "0%"
+                        :y "0%"
+                        :width "90%"
+                        :height "0%"
+                        :anchor "top center")
+    :stacking "fg"
+    :exclusive true
+    :wm-ignore false
+(bar-widget))
+
+
+
+(defwidget bar-widget []
+    (box        :class "bar_widget"
+                :valign "center"
+                :halign "fill"
+                :space-evenly false
+                :spacing 10
+                :hexpand true
+
+                (clock)
+                (workspaces)
+                (separator :size "200")
+                (player)
+                (separator :size "200")
+                (battery)
+                (thermal)))
+
+
+(defwidget clock [] 
+    (box        :class "clock"
+                :valign "start"
+                time ""))
+
+
+(defwidget workspaces []
+    (box        :class "workspaces"
+                :valign "start"
+                :spacing 1
+
+                (workspace  :number 1)
+                (workspace  :number 2)
+                (workspace  :number 3)
+                (workspace  :number 4)
+                (workspace  :number 5)
+                (workspace  :number 6)
+                (workspace  :number 7)
+                (workspace  :number 8)
+                (workspace  :number 9)
+                (workspace  :number 10)))
+
+(defwidget workspace [? number]
+            (button :onclick "hyprctl dispatch workspace ${number}" 
+                    {active_workspace == number ? "  " : "  "}))
+
+(defwidget player []
+    (box    :class "player"
+            :valign "start"
+            :halign "center"
+
+            (image  
+                    :image-width 48
+                    :image-height 48
+                    :path "/tmp/current_song_rounded.png")
+
+            (box    :orientation "horizontal"
+                    (button "  ")
+                    (button "  ")
+                    (button "  "))))
+
+(defwidget battery []
+                (box    :class "battery"
+                        :valign "start"
+                        {EWW_BATTERY["BAT0"]["capacity"]}))
+
+(defwidget thermal []
+                (box    :class "thermal"
+                        :valign "start"
+                        {EWW_TEMPS["AMDGPU_EDGE"]}))
+
+
+(defwidget separator [? size]
+                (box    :width size))
+;; Vars
+(defpoll time   :interval "10s"
+                'date +%H:%M')
+
+(defpoll active_workspace   :interval "0s"
+                "hyprctl activeworkspace | head -n1 | awk '{print $3}'")
