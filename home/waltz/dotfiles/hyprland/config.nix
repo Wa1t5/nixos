@@ -43,10 +43,11 @@ $get-bright = brightnessctl g
 $player-ignore-list = firefox
 
 # Start
-exec-once = $music_status "daemon" &
+exec-once = /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh "daemon" &
 exec-once = swww init # Inititialie swww daemon
 exec-once = eww open music-info-window
 exec-once = brightnessctl -r & # Restore previous backlight
+exec-once = xwaylandvideobridge &
 
 # Monitor
 monitor=,preferred,auto,1

@@ -80,20 +80,20 @@
             (button :class "btn_next" :onclick 'playerctl -i firefox next' "  ")))
 
 ;; Variables
-(defpoll album_cover  :interval "1s"
+(defpoll album_cover  :interval "10s"
                 'echo /tmp/current_song_rounded.png')
 
-(defpoll track_length :interval "1s"
+(defpoll track_length :interval "10s"
                 'playerctl -i firefox metadata mpris:length')
 
-(defpoll track_pos :interval "0s"
+(defpoll track_pos :interval "10s"
                 'playerctl -i firefox position --format "{{ position }}"')
 
-(defpoll title :interval "1s"
+(defpoll title :interval "10s"
                'playerctl  -i firefox metadata  xesam:title')
 
-(defpoll album :interval "1s"
+(defpoll album :interval "10s"
                'playerctl  -i firefox metadata  xesam:album')
 
 (defpoll play_pause :interval "0s"
-               '[[ $(playerctl -i firefox status) != "Playing" ]] && echo "  " || echo "  "')
+              '[[ $(playerctl -i firefox status) != "Playing" ]] && echo "  " || echo "  "')

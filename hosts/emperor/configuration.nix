@@ -32,6 +32,9 @@
       # Cpu-freq
       ./misc/auto-cpufreq.nix
 
+      # Tlp
+      ./misc/tlp.nix
+
       # Users
       ./users.nix
     ];

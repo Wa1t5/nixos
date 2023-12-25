@@ -9,6 +9,5 @@
 
   # Use boot animation
   boot.plymouth.enable = true;
-  boot.kernelParams = ["quiet"]; # Remove noise produced by boot log
-
+  boot.kernelParams = [ "quiet" ]; # Remove noise produced by boot log
 }

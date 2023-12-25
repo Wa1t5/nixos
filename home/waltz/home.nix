@@ -11,8 +11,11 @@
             # Specify xdg paths
             ./xdg-paths.nix    
 
+            # Discord krisp
+            ./discord-krisp.nix
+
             # import spicetify
-            inputs.spicetify-nix.homeManagerModule            
+            inputs.spicetify-nix.homeManagerModule
         ];
         
         ########## Deploy extra files to home ##########     
@@ -25,6 +28,9 @@
             helix
             godot_4
             nil # Nix language server
+
+            # Games
+            xivlauncher
 
             # Virtualisation
             distrobox
@@ -53,12 +59,14 @@
         
             # Media
             playerctl
+            spotify
 
             # Browser
             librewolf
 
             # Chat
             vesktop 
+            # (discord.override { withVencord = true; withOpenASAR = true; })
 
             # Security
             keepassxc
@@ -71,6 +79,7 @@
             libnotify
             xdg-utils
             xdg-desktop-portal-hyprland
+            xwaylandvideobridge
             
             # Provide some DE functionalities
             brightnessctl
@@ -119,6 +128,11 @@
         };
            
         programs = {
+
+            discord = {
+                enable = true;
+                wrapDiscord = true;
+            };
 
             # Eww
             eww = {
@@ -203,7 +217,7 @@
             
             # Spicetify
             spicetify = {
-                enable = true;
+                enable = false;
                 enabledExtensions = with inputs.spicetify-nix.packages."x86_64-linux".default.extensions; [
                     fullAppDisplay
                     shuffle # shuffle+ (special characters are sanitized out of ext names)
@@ -277,7 +291,7 @@
             gpg-agent = {
                 enable = true;
                 enableSshSupport = true;
-                pinentryFlavor = "gtk2";
+                pinentryFlavor = "tty";
                 enableZshIntegration = true;
             };
  
