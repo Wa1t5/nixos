@@ -2,13 +2,39 @@
   description = "General Waltz Config";
 
     inputs = {
-        # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-        # nixpkgs-stable.url = "github:NixOS/nixpkgs/23.11";
+        # Nix Hardware
         nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+        # Nix pkgs
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+        # Home Manager
         home-manager.url = "github:nix-community/home-manager";
-        hyprland.url = "github:hyprwm/Hyprland";
-        spicetify-nix.url = "github:the-argus/spicetify-nix";
+
+        # Stylix
+        stylix = {
+            url = "github:danth/stylix";
+        };
+        
+        # Hyprland
+        hyprland = {
+            url = "github:hyprwm/Hyprland";
+        };
+        
+        hyprland-plugins = {
+            url = "github:hyprwm/hyprland-plugins";
+            inputs.hyprland.follows = "hyprland";
+        };
+
+        hyprland-plugins-hyprgrass = {
+            url = "github:horriblename/hyprgrass";
+            inputs.hyprland.follows = "hyprland";
+        };
+
+        # Spicetify
+        spicetify-nix = {
+            url = "github:the-argus/spicetify-nix";
+        };
     };
 
     outputs = { nixpkgs, ... } @inputs: {
@@ -32,7 +58,7 @@
                     {
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
-                 
+                        
                         # Import waltz's config
                         home-manager.users.waltz = import ./home/waltz/home.nix;
 

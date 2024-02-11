@@ -9,15 +9,15 @@
 #                                           |___/|_|                                                       |___/  
 ###################################################################################################################
 
+# REMOVE THIS WHEN UPDATING TO KERNEL 6.8
+env = WLR_DRM_NO_ATOMIC,1
+
 # Keys
 $MOD = SUPER
 
-# Use older kernel api that supports tearing
-env = WLR_DRM_NO_ATOMIC,1
-
 # Applications
 $term = kitty
-$launcher = $(tofi-run)
+$launcher = $(bemenu-run)
 
 # Scripts
 $random_wallpaper = $(sh /etc/nixos/home/waltz/dotfiles/hyprland/scripts/random_wallpaper.sh)
@@ -25,13 +25,10 @@ $update_colorscheme = $(sh /etc/nixos/home/waltz/dotfiles/hyprland/scripts/updat
 $music_status = $(sh /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh)
 $wallpaper_picker = $(kitty --detach --class=selector yazi ~/img/wallpapers)
 
-# Pywal
-source=~/.cache/wal/colors-wal-hyprland.conf
-
 # Predefined commands
-$notify-low = notify-send -u low -t 600
-$get-sink-volume = wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F'[. ]' '{print $3}'
+$notify-low = dunstify -u low -t 600
 $get-source-volume = wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk -F'[. ]' '{print $3}'
+$get-sink-volume = wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F'[. ]' '{print $3}'
 $get-mic-mute-status = [$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print $3}') \=\= ""] && echo "Unmuted" || echo "Muted"
 $get-mute-status = [$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}') \=\= ""] && echo "Unmuted" || echo "Muted"
 $set-volume = wpctl set-volume
@@ -45,9 +42,8 @@ $player-ignore-list = firefox
 # Start
 exec-once = /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh "daemon" &
 exec-once = swww init # Inititialie swww daemon
-exec-once = eww open music-info-window
+# exec-once = eww open music-info-window
 exec-once = brightnessctl -r & # Restore previous backlight
-exec-once = xwaylandvideobridge &
 
 # Monitor
 monitor=,preferred,auto,1
@@ -67,12 +63,44 @@ input {
 }
 
 # Touchpad specific settings
-#device:elan-touchpad {
-#	gestures {
-#		workspace_swipe = true
-#		workspace_swipe_fingers = 3;
-#	}
-#}
+gestures {
+	workspace_swipe = true
+	workspace_swipe_fingers = 3;
+	workspace_swipe_distance = 100;
+}
+
+
+# Plugins
+plugin {
+    hyprwinwrap {
+        # class is an EXACT match and NOT a regex!
+        class = kitty-bg
+    }
+
+		touch_gestures {
+		  # The default sensitivity is probably too low on tablet screens,
+		  # I recommend turning it up to 4.0
+		  sensitivity = 1.0
+
+		  # must be >= 3
+		  workspace_swipe_fingers = 3
+
+		  # switching workspaces by swiping from an edge, this is separate from workspace_swipe_fingers
+		  # and can be used at the same time
+		  # possible values: l, r, u, or d
+		  # to disable it set it to anything else
+		  workspace_swipe_edge = d
+
+		  # in milliseconds
+		  long_press_delay = 400
+
+		  experimental {
+		    # send proper cancel events to windows instead of hacky touch_up events,
+		    # NOT recommended as it crashed a few times, once it's stabilized I'll make it the default
+		    send_cancel = 0
+		  }
+		}
+}
 
 # General
 general {
@@ -173,8 +201,8 @@ bind = $MOD SHIFT, Q, killactive
 bind = $MOD SHIFT CTRL, E, exit
 
 # Control screen brightness
-binde = ,XF86MonBrightnessUp,   exec, $set-bright +10 && brightnessctl -s && $notify-low -a "Display Bright:" -h int:value:$($get-bright) " "
-binde = ,XF86MonBrightnessDown, exec, $set-bright 10- && brightnessctl -s && $notify-low -a "Display Bright:" -h int:value:$($get-bright) " "
+binde = ,XF86MonBrightnessUp,   exec, $set-bright +10 && brightnessctl -s && $notify-low -h string:x-dunst-stack-tag:bright "Display Bright [$($get-bright)%]" -h int:value:$($get-bright) --icon display-brightness-medium-symbolic
+binde = ,XF86MonBrightnessDown, exec, $set-bright 10- && brightnessctl -s && $notify-low -h string:x-dunst-stack-tag:bright "Display Bright [$($get-bright)%]" -h int:value:$($get-bright) --icon display-brightness-medium-symbolic
 
 # MPD
 bind = $MOD,XF86AudioPlay, exec, $music_status
@@ -186,24 +214,24 @@ bind = $MOD, XF86AudioPrev, exec, playerctl -i $player-ignore-list previous
 binde = ,XF86AudioPrev, exec, playerctl -i $player-ignore-list position 5-
 
 # Volume
-binde = ,XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05+ && $notify-low -a "Audio Output:" -h int:value:$($get-sink-volume) " "
-binde = ,XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05- && $notify-low -a "Audio Output:" -h int:value:$($get-sink-volume) " "
+binde = ,XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05+ && $notify-low -h string:x-dunst-stack-tag:audio "Audio Output [$($get-sink-volume)%]" -h int:value:$($get-sink-volume) --icon audio-volume-medium
+binde = ,XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05- && $notify-low -h string:x-dunst-stack-tag:audio "Audio Output [$($get-sink-volume)%]" -h int:value:$($get-sink-volume) --icon audio-volume-medium
 
 # Microphone volume
-binde = $MOD, XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+ && $notify-low -a "Audio Input:" -h int:value:$($get-source-volume) " "
-binde = $MOD, XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05- && $notify-low -a "Audio Input:" -h int:value:$($get-source-volume) " "
+binde = $MOD, XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+ && $notify-low -h string:x-dunst-stack-tag:audio-mic "Audio Input [$($get-source-volume)%]" -h int:value:$($get-source-volume) --icon audio-volume-medium
+binde = $MOD, XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05- && $notify-low -h string:x-dunst-stack-tag:audio-mic "Audio Input [$($get-source-volume)%]" -h int:value:$($get-source-volume) --icon audio-volume-medium
 
 # Togle Audio | Mic
-bind = ,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low -a "Audio Output:" "$($get-mute-status)"
-bind = $MOD,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SOURCE@ toggle && $notify-low -a "Audio Input:" "$($get-mic-mute-status)"
+bind = ,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low "Audio Output" --icon [ "$($get-mute-status)" == "Muted"  ] && audio-volume-muted || audio-volume-medium  "$($get-mute-status)"
+bind = $MOD,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SOURCE@ toggle && $notify-low "Audio Input" --icon [ "$($get-mute-status)" == "Muted"  ] && audio-volume-muted || audio-volume-medium "$($get-mic-mute-status)"
 
 # Change wallpaper and generate new colorscheme
 bind = $MOD SHIFT, w, exec, $random_wallpaper &
 bind = $MOD SHIFT, w, exec, $update_colorscheme &
 
 # Screenshot
-bind = $MOD, s, exec, grim - | wl-copy -t image/png && $notify-low -a "Screenshot:" "Fullscreen"
-bind = $MOD SHIFT, s, exec, grim -g "$(slurp)" - | wl-copy -t image/png && $notify-low -a "Screenshot" "Partial"
+bind = $MOD, s, exec, grim - | wl-copy -t image/png && $notify-low "Screenshot" "Fullscreen"
+bind = $MOD SHIFT, s, exec, grim -g "$(slurp)" - | wl-copy -t image/png && $notify-low "Screenshot" "Partial"
 
 # Toggle Floating
 bind = $MOD SHIFT, space, togglefloating, active
@@ -271,13 +299,18 @@ bindm = $MOD, mouse:272, movewindow
 bindm = $MOD, mouse:273, resizewindow
 
 # Window rulez to allow tearing
-windowrulev2 = immediate, title:^(Havoc)$
+# windowrulev2 = immediate, title:^(osu!)$
 
 # Window rules to allow selector classes to be floating
 windowrulev2 = float, class:^(selector)$
 windowrulev2 = pin, class:^(selector)$
 windowrulev2 = size 50% 50%, class:^(selector)$
 windowrulev2 = center 1, class:^(selector)$
+
+# Disable xray on terminal windows
+# This probably have some performance impact
+# Only use this while using hyprwinwrap
+# windowrulev2 = xray 0, class:^(kitty)$
 
 debug {
 	damage_tracking = 2

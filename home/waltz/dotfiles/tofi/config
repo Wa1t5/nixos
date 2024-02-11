@@ -1,5 +1,5 @@
-# Import pywal
-include = /home/waltz/.cache/wal/colors-tofi.conf
+# Import stylix
+include = /home/waltz/.config/stylix/
 
 # Config
 width = 100%

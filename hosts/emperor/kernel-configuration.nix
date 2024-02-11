@@ -1,6 +1,26 @@
 { pkgs, ... }:
 {  
-  # Use latest kernel version
+#boot.kernelPackages = let
+#  linux_zen_pkg = { fetchurl, buildLinux, ... }@args:
+
+#    buildLinux (args // rec {
+#      version = "6.7.4-zen1";
+      
+#      modDirVersion = version;
+
+#      src = fetchurl {
+#        url = "https://github.com/zen-kernel/zen-kernel/archive/v6.7.4-zen1.tar.gz";
+#        sha256 = "sha256-xOcCrXy1NB+KZWPc/CThfYlS383HnU9Gfso5juC+nUc=";
+#      };
+#      extraMeta.branch = "6.7";
+      
+#      kernelPatches = [];
+      
+#    } // (args.argsOverride or { }));
+#  linux_zen = pkgs.callPackage linux_zen_pkg { };
+#  in pkgs.recurseIntoAttrs (pkgs.linuxPackagesFor linux_zen); 
+
+  
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelPackages = pkgs.linuxPackages-rt_latest;
 

@@ -1,12 +1,11 @@
 #!usr/bin/env bash
 
-sleep 10
+#sleep 10
 
 # Update color scheme
-wal -i $(swww query | awk '{print $8}')
+cp "$@" /etc/nixos/home/waltz/dotfiles/stylix/wallpaper.png
+cd /etc/nixos
 
-# Restart applications that doesn't have hot-reload
-systemctl --user restart fnott &
-systemctl --user restart waybar &
-eww reload
+git add .
 
+pkexec nixos-rebuild switch 

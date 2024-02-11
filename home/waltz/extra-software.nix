@@ -1,15 +1,54 @@
-{ ... }:
+{  pkgs, ... }:
 {
   # Extra packages  
   programs = {
+
+    # Dconf (required by hyprland)
+    dconf = {
+      enable = true;
+    };
+    
     # Steam
     steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      package = pkgs.steam.override {
+      extraPkgs = pkgs:
+        with pkgs; [
+
+          # Requirements for gamescope xwayland
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          libpng
+          libvorbis
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+
+          # Mangohud
+          mangohud
+
+          # Usage 'gamescope -f -- %command% & sleep 2 && renice -n -11 -p $(pgrep gamescope)'
+          (writeShellScriptBin "launch-gamescope" ''
+            (sleep 1;  pgrep gamescope | xargs renice -n -11 -p)&
+            exec gamescope "$@"
+          '')
+        ];
+      };
+    };
+
+  # Gamescope
+  gamescope = {
     enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    env.XKB_LAYOUT = "br";
   };
-                
-  # Hyprland
-  hyprland.enable = true;
+               
+  # Noisetorch 
+  noisetorch = {
+    enable = true;
+  };
+
   };
 }

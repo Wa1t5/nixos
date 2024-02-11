@@ -70,9 +70,6 @@
 
       MEM_SLEEP_ON_AC = "deep";
       MEM_SLEEP_ON_BAT = "deep";
-
-      # Processor
-
     };
   };
 }

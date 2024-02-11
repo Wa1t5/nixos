@@ -12,7 +12,7 @@ discordPatcherBin = pkgs.writers.writePython3Bin "discord-krisp-patcher" {
       "E501" # line too long (82 > 79 characters)
       "F403" # ‘from module import *’ used; unable to detect undefined names
       "F405" # name may be undefined, or defined from star imports: module
-      "W391" # smth rekated to end of file
+      "W391" # smth related to end of file
     ];
   } (builtins.readFile ./discord-patcher.py);
 

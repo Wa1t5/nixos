@@ -4,6 +4,9 @@
     [ 
       # Hardware config
       ./hardware-configuration.nix
+
+      # Tablet config
+      ./tablet-configuration.nix
       
       # Kernel configuration
       ./kernel-configuration.nix
@@ -13,12 +16,15 @@
 
       # Graphics config
       ./graphics-configuration.nix
+      
+      # Firewall
+      ./firewall-configuration.nix
 
       # Packages
       ./packages.nix
 
       # XDG
-      ./xdg-configuration.nix
+      # ./xdg-configuration.nix
 
       # Boot
       ./boot-configuration.nix
@@ -37,6 +43,9 @@
 
       # Users
       ./users.nix
+
+      # Realtime
+      ./realtime-group.nix
     ];
     
   # Enable flakes

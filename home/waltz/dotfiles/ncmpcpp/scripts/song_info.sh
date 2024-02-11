@@ -30,12 +30,16 @@ function get_info() {
 
 
 function notify() {
-  notify-send -a "Music: " -i "${preview}" -u normal -t 6200 "
-  Title: ${title}
-  Album: ${album} 
-  Artist: ${artist}
-  Status: ${status}
-  "
+  dunstify \
+  -h string:x-dunst-stack-tag:title \
+  -h string:x-dunst-stack-tag:album \
+  -h string:x-dunst-stack-tag:artist \
+  -h string:x-dunst-stack-tag:status \
+  -i "${preview}" -u normal -t 6200 \
+    "Title: ${title}
+    Album: ${album} 
+    Artist: ${artist}
+    Status: ${status}"
 }
 
 if [[ -z $@ ]]; then

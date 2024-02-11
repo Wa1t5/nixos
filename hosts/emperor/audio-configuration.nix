@@ -20,6 +20,10 @@ in {
     jack.enable = true;
     wireplumber.enable = true;
   };
+  systemd.services.pipewire.serviceConfig.Nice = -20;
+  systemd.services.pipewire-pulse.serviceConfig.Nice = -20;
+  systemd.services.pipewire-media-session.serviceConfig.Nice = -20;
+  systemd.services.pipewire-session-manager.serviceConfig.Nice = -20;
 
   # Musnix
   musnix = {
