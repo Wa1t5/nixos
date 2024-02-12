@@ -9,18 +9,23 @@
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
         # Home Manager
-        home-manager.url = "github:nix-community/home-manager";
+        home-manager = {
+          url = "github:nix-community/home-manager";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         # Stylix
         stylix = {
             url = "github:danth/stylix";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         
         # Hyprland
         hyprland = {
             url = "github:hyprwm/Hyprland";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
-        
+
         hyprland-plugins = {
             url = "github:hyprwm/hyprland-plugins";
             inputs.hyprland.follows = "hyprland";
@@ -34,6 +39,13 @@
         # Spicetify
         spicetify-nix = {
             url = "github:the-argus/spicetify-nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        # Nixvim
+        nixvim = {
+            url = "github:nix-community/nixvim";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 

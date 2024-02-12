@@ -20,20 +20,11 @@
             # Specify xdg paths
             ./xdg-paths.nix    
 
-            # Discord krisp
-            ./discord-krisp.nix
 
-            # Hyprland
-            ./dotfiles/hyprland/hyprland.nix
-
-            # import spicetify
+           # import spicetify
             inputs.spicetify-nix.homeManagerModule
 
-            # Import Stylix
-            inputs.stylix.homeManagerModules.stylix
 
-            # Stylix
-            ./dotfiles/stylix/stylix.nix
         ];
        
         # Enable wayland for electron ozone apps

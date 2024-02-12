@@ -1,219 +1,95 @@
 { inputs, pkgs, ... }:
 {  
-        home.packages = with pkgs; [
-            # Text editing / Coding
-            obsidian
-            helix
-            godot_4
-            nil # Nix language server
+  imports = [
+    ./dotfiles/bemenu/bemenu.nix
+    ./dotfiles/cava/cava.nix
+    ./dotfiles/discord/discord.nix
+    ./dotfiles/eww/eww.nix
+    ./dotfiles/git/git.nix
+    ./dotfiles/gpg/gpg.nix
+    ./dotfiles/hyprland/hyprland.nix
+    ./dotfiles/kitty/kitty.nix
+    ./dotfiles/librewolf/librewolf.nix
+    ./dotfiles/ncmpcpp/ncmpcpp.nix
+    ./dotfiles/nixvim/nixvim.nix
+    ./dotfiles/obs-studio/obs-studio.nix
+    ./dotfiles/spicetify/spicetify.nix
+    ./dotfiles/stylix/stylix.nix
+    ./dotfiles/swaylock/swaylock.nix
+    ./dotfiles/waybar/waybar.nix
+    ./dotfiles/zsh/zsh.nix
+  ];
 
-            # Games
-            osu-lazer-bin
+  home.packages = with pkgs; [
+      # Text editing / Coding
+      obsidian
+      godot_4
 
-            # Virtualisation
-            distrobox
+      # Games
+      osu-lazer-bin
 
-            # Terminal
-            kitty
-            direnv
-           
-            # CLI
-            btop
-            fastfetch
-            yazi
-            imagemagick
+      # Virtualisation
+      distrobox
 
-            # CLI (GNU tools replacement)            
-            lsd
-            bat
-            dysk
-            delta
-            du-dust
-            fd
+      # Terminal
+      kitty
+      direnv
+      # ( lunarvim.overrideAttrs { nvimAlias = false; } )
+     
+      # CLI
+      btop
+      fastfetch
+      yazi
+      imagemagick
 
-            # Torrent
-            qbittorrent
-        
-            # Media
-            playerctl
-            spotify
+      # CLI (GNU tools replacement)            
+      lsd
+      bat
+      dysk
+      delta
+      du-dust
+      fd
 
-            # Chat
-            vesktop 
-            
-            # Security
-            keepassxc
-            gnupg
+      # Torrent
+      qbittorrent
+  
+      # Media
+      playerctl
+      spotify
 
-            # Sync
-            syncthing
+      # Chat
+      vesktop 
+      
+      # Security
+      keepassxc
+      gnupg
 
-            # XDG tools
-            libnotify
-            xdg-utils
-            #xdg-desktop-portal-hyprland
-            #xwaylandvideobridge
-            
-            # Provide some DE functionalities
-            brightnessctl
-            tofi
-            wl-clipboard
-            slurp
-            grim
-            waybar
-            swww
-            
-            # Manage audio
-            helvum
-            pavucontrol
+      # Sync
+      syncthing
 
-            # Fonts
-            noto-fonts
-            noto-fonts-emoji
-            noto-fonts-extra
-            noto-fonts-cjk
-            font-awesome
-            (nerdfonts.override { fonts = [ "Noto" ]; })
-        ];
+      # XDG tools
+      libnotify
+      xdg-utils
+      
+      # Provide some DE functionalities
+      brightnessctl
+      tofi
+      wl-clipboard
+      slurp
+      grim
+      waybar
+      swww
+      
+      # Manage audio
+      helvum
+      pavucontrol
 
-        programs = {
-
-            discord = {
-                enable = true;
-                wrapDiscord = true;
-            };
-
-            # Eww
-            eww = {
-                enable = true;
-                package = pkgs.eww-wayland;
-                configDir = ./dotfiles/eww;
-            };
-            
-            # Swaylock
-            swaylock = {
-                enable = true;
-                package = pkgs.swaylock-effects;
-            };
-           
-            # VSCode
-            vscode = {
-                enable = true;
-                package = pkgs.vscode-fhs;
-            };
-             
-            # Bemenu
-            bemenu = {
-                enable = true;
-            };
-          
-            # Obs studio
-            obs-studio = {
-                enable = true;
-                plugins = [
-                    pkgs.obs-studio-plugins.obs-pipewire-audio-capture
-                ];
-            };
-             
-            # Git
-            git = {
-                enable = true;
-                userName = "waltz";
-                userEmail = "79410846+Wa1t5@users.noreply.github.com";
-                signing = {
-                    key = "0x0EEB210433A61B10";
-                };
-            };
-        
-            # Waybar
-            waybar = {
-                enable = true;
-                style = import ./dotfiles/waybar/style.nix;
-                settings = import ./dotfiles/waybar/config.nix;
-                systemd = {
-                    enable = true;
-                    target = "hyprland-session.target";
-                };
-            };
-
-            # Kitty
-            kitty = {
-                enable = true;
-                extraConfig = import ./dotfiles/kitty/config.nix;
-            };
-
-            # Helix
-            helix = {
-                enable = true;
-                defaultEditor = true;
-            };
-
-            # Librewolf
-            librewolf = {
-                enable = true;
-                settings = import ./dotfiles/librewolf/config.nix;  
-            };
-
-            # Ncmpcpp
-            ncmpcpp = {
-                enable = true;
-                package = (pkgs.ncmpcpp.override { visualizerSupport = true; clockSupport = true; });
-                settings = import ./dotfiles/ncmpcpp/config.nix;
-            };
-
-            # Cava
-            cava = {
-                enable = true;
-                settings = import ./dotfiles/cava/config.nix;
-            };
-            
-            # Spicetify
-            spicetify = {
-                enable = false;
-                enabledExtensions = with inputs.spicetify-nix.packages."x86_64-linux".default.extensions; [
-                    fullAppDisplay
-                    shuffle # shuffle+ (special characters are sanitized out of ext names)
-                    adblock                    
-                    popupLyrics
-                ];
-            };
-
-            # ZSH 
-            zsh = {
-                enable = true;
-                
-                plugins = [
-                    {
-                       name = "powerlevel10k";
-                       src = pkgs.zsh-powerlevel10k;
-                       file = "/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-                    }
-                ];
-                oh-my-zsh = {
-                    enable = true;
-                };
-                initExtra = ''
-                    # Load p10k config
-                    source ~/.p10k.zsh
-
-                    # Allow direnv
-                    eval "$(direnv hook zsh)"
-
-                    # Aliases
-                    alias ls="lsd"
-                    alias cat="bat"
-                    alias df="dysk"
-                    alias diff="delta"
-                    alias du="dust"
-                    alias find="fd"
-                '';
-           };
-    
-            # GPG
-            gpg = {
-                enable = true;
-            };
-        };
-
-
+      # Fonts
+      noto-fonts
+      noto-fonts-emoji
+      noto-fonts-extra
+      noto-fonts-cjk
+      font-awesome
+      (nerdfonts.override { fonts = [ "Noto" ]; })
+  ];
 }

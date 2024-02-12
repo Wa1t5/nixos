@@ -20,7 +20,7 @@ global = {
     origin = "bottom-right";
 
     # Offset from the origin
-    offset = "10x50";
+    offset = "10x10";
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0;

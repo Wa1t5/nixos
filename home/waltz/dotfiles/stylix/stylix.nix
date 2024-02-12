@@ -1,5 +1,6 @@
-{ pkgs,  ... }:
-{  
+{ inputs, pkgs,  ... }:
+{ 
+  imports = [ inputs.stylix.homeManagerModules.stylix ];
         stylix = {
             image = ./wallpaper.png;            
             polarity = "dark";
@@ -35,6 +36,7 @@
 
             targets = {
                 kitty.variant256Colors = true;
+                nixvim.transparent_bg.main = false;
             };
         };
 
