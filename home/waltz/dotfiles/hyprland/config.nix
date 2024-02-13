@@ -17,103 +17,61 @@ $MOD = SUPER
 
 # Applications
 $term = kitty
-$launcher = $(bemenu-run)
+$launcher = $(fuzzel)
 
 # Scripts
-$random_wallpaper = $(sh /etc/nixos/home/waltz/dotfiles/hyprland/scripts/random_wallpaper.sh)
-$update_colorscheme = $(sh /etc/nixos/home/waltz/dotfiles/hyprland/scripts/update_colorscheme.sh)
-$music_status = $(sh /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh)
+$random_wallpaper = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/random_wallpaper.sh
+$update_colorscheme = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/update_colorscheme.sh
+$music_status = /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh
 $wallpaper_picker = $(kitty --detach --class=selector yazi ~/img/wallpapers)
+$media_keys = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/media_keys.sh
 
 # Predefined commands
 $notify-low = dunstify -u low -t 600
-$get-source-volume = wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk -F'[. ]' '{print $3}'
-$get-sink-volume = wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F'[. ]' '{print $3}'
-$get-mic-mute-status = [$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print $3}') \=\= ""] && echo "Unmuted" || echo "Muted"
-$get-mute-status = [$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}') \=\= ""] && echo "Unmuted" || echo "Muted"
-$set-volume = wpctl set-volume
-$toggle-mute = wpctl set-mute
-$set-bright = brightnessctl s
-$get-bright = brightnessctl g
 
 # Lists
 $player-ignore-list = firefox
 
 # Start
-exec-once = /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh "daemon" &
-exec-once = swww init # Inititialie swww daemon
-# exec-once = eww open music-info-window
-exec-once = brightnessctl -r & # Restore previous backlight
+exec-once = $music_status "daemon" &
 
 # Monitor
 monitor=,preferred,auto,1
 
 # Input
 input {
-	# Keyboard	
-  kb_layout 		= br
-	kb_variant		= abnt2
-  follow_mouse 	= 1
+  # Keyboard
+  kb_layout = br
+  kb_variant = abnt2
+  follow_mouse = 1
 
-	# Touchpad
-	touchpad {
-		disable_while_typing = true
-		natural_scroll = true
-	}
+  # Touchpad
+  touchpad {
+    disable_while_typing = true
+    natural_scroll = true
+  }
 }
-
-# Touchpad specific settings
-gestures {
-	workspace_swipe = true
-	workspace_swipe_fingers = 3;
-	workspace_swipe_distance = 100;
-}
-
 
 # Plugins
 plugin {
-    hyprwinwrap {
-        # class is an EXACT match and NOT a regex!
-        class = kitty-bg
-    }
-
-		touch_gestures {
-		  # The default sensitivity is probably too low on tablet screens,
-		  # I recommend turning it up to 4.0
-		  sensitivity = 1.0
-
-		  # must be >= 3
-		  workspace_swipe_fingers = 3
-
-		  # switching workspaces by swiping from an edge, this is separate from workspace_swipe_fingers
-		  # and can be used at the same time
-		  # possible values: l, r, u, or d
-		  # to disable it set it to anything else
-		  workspace_swipe_edge = d
-
-		  # in milliseconds
-		  long_press_delay = 400
-
-		  experimental {
-		    # send proper cancel events to windows instead of hacky touch_up events,
-		    # NOT recommended as it crashed a few times, once it's stabilized I'll make it the default
-		    send_cancel = 0
-		  }
-		}
+  hyprwinwrap {
+    # class is an EXACT match and NOT a regex!
+    class = kitty-bg
+  }
 }
 
 # General
 general {
-	# Gaps
-	gaps_in = 5
+  # Gaps
+  gaps_in = 5
   gaps_out = 3
   border_size = 2
 
   # Layout
   layout = dwindle
 
-	# Allow tearing
-	allow_tearing = true
+  # Allow tearing
+  allow_tearing = true
 }
 
 # Decoration
@@ -123,11 +81,11 @@ decoration {
 
   # Blur
   blur {
-  	enabled = true
+    enabled = true
     size = 5
     passes = 1
     xray = false
-  	new_optimizations = true
+    new_optimizations = true
   }
 
   # Shadows
@@ -142,8 +100,8 @@ layerrule = blur,waybar
 layerrule = blur,launcher
 
 misc {
- 	  # Enable vfr (lower refresh rate when nothing is hapenning on the screen)
-	  vfr = true
+    # Enable vfr (lower refresh rate when nothing is hapenning on the screen)
+    vfr = true
 
     # Adptative sync
     vrr = 1
@@ -153,7 +111,7 @@ misc {
 
     # Enable widnow swallowing
     enable_swallow = true
-		swallow_regex = class:^(kitty)$
+    swallow_regex = class:^(kitty)$
 
     # Direct scanout attempts to reduce lag when there is only
     # one full scren application on the window (can give issues)
@@ -165,27 +123,27 @@ misc {
 
 # Animations
 animations {
-	# Window: open, close, move
-	animation = windowsIn, 1, 4, default, popin 80%
-  animation = windowsOut, 1, 4, default, popin 30%
-	animation = windowsMove, 1, 5, default, slide
+  # Window: open, close, move
+  animation = windowsIn, 1, 2, default, popin 20%
+  animation = windowsOut, 1, 2, default, popin 80%
+  animation = windowsMove, 1, 5, default, slide
 
-	# Fade: in, out
-  animation = fadeIn, 1, 10, default
-	animation = fadeOut, 1, 7, default
+  # Fade: in, out
+  animation = fadeIn, 1, 5, default
+  animation = fadeOut, 1, 5, default
 
-	# Border
+  # Border
   animation = border, 1, 20, default
 
-	# Workspaces
+  # Workspaces
   animation = workspaces, 1, 3, default, slide
 }
 
 dwindle {
-	pseudotile        = yes
-  preserve_split 		= yes
-	force_split			  = 2
-	no_gaps_when_only = false
+  pseudotile = yes
+  preserve_split = yes
+  force_split = 2
+  no_gaps_when_only = false
 }
 
 # Lock screen
@@ -200,10 +158,6 @@ bind = $MOD, Return, exec, $launcher
 bind = $MOD SHIFT, Q, killactive
 bind = $MOD SHIFT CTRL, E, exit
 
-# Control screen brightness
-binde = ,XF86MonBrightnessUp,   exec, $set-bright +10 && brightnessctl -s && $notify-low -h string:x-dunst-stack-tag:bright "Display Bright [$($get-bright)%]" -h int:value:$($get-bright) --icon display-brightness-medium-symbolic
-binde = ,XF86MonBrightnessDown, exec, $set-bright 10- && brightnessctl -s && $notify-low -h string:x-dunst-stack-tag:bright "Display Bright [$($get-bright)%]" -h int:value:$($get-bright) --icon display-brightness-medium-symbolic
-
 # MPD
 bind = $MOD,XF86AudioPlay, exec, $music_status
 bind = ,XF86AudioPlay, exec, $music_status
@@ -213,17 +167,21 @@ bind = $MOD, XF86AudioNext, exec, playerctl -i $player-ignore-list next
 bind = $MOD, XF86AudioPrev, exec, playerctl -i $player-ignore-list previous
 binde = ,XF86AudioPrev, exec, playerctl -i $player-ignore-list position 5-
 
+# Control screen brightness
+binde = ,XF86MonBrightnessUp,   exec, $media_keys "bright" 10+
+binde = ,XF86MonBrightnessDown, exec, $media_keys "bright" 10-
+
 # Volume
-binde = ,XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05+ && $notify-low -h string:x-dunst-stack-tag:audio "Audio Output [$($get-sink-volume)%]" -h int:value:$($get-sink-volume) --icon audio-volume-medium
-binde = ,XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SINK@ 0.05- && $notify-low -h string:x-dunst-stack-tag:audio "Audio Output [$($get-sink-volume)%]" -h int:value:$($get-sink-volume) --icon audio-volume-medium
+binde = ,XF86AudioRaiseVolume, exec, $media_keys "vol" @DEFAULT_AUDIO_SINK@ 0.05+
+binde = ,XF86AudioLowerVolume, exec, $media_keys "vol" @DEFAULT_AUDIO_SINK@ 0.05-
 
 # Microphone volume
-binde = $MOD, XF86AudioRaiseVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+ && $notify-low -h string:x-dunst-stack-tag:audio-mic "Audio Input [$($get-source-volume)%]" -h int:value:$($get-source-volume) --icon audio-volume-medium
-binde = $MOD, XF86AudioLowerVolume, exec, $set-volume @DEFAULT_AUDIO_SOURCE@ 0.05- && $notify-low -h string:x-dunst-stack-tag:audio-mic "Audio Input [$($get-source-volume)%]" -h int:value:$($get-source-volume) --icon audio-volume-medium
+binde = $MOD, XF86AudioRaiseVolume, exec, $media_keys "vol" @DEFAULT_AUDIO_SOURCE@ 0.05+
+binde = $MOD, XF86AudioLowerVolume, exec, $media_keys "vol" @DEFAULT_AUDIO_SOURCE@ 0.05-
 
 # Togle Audio | Mic
-bind = ,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SINK@ toggle && $notify-low "Audio Output" --icon [ "$($get-mute-status)" == "Muted"  ] && audio-volume-muted || audio-volume-medium  "$($get-mute-status)"
-bind = $MOD,XF86AudioMute, exec, $toggle-mute @DEFAULT_AUDIO_SOURCE@ toggle && $notify-low "Audio Input" --icon [ "$($get-mute-status)" == "Muted"  ] && audio-volume-muted || audio-volume-medium "$($get-mic-mute-status)"
+bind = ,XF86AudioMute, exec, $media_keys "vol-mute" @DEFAULT_AUDIO_SINK@
+bind = $MOD,XF86AudioMute, exec, $media_keys "vol-mute" @DEFAULT_AUDIO_SOURCE@
 
 # Change wallpaper and generate new colorscheme
 bind = $MOD SHIFT, w, exec, $random_wallpaper &
@@ -313,10 +271,10 @@ windowrulev2 = center 1, class:^(selector)$
 # windowrulev2 = xray 0, class:^(kitty)$
 
 debug {
-	damage_tracking = 2
+  damage_tracking = 2
 }
 
 misc {
-	force_default_wallpaper = 0
+  force_default_wallpaper = 0
 }
 ''

@@ -1,10 +1,11 @@
 { inputs, pkgs, ... }:
 {  
   imports = [
-    ./dotfiles/bemenu/bemenu.nix
+    # ./dotfiles/stylix/stylix.nix
     ./dotfiles/cava/cava.nix
     ./dotfiles/discord/discord.nix
     ./dotfiles/eww/eww.nix
+    ./dotfiles/fuzzel/fuzzel.nix
     ./dotfiles/git/git.nix
     ./dotfiles/gpg/gpg.nix
     ./dotfiles/hyprland/hyprland.nix
@@ -14,7 +15,6 @@
     ./dotfiles/nixvim/nixvim.nix
     ./dotfiles/obs-studio/obs-studio.nix
     ./dotfiles/spicetify/spicetify.nix
-    # ./dotfiles/stylix/stylix.nix
     ./dotfiles/swaylock/swaylock.nix
     ./dotfiles/waybar/waybar.nix
     ./dotfiles/zsh/zsh.nix

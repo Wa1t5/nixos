@@ -43,6 +43,7 @@
           # Servers
           servers = {
             clangd.enable = true;
+	    bashls.enable = true;
             nixd.enable = true;
           };
         };
@@ -97,9 +98,9 @@
         presence-nvim.enable = true;
 
 
-	        # Org mode
+	# Neorg mode
         neorg = {
-	  enable = true;
+	  enable = false;
 	  lazyLoading = true;
 	  package = pkgs.vimPlugins.neorg;
 	  modules = {
