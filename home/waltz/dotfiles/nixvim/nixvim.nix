@@ -1,6 +1,12 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [ inputs.nixvim.homeManagerModules.nixvim ];
+
+  # Neovim
+  programs.neovim = {
+    enable = false;
+    defaultEditor = true;
+  };
 
   # Nixvim
   programs.nixvim = {
@@ -8,18 +14,27 @@
 
       defaultEditor = true;
 
+      luaLoader.enable = false;
+
+      clipboard.register = "unnamedplus";
       clipboard.providers.wl-copy.enable = true;
-      
+
       plugins = {
-        # Side tree
+
+       # Side tree
         nvim-tree = {
           enable = true;
-          openOnSetup = true;
+          openOnSetup = false;
           openOnSetupFile = false;
         };
 
         # Highlighter
-        treesitter.enable = true;
+        treesitter = {
+	  enable = true;
+	  nixGrammars = true;
+	  ensureInstalled = [ "c" "nix" "norg" "rust" "zig" ];
+	  #parserInstallDir = "~/.treesitter";
+	};
 
         # Lsp Server
         lsp = { 
@@ -35,6 +50,12 @@
         lsp-lines.enable = true;
         lint.enable = true;
 
+	# Formating
+	#conform-nvim.enable = true;
+
+	# Error listing
+	#trouble.enable = true;
+
         # COQ Completion
         coq-nvim = {
           enable = true;
@@ -45,28 +66,26 @@
 
         # Line
         lualine.enable = true; # Bottom
-        bufferline.enable = true; # Bars
+        #bufferline.enable = true; # Bars
 
 	# indentation
 	indent-blankline.enable = true;
         
-        # Org mode
-        neorg.enable = true;
 
 	# Telescope
-	telescope = {
-	  enable = true;
-	  extensions = {
-	    file_browser.enable = true;
-	  };
-	};
+	#telescope = {
+	#  enable = true;
+	#  extensions = {
+	#    file_browser.enable = true;
+	#  };
+	#};
 
 	# Code context
 	# navic.enable = true;
 	# navbuddy.enable = true;
 
 	# Which keys
-	which-key.enable = true;
+	#which-key.enable = true;
 
 	# Autopairs
 	nvim-autopairs.enable = true;
@@ -76,6 +95,28 @@
 
         # Discord autocomplete
         presence-nvim.enable = true;
+
+
+	        # Org mode
+        neorg = {
+	  enable = true;
+	  lazyLoading = true;
+	  package = pkgs.vimPlugins.neorg;
+	  modules = {
+	    "core.defaults" = {
+	      __empty = null;
+	    };
+	    "core.conceals" = {};
+	    "core.dirman" = {
+	      config = {
+	        workspaces = {
+	          notes = "~/docs/notes";
+	        };
+		default_workspace = "notes";
+	      };
+	    };
+	  };
+	};
       };
 
       # Colorscheme
@@ -86,22 +127,16 @@
         # Show line number
         number = true;
 
+	# Show number relative to position
+	relativenumber = true;
+
         # Tab width
         shiftwidth = 2;
       };
 
       # Globals
-      #globals = {
-      #	mapleader = "space";
-      #};
-
-      # Keymaps
-      keymaps = [
-	{
-	  mode = "n";
-	  key = "<leader>fs";
-	  action = "<cmd>Telescope file_browser";
-	}
-      ];
+      globals = {
+      	mapleader = "space";
+      };
   };
 }

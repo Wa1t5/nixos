@@ -5,26 +5,24 @@
         home.homeDirectory = "/home/waltz";
 
         imports = [        
-            # Packages
-            ./packages.nix
+	  # Packages
+          ./packages.nix
 
-            # Services
-            ./services.nix
-            
-            # Extra paths to add to home
-            ./extra-paths.nix  
+          # Services
+          ./services.nix
+          
+          # Extra paths to add to home
+          ./extra-paths.nix  
 
-            # Xdg
-            ./xdg-configuration.nix
+          # Xdg
+          ./xdg-configuration.nix
 
-            # Specify xdg paths
-            ./xdg-paths.nix    
-
-
-           # import spicetify
-            inputs.spicetify-nix.homeManagerModule
+          # Specify xdg paths
+          ./xdg-paths.nix    
 
 
+         # import spicetify
+          inputs.spicetify-nix.homeManagerModule
         ];
        
         # Enable wayland for electron ozone apps

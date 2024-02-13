@@ -1,6 +1,5 @@
 { inputs, pkgs,  ... }:
 { 
-  imports = [ inputs.stylix.homeManagerModules.stylix ];
         stylix = {
             image = ./wallpaper.png;            
             polarity = "dark";
@@ -20,7 +19,6 @@
                     package = (pkgs.nerdfonts.override { fonts = [ "Noto" ]; });
                     name = "Noto Nerd Font Mono";
                 };
-
                 
                 sansSerif = {
                     package = (pkgs.nerdfonts.override { fonts = [ "Noto" ]; });
@@ -31,13 +29,13 @@
                     package = (pkgs.nerdfonts.override { fonts = [ "Noto" ]; });
                     name = "Noto Nerd Font Mono";
                 };
+
+		sizes.applications = 12;
+		sizes.desktop = 12;
             };
 
-
-            targets = {
-                kitty.variant256Colors = true;
-                nixvim.transparent_bg.main = false;
-            };
-        };
-
+	    targets = {
+	      plymouth.blackBackground = true;
+	    };
+	};
 }

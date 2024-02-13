@@ -12,11 +12,11 @@
     greetd.tuigreet
   ];
 
-  # TODO: Remove this as soon as maintainers update
-  # their packages electron version
+  # TODO: Remove this when obsidian decides to update their old electron version
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
   ];
+
   # Enable zsh shell
   programs.zsh.enable = true;
 

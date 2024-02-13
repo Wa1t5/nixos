@@ -47,17 +47,32 @@
             url = "github:nix-community/nixvim";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-    };
+
+	# Lanzabooter (Secure boot)
+	lanzaboote = {
+	  url = "github:nix-community/lanzaboote";
+	  inputs.nixpkgs.follows = "nixpkgs";
+	};
+   };
 
     outputs = { nixpkgs, ... } @inputs: {
         nixosConfigurations = {
             # Emperor Host
             "emperor" = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                modules = [
-                    # Import config.nix
-                    ./hosts/emperor/configuration.nix
 
+		# System type
+                system = "x86_64-linux";
+		
+		# Modules
+                modules = [
+
+		    # Load stylix NixOS module (system-wide)
+		    inputs.stylix.nixosModules.stylix
+		    ./home/waltz/dotfiles/stylix/stylix.nix
+
+                    # Import config.nix
+		    ./hosts/emperor/configuration.nix
+        
                     # Softwares that need to be defined in
                     # configuration.nix but I removed
                     # for modularity
@@ -65,19 +80,22 @@
 
                     # Load hardware config
                     inputs.nixos-hardware.nixosModules.lenovo-ideapad-s145-15api
+
+		    # Load lanazboote (secure boot)
+		    inputs.lanzaboote.nixosModules.lanzaboote
                 
                     inputs.home-manager.nixosModules.home-manager
                     {
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
-                        
+ 
                         # Import waltz's config
                         home-manager.users.waltz = import ./home/waltz/home.nix;
 
                         # Pass flakes to home-manager files
                         home-manager.extraSpecialArgs = {inherit inputs;};
                     }
-                ];
+	        ];
             };
         };
     };

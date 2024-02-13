@@ -6,8 +6,9 @@
         interfaces.wlp1s0.useDHCP = true;
 
         # Set nameservers and disable resolv.conf
-        nameservers = [ "1.1.1.1" ];
+        nameservers = [ "127.0.0.1" ];
         dhcpcd.extraConfig = "nohook resolv.conf";
+	networkmanager.dns = "none";
 
         # Wireless networks
         wireless = {
@@ -18,15 +19,43 @@
                 };
             };
         };
-    };
+
+	# Extra host (can be used to block things like ads)
+        extraHosts = let
+          hostsPath = https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts;
+          hostsFile = builtins.fetchurl { 
+	    url = "${hostsPath}";
+	    sha256 = "0079x21cijk9q8zpi9isfwzn06mbxd8xd7di79ap6pnnsmbg9z5n";
+	  };
+	in builtins.readFile "${hostsFile}";
+        };
+
+    # Disable resolved
+    services.resolved.enable = false;
 
     # DNSCrypt
     services.dnscrypt-proxy2 = {
     enable = true;
     settings = {
-      ipv6_servers = true;
-      require_dnssec = true;
+      # Use ipv4
+      ipv6_servers = false;
+      ipv4_servers = true;
 
+      # Use only dnscrypt
+      dnscrypt_servers = true;
+      doh_servers = false;
+      odoh_servers = false;
+
+      # Stricter requirements
+      require_dnssec = true;
+      require_nolog = true;
+      require_nofilter = true;
+
+      # Improve privacy
+      dnscrypt_ephemeral_keys = true; # Disable on case of high cpu load
+      tls_disable_session_tickets = true; # Disable on case of high latency
+  
+      # Server list
       sources.public-resolvers = {
         urls = [
           "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
@@ -35,13 +64,11 @@
         cache_file = "/var/lib/dnscrypt-proxy2/public-resolvers.md";
         minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
       };
-
-      # https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
-      server_names = [ "sdns://AgMAAAAAAAAACzE5NC4yNDIuMi40ABRiYXNlLmRucy5tdWxsdmFkLm5ldAovZG5zLXF1ZXJ5" ];
-    };
+   };
   };
+
+  # Systemd service settings
   systemd.services.dnscrypt-proxy2.serviceConfig = {
     StateDirectory = "dnscrypt-proxy";
   };
-
 }

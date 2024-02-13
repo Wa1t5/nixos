@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 {
   imports =
     [ 
@@ -19,6 +19,9 @@
       
       # Firewall
       ./firewall-configuration.nix
+
+      # Security
+      ./security-configuration.nix
 
       # Packages
       ./packages.nix
@@ -45,7 +48,7 @@
       ./users.nix
 
       # Realtime
-      ./realtime-group.nix
+       ./realtime-group.nix
     ];
     
   # Enable flakes

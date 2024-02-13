@@ -14,7 +14,7 @@
     ./dotfiles/nixvim/nixvim.nix
     ./dotfiles/obs-studio/obs-studio.nix
     ./dotfiles/spicetify/spicetify.nix
-    ./dotfiles/stylix/stylix.nix
+    # ./dotfiles/stylix/stylix.nix
     ./dotfiles/swaylock/swaylock.nix
     ./dotfiles/waybar/waybar.nix
     ./dotfiles/zsh/zsh.nix
