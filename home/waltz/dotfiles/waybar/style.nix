@@ -39,73 +39,22 @@ window#waybar.hidden {
 button:hover {
 }
 
-/* Clock  */
-#clock {
-  	margin-top: 4px;
-  	margin-left: 8px;
-  	padding-left: 10px;
-    padding-right: 10px;
-	  margin-bottom: 4px;
-	  border-radius: 15px;
-}
-
-/* Battery */
-#battery {
-  	margin-top: 4px;
-  	margin-left: 8px;
-  	padding-left: 10px;
-	  padding-right: 15px;
-	  margin-bottom: 4px;
-	  border-radius: 15px;
-}
-
-/* Temperature */
-#temperature {
-    margin-top: 4px;
-  	margin-left: 8px;
-  	padding-left: 10px;
-	  padding-right: 10px;
-    margin-bottom: 4px;
-    border-radius: 15px;
-}
-
-/* Tray */
-#tray {
-    margin-top: 4px;
-    margin-left: 8px;
-  	padding-left: 10px;
-	  padding-right: 10px;
-	  margin-bottom: 4px;
-	  border-radius: 15px;
-}
-
-/* MPD */
-#mpd {
-    margin-top: 4px;
-    margin-left: 8px;
-  	padding-left: 10px;
-	  padding-right: 10px;
-	  margin-bottom: 4px;
-	  border-radius: 15px;
-}
-
-/* MPRIS */
-#mpris {
-    margin-top: 4px;
-    margin-left: 8px;
-  	padding-left: 10px;
-	  padding-right: 10px;
-	  margin-bottom: 4px;
-	  border-radius: 15px;
-}
-/* Cava */
-#cava {
-    margin-top: 4px;
-    margin-left: 8px;
-  	padding-left: 10px;
-	  padding-right: 10px;
-	  margin-bottom: 4px;
-	  border-radius: 15px;
+#clock,
+#battery,
+#temperature,
+#tray,
+#mpd,
+#mpris,
+#cava,
+#cpu, 
+#pulseaudio,
+#backlight {
+  margin-top: 4px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 4px;
+  border-radius: 15px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */

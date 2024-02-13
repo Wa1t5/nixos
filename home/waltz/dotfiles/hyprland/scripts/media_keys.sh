@@ -17,7 +17,7 @@ case $1 in
 
     # Notify
     dunstify -u low -t 600 -h string:x-dunst-stack-tag:audio "Audio: $(echo ${2} | awk -F'[_@]' '{print $4}') [${get_volume}%]" -h int:value:${get_volume}
-  ;;  
+  ;;
 
   vol-mute)
     # Toggle mute
@@ -39,6 +39,14 @@ case $1 in
 
     # Notify
     dunstify -u low -t 600 -h string:x-dunst-stack-tag:bright "Screen: Bright [${get_bright}%]" -h int:value:${get_bright}
+  ;;
+
+  play) 
+    # Run command
+    playerctl -i firefox $2 $3
+
+    # Notify
+    sh /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh
   ;;
   *) echo "No valid operation was specified" ;;
 esac

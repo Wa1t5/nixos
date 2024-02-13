@@ -19,6 +19,16 @@
 
     # Use boot animation
     plymouth.enable = true;
-    kernelParams = [ "quiet" ]; # Remove noise produced by boot log
+
+    # Silent boot
+    kernelParams = [ 
+      "quiet"
+      "udev.log_level=3"
+    ]; 
+    initrd.verbose = 0;
+    consoleLogLevel = 0;
+
+    # Disable systemd boot editor as it can lead to root access on boot
+    loader.systemd-boot.editor = false;
   };
 }

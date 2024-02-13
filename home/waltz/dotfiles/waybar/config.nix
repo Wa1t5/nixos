@@ -10,20 +10,20 @@
     spacing = 4;  # Gaps between modules (4px)
 
     # Modules left
-    modules-left = [ "clock" "hyprland/workspaces" ];
+    modules-left = [ "clock" "battery" "hyprland/workspaces" ];
 
     # Modules center
     modules-center = [ "mpris" ];
 
     # Modules right
-    modules-right = [ "cava" "tray"  "battery" "temperature" ];
+    modules-right = [ "cava" "tray"  "pulseaudio" "backlight" "cpu" "temperature" ];
 
     # MODULES CONFIG
 
     # Clock
     "clock" = {
-        format = "{:%H:%M}  ";
-        format-alt = "{:%A, %B %d, %Y (%R)}  ";
+        format = "{:%H:%M} ";
+        format-alt = "{:%A, %B %d, %Y (%R)}";
         tooltip-format = "<tt><small>{calendar}</small></tt>";
         calendar = {
             mode          = "year";
@@ -41,10 +41,6 @@
         };
         actions = {
             on-click-right = "mode";
-            on-click-forward = "tz_up";
-            on-click-backward = "tz_down";
-            on-scroll-up = "shift_up";
-            on-scroll-down = "shift_down";
         };
     };
     
@@ -85,68 +81,99 @@
 
     # Music player daemon
     "mpd" = {
-        format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon} {title}";
-        format-disconnected = "Disconnected";
-        format-stopped = "Stopped";
-        interval = 10;
+      format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon} {title}";
+      format-disconnected = "Disconnected";
+      format-stopped = "Stopped";
+      interval = 10;
 
-        title-len = 35;
-        
-        consume-icons = {
-            on = " ";
-        };
-        random-icons = {
-            off = "<span color=\"#f53c3c\"></span> ";
-            on =  " ";
-        };
-        repeat-icons = {
-            on = " ";
-        };
-        single-icons = {
-            on = "1 ";
-        };
-        state-icons = {
-            playing = "";
-            paused = "";
-        };
-        tooltip-format = "MPD (connected)";
-        tooltip-format-disconnected = "MPD (disconnected)";
+      title-len = 35;
+      
+      consume-icons = {
+        on = " ";
+      };
+      random-icons = {
+	off = "<span color=\"#f53c3c\"></span> ";
+	on =  " ";
+      };
+      repeat-icons = {
+        on = " ";
+      };
+      single-icons = {
+        on = "1 ";
+      };
+      state-icons = {
+        playing = "";
+        paused = "";
+      };
+      tooltip-format = "MPD (connected)";
+      tooltip-format-disconnected = "MPD (disconnected)";
     };
 
     # Cava
     "cava" = {
-        framerate = 30;
-        autosens = 1;
-        sensitivity = 1;
-        bars = 10;
-        lower_cutoff_freq = 50;
-        higher_cutoff_freq = 10000;
-        method = "pipewire";
-        source = "auto";
-        stereo = true;
-        reverse = false;
-        bar_delimiter = 0;
-        monstercat = false;
-        waves = false;
-        input_delay = 4;
-        format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+      framerate = 30;
+      autosens = 1;
+      sensitivity = 1;
+      bars = 10;
+      lower_cutoff_freq = 50;
+      higher_cutoff_freq = 10000;
+      method = "pipewire";
+      source = "auto";
+      stereo = true;
+      reverse = false;
+      bar_delimiter = 0;
+      monstercat = false;
+      waves = false;
+      input_delay = 4;
+      format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
     };
 
     # MPRIS
     "mpris" = {
-	      format = "{status_icon} {title}";
-	      format-paused = "{status_icon} {title}";
-        format-stopped = "{status}";
-        title-len = 35;
-        player-icons = {
-		        "default" = "▶";
-		        "mpv" = "🎵";
-	      };
-	      status-icons = {
-		        "paused" = " ";
-		        "playing" = " ";
-	      };
-        ignored-players = [ "firefox" ];
+      format = "{status_icon} {title}";
+      format-paused = "{status_icon} {title}";
+      format-stopped = "{status}";
+      title-len = 35;
+      player-icons = {
+        "default" = "▶";
+        "mpv" = "🎵";
+      };
+      status-icons = {
+        "paused" = " ";
+        "playing" = " ";
+      };
+      ignored-players = [ "firefox" ];
     };
+
+    "cpu" =  {
+      format = "{usage}% {icon}";
+      format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+      interval = 10;
+      max-length = 10;
+    };
+
+    "pulseaudio" = {
+      format = "{volume}% {icon}";
+      format-bluetooth = "{volume}% {icon}";
+      format-icons = {
+        car = "";
+        default = [ "" "" ];
+        hands-free = "";
+        headphone = "";
+        headset = "";
+        phone = "";
+        portable = "";
+      };
+      format-muted = "";
+      ignored-sinks = [ "Easy Effects Sink" ];
+      on-click = "pavucontrol";
+      scroll-step = 1;
+    };
+ 
+    "backlight"= {
+      format = "{percent}% {icon}";
+      format-icons = [ "" "" ];
+    };
+
     }
 ]

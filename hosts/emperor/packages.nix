@@ -1,7 +1,13 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   # Allow unfree
   nixpkgs.config.allowUnfree = true;
+
+  imports = [
+  # Load stylix NixOS module (system-wide)
+    inputs.stylix.nixosModules.stylix
+    ../../home/waltz/dotfiles/stylix/stylix.nix
+  ];
 
   environment.systemPackages = with pkgs; [
     git

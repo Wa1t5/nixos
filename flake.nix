@@ -62,14 +62,12 @@
 
 		# System type
                 system = "x86_64-linux";
+
+		# Pass inputs as special args
+		specialArgs = { inherit inputs; };
 		
 		# Modules
                 modules = [
-
-		    # Load stylix NixOS module (system-wide)
-		    inputs.stylix.nixosModules.stylix
-		    ./home/waltz/dotfiles/stylix/stylix.nix
-
                     # Import config.nix
 		    ./hosts/emperor/configuration.nix
         
