@@ -1,3 +1,5 @@
+{ lib, ... }:
+
 {
 # See dunst(5) for all configuration options
 global = {
@@ -298,6 +300,21 @@ experimental = {
     # using the resolution and physical size. This might be useful in setups
     # where there are multiple screens with very different dpi values.
     per_monitor_dpi = "false";
+};
+
+urgency_low = {
+    background = lib.mkForce "#000000";
+    timeout = "600ms";
+};
+
+urgency_normal = {
+    background = lib.mkForce "#000000";
+    timeout = 10;
+};
+
+urgency_critical = {
+    background = lib.mkForce "#000000";
+    timeout = 0;
 };
 
 # Every section that isn't one of the above is interpreted as a rules to

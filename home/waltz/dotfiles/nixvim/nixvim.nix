@@ -32,6 +32,9 @@
         treesitter = {
 	  enable = true;
 	  nixGrammars = true;
+	  folding = false;
+	  indent = true;
+
 	  ensureInstalled = [ "c" "nix" "norg" "rust" "zig" ];
 	  #parserInstallDir = "~/.treesitter";
 	};
@@ -52,10 +55,10 @@
         lint.enable = true;
 
 	# Formating
-	#conform-nvim.enable = true;
+	conform-nvim.enable = true;
 
 	# Error listing
-	#trouble.enable = true;
+	trouble.enable = true;
 
         # COQ Completion
         coq-nvim = {
@@ -68,9 +71,6 @@
         # Line
         lualine.enable = true; # Bottom
         #bufferline.enable = true; # Bars
-
-	# indentation
-	indent-blankline.enable = true;
         
 
 	# Telescope

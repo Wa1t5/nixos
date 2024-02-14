@@ -1,5 +1,11 @@
 { inputs, pkgs,  ... }:
+
+  let 
+    fontPkg = ( pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });
+    fontName = "JetBrainsMono Medium";
+  in
 { 
+
         stylix = {
             image = ./wallpaper.png;            
             polarity = "dark";
@@ -16,18 +22,18 @@
             
             fonts = {
                 serif = {
-                    package = (pkgs.nerdfonts.override { fonts = [ "Noto" ]; });
-                    name = "Noto Nerd Font Mono";
+                    package = fontPkg;
+                    name = fontName;
                 };
                 
                 sansSerif = {
-                    package = (pkgs.nerdfonts.override { fonts = [ "Noto" ]; });
-                    name = "Noto Nerd Font Mono";
+                    package = fontPkg;
+		    name = fontName;
                 };
 
                 monospace = {
-                    package = (pkgs.nerdfonts.override { fonts = [ "Noto" ]; });
-                    name = "Noto Nerd Font Mono";
+                    package = fontPkg;
+		    name = fontName;
                 };
 
 		sizes.applications = 12;

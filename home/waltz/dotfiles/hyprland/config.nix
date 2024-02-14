@@ -29,11 +29,8 @@ $media_keys = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/media_keys.sh
 # Predefined commands
 $notify-low = dunstify -u low -t 600
 
-# Lists
-$player-ignore-list = firefox
-
 # Start
-exec-once = $music_status "daemon" &
+exec-once = swww init
 
 # Monitor
 monitor=,preferred,auto,1
@@ -111,7 +108,7 @@ misc {
 
     # Enable widnow swallowing
     enable_swallow = true
-    swallow_regex = class:^(kitty)$
+    swallow_regex = ^(kitty)$
 
     # Direct scanout attempts to reduce lag when there is only
     # one full scren application on the window (can give issues)

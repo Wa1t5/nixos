@@ -15,16 +15,10 @@
         };
 
         # Stylix
-        stylix = {
-            url = "github:danth/stylix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+        stylix.url = "github:danth/stylix";
         
         # Hyprland
-        hyprland = {
-            url = "github:hyprwm/Hyprland";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+        hyprland.url = "github:hyprwm/Hyprland";
 
         hyprland-plugins = {
             url = "github:hyprwm/hyprland-plugins";
@@ -37,25 +31,35 @@
         };
 
         # Spicetify
-        spicetify-nix = {
-            url = "github:the-argus/spicetify-nix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+        spicetify-nix.url = "github:the-argus/spicetify-nix";
 
-        # Nixvim
-        nixvim = {
-            url = "github:nix-community/nixvim";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+	# Nixvim
+        nixvim.url = "github:nix-community/nixvim";
 
 	# Lanzabooter (Secure boot)
-	lanzaboote = {
-	  url = "github:nix-community/lanzaboote";
-	  inputs.nixpkgs.follows = "nixpkgs";
-	};
+	lanzaboote.url = "github:nix-community/lanzaboote";
+
+	# Bleeding edges packages in general
+  	# and custom kernel
+        chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
    };
 
+
+
     outputs = { nixpkgs, ... } @inputs: {
+      nixConfig = {
+        extra-trusted-public-keys = [
+          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+	  "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+	  "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+	];
+	extra-substituters = [
+	  "https://cache.nixos.org"
+	  "https://hyprland.cachix.org"
+	  "https://nyx.chaotic.cx"
+       ];
+      };
+
         nixosConfigurations = {
             # Emperor Host
             "emperor" = nixpkgs.lib.nixosSystem {
@@ -65,9 +69,13 @@
 
 		# Pass inputs as special args
 		specialArgs = { inherit inputs; };
+
 		
 		# Modules
-                modules = [
+                modules = [ 
+		    # Chaotic module
+		    inputs.chaotic.nixosModules.default
+
                     # Import config.nix
 		    ./hosts/emperor/configuration.nix
         
@@ -83,7 +91,7 @@
 		    inputs.lanzaboote.nixosModules.lanzaboote
                 
                     inputs.home-manager.nixosModules.home-manager
-                    {
+                    {      
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
  

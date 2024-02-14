@@ -11,7 +11,8 @@
     rtkit.enable = true;
 
     # KernelProtect (prevent the replacement of an running kernel image)
-    protectKernelImage = true;
+    # Disabled because it disables hibernation mode
+    protectKernelImage = false;
   };
 
   # Force dbus service to use apparmor

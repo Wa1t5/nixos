@@ -24,11 +24,20 @@
     kernelParams = [ 
       "quiet"
       "udev.log_level=3"
+      "nowatchdog"
     ]; 
     initrd.verbose = 0;
     consoleLogLevel = 0;
 
     # Disable systemd boot editor as it can lead to root access on boot
     loader.systemd-boot.editor = false;
+  
+    # Clean /tmp after reboot
+    tmp.cleanOnBoot = true;
+
+    # Mount /tmp on RAM
+    tmp.useTmpfs = true; # disable when building large packages
+    tmp.tmpfsSize = "70%";
+
   };
 }

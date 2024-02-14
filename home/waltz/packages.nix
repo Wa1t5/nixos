@@ -11,6 +11,7 @@
     ./dotfiles/hyprland/hyprland.nix
     ./dotfiles/kitty/kitty.nix
     ./dotfiles/librewolf/librewolf.nix
+    ./dotfiles/mpv/mpv.nix
     ./dotfiles/ncmpcpp/ncmpcpp.nix
     ./dotfiles/nixvim/nixvim.nix
     ./dotfiles/obs-studio/obs-studio.nix
@@ -58,8 +59,8 @@
       spotify
 
       # Chat
-      vesktop 
-      
+      vesktop
+
       # Security
       keepassxc
       gnupg
@@ -90,6 +91,6 @@
       noto-fonts-extra
       noto-fonts-cjk
       font-awesome
-      (nerdfonts.override { fonts = [ "Noto" ]; })
+      #(nerdfonts.override { fonts = [ "Noto" ]; })
   ];
 }
