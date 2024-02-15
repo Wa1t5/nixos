@@ -44,7 +44,6 @@
         };
     };
     
-    # Battery
     battery = {
    	    bat = "BAT0";
         interval = 60;
@@ -57,7 +56,6 @@
     	  max-length = 25;
 	  };
 
-    # Temperature
     "temperature" = {
         thermal-zone = 0;
         hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon/";
@@ -67,7 +65,6 @@
         format = "{temperatureC}°C ";
     };
 
-    # Hyprland workspaces
     "hyprland/workspaces" = {
 	      format = "{icon}";
         persistent-workspaces = {
@@ -79,7 +76,6 @@
         };
 	  };
 
-    # Music player daemon
     "mpd" = {
       format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon} {title}";
       format-disconnected = "Disconnected";
@@ -109,7 +105,6 @@
       tooltip-format-disconnected = "MPD (disconnected)";
     };
 
-    # Cava
     "cava" = {
       framerate = 30;
       autosens = 1;
@@ -128,7 +123,6 @@
       format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
     };
 
-    # MPRIS
     "mpris" = {
       format = "{status_icon} {title}";
       format-paused = "{status_icon} {title}";
@@ -173,6 +167,10 @@
     "backlight"= {
       format = "{percent}% {icon}";
       format-icons = [ "" "" ];
+    };
+
+    "tray" = {
+      "spacing" = 5;
     };
 
     }

@@ -50,7 +50,7 @@ button:hover {
 #pulseaudio,
 #backlight {
   margin-top: 4px;
-  margin-left: 8px;
+  margin-left: 4px;
   padding-left: 10px;
   padding-right: 10px;
   margin-bottom: 4px;

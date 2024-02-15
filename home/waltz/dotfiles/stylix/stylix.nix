@@ -1,11 +1,10 @@
 { inputs, pkgs,  ... }:
-
   let 
-    fontPkg = ( pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });
-    fontName = "JetBrainsMono Medium";
+    fontPkg = ( pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" ]; });
+    fontDefName = "JetBrains Mono";
+    fontEmojiName = "Noto Emoji";
   in
 { 
-
         stylix = {
             image = ./wallpaper.png;            
             polarity = "dark";
@@ -21,20 +20,23 @@
             };
             
             fonts = {
-                serif = {
-                    package = fontPkg;
-                    name = fontName;
-                };
-                
-                sansSerif = {
-                    package = fontPkg;
-		    name = fontName;
-                };
 
+		emoji = {
+		  package = fontPkg;
+		  name = fontEmojiName;
+		};
+                serif = {
+		  name = fontDefName;
+		  package = fontPkg;
+		};
+                sansSerif = {
+		  name = fontDefName;
+		  package = fontPkg;
+		};
                 monospace = {
-                    package = fontPkg;
-		    name = fontName;
-                };
+		  name = fontDefName;
+		  package = fontPkg;
+		};
 
 		sizes.applications = 12;
 		sizes.desktop = 12;

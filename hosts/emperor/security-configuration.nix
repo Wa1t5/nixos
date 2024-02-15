@@ -3,7 +3,7 @@
   security = {
     # AppArmor
     apparmor = {
-      enable = true;
+      enable = false;
       killUnconfinedConfinables = false;
     };
 

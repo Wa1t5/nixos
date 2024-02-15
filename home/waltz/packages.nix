@@ -35,7 +35,9 @@
       # Terminal
       kitty
       direnv
-      # ( lunarvim.overrideAttrs { nvimAlias = false; } )
+
+      # File sharing
+      localsend
      
       # CLI
       btop
@@ -60,6 +62,9 @@
 
       # Chat
       vesktop
+      ferdium
+      element
+      cinny-desktop
 
       # Security
       keepassxc
@@ -80,17 +85,18 @@
       grim
       waybar
       swww
-      
-      # Manage audio
-      helvum
-      pavucontrol
 
       # Fonts
       noto-fonts
-      noto-fonts-emoji
-      noto-fonts-extra
-      noto-fonts-cjk
-      font-awesome
-      #(nerdfonts.override { fonts = [ "Noto" ]; })
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-color-emoji
+      noto-fonts-emoji-blob-bin
+      jetbrains-mono    
+      ( pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" ]; })
+
+      # Manage audio
+      helvum
+      pavucontrol
   ];
 }
