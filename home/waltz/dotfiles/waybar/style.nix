@@ -48,7 +48,8 @@ button:hover {
 #cava,
 #cpu, 
 #pulseaudio,
-#backlight {
+#backlight,
+#idle_inhibitor {
   margin-top: 4px;
   margin-left: 4px;
   padding-left: 10px;

@@ -10,7 +10,7 @@
 
   # Nixvim
   programs.nixvim = {
-      enable = true;
+      enable = false;
 
       defaultEditor = true;
 

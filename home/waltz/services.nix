@@ -9,6 +9,10 @@
                     { event = "after-resume"; command = "/etc/nixos/home/waltz/dotfiles/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
                     { event = "before-sleep"; command = "/etc/nixos/home/waltz/dotfiles/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
                 ];
+
+		timeouts = [
+                    { timeout = 60 ; command = "/etc/nixos/home/waltz/dotfiles/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
+		];
             };
             
             # Syncthing

@@ -22,8 +22,12 @@
   ];
 
   home.packages = with pkgs; [
+      # Hosting
+      zrok
+
       # Text editing / Coding
       obsidian
+      lunarvim
       godot_4
 
       # Games
@@ -44,6 +48,7 @@
       fastfetch
       yazi
       imagemagick
+      yt-dlp
 
       # CLI (GNU tools replacement)            
       lsd
@@ -59,11 +64,12 @@
       # Media
       playerctl
       spotify
+      feishin
 
       # Chat
       vesktop
       ferdium
-      element
+      element-desktop
       cinny-desktop
 
       # Security

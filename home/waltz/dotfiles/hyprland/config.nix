@@ -30,7 +30,7 @@ $media_keys = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/media_keys.sh
 $notify-low = dunstify -u low -t 600
 
 # Start
-exec-once = swww init
+exec-once = swww init &
 
 # Monitor
 monitor=,preferred,auto,1

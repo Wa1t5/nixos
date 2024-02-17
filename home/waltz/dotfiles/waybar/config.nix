@@ -10,7 +10,7 @@
     spacing = 4;  # Gaps between modules (4px)
 
     # Modules left
-    modules-left = [ "clock" "battery" "hyprland/workspaces" ];
+    modules-left = [ "clock" "battery" "idle_inhibitor" "hyprland/workspaces" ];
 
     # Modules center
     modules-center = [ "mpris" ];
@@ -171,6 +171,14 @@
 
     "tray" = {
       "spacing" = 5;
+    };
+
+    "idle_inhibitor" = {
+      format = "{icon}";
+      format-icons = {
+        activated = " ";
+	deactivated =  " ";
+      };
     };
 
     }

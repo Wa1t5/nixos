@@ -9,6 +9,9 @@
 
       # Localsend
       53317
+
+      # Navidrome
+      4533
     ];
     allowedUDPPorts = [ 
       # Syncthing

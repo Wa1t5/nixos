@@ -38,11 +38,8 @@
       # Audio
       ./audio-configuration.nix
 
-      # Cpu-freq
-      ./misc/auto-cpufreq.nix
-
-      # Tlp
-      ./misc/tlp.nix
+      # Misc
+      ./misc/misc.nix
 
       # Users
       ./users.nix

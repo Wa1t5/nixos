@@ -6,9 +6,11 @@
         interfaces.wlp1s0.useDHCP = true;
 
         # Set nameservers and disable resolv.conf
-        nameservers = [ "127.0.0.1" ];
-        dhcpcd.extraConfig = "nohook resolv.conf";
-	networkmanager.dns = "none";
+        nameservers = [ "1.1.1.1" ]; # change to 127.0.0.1 in case of dnscrypt
+        
+	# Uncomment in case of using dnscrypt
+	# dhcpcd.extraConfig = "nohook resolv.conf";
+	# networkmanager.dns = "none";
 
         # Wireless networks
         wireless = {
@@ -26,12 +28,12 @@
 	in builtins.readFile "${hostsFile}";
         };
 
-    # Disable resolved
-    services.resolved.enable = false;
+    # Disable resolved in case of dnscrypt
+    services.resolved.enable = true;
 
     # DNSCrypt
     services.dnscrypt-proxy2 = {
-    enable = true;
+    enable = false;
     settings = {
       # Use ipv4
       ipv6_servers = false;
@@ -39,17 +41,17 @@
 
       # Use only dnscrypt
       dnscrypt_servers = true;
-      doh_servers = false;
+      doh_servers = true;
       odoh_servers = false;
 
       # Stricter requirements
-      require_dnssec = true;
+      require_dnssec = false;
       require_nolog = true;
       require_nofilter = true;
 
       # Improve privacy
       dnscrypt_ephemeral_keys = true; # Disable on case of high cpu load
-      tls_disable_session_tickets = true; # Disable on case of high latency
+      tls_disable_session_tickets = false; # Disable on case of high latency
   
       # Server list
       sources.public-resolvers = {
