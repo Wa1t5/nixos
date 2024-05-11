@@ -1,7 +1,7 @@
 { ... }:
 {
   programs.waybar = {
-    enable = true;
+    enable = false;
     style = import ./style.nix;
     settings = import ./config.nix;
     systemd = {
