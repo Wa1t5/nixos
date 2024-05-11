@@ -1,19 +1,6 @@
 { ... }:
 {
   boot = {
-    # Enable bootspec (Required by lanzaboote)
-    bootspec.enable = true;
-
-    # Enable lanzaboote (Secure boot)
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
-    };
-
-    # Use the systemd-boot EFI boot loader.
-    loader.systemd-boot.enable = false; # disable systemd-boot and replace with lanzaboote
-    loader.efi.canTouchEfiVariables = true;
-  
     # Enable initram
     initrd.systemd.enable = true;
 
@@ -38,6 +25,5 @@
     # Mount /tmp on RAM
     tmp.useTmpfs = true; # disable when building large packages
     tmp.tmpfsSize = "70%";
-
   };
 }
