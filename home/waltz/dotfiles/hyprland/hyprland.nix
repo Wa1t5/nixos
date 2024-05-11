@@ -2,7 +2,7 @@
 {  
         # Hyprland
         wayland.windowManager.hyprland = {
-            enable = true;
+            enable = false;
             package = inputs.hyprland.packages.${pkgs.system}.hyprland;            
             systemd.enable = true;
             xwayland.enable = true;
