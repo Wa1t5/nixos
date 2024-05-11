@@ -9,11 +9,6 @@
     ../../home/waltz/dotfiles/stylix/stylix.nix
   ];
 
-  # Bleeding edge packages
-  chaotic.mesa-git.enable = true;
-  chaotic.nyx.cache.enable = true; # Add binary cache
-  chaotic.nyx.overlay.enable = true; # Enbale overlat
-
   environment.systemPackages = with pkgs; [
     git
     nano # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
