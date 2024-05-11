@@ -48,18 +48,6 @@
 
     outputs = { nixpkgs, ... } @inputs: {
       nixConfig = {
-        extra-trusted-public-keys = [
-          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-	  "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-	  "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-	];
-	extra-substituters = [
-	  "https://cache.nixos.org"
-	  "https://hyprland.cachix.org"
-	  "https://nyx.chaotic.cx"
-       ];
-      };
-
         nixosConfigurations = {
             # Emperor Host
             "emperor" = nixpkgs.lib.nixosSystem {
@@ -73,9 +61,6 @@
 		
 		# Modules
                 modules = [ 
-		    # Chaotic module
-		    inputs.chaotic.nixosModules.default
-
                     # Import config.nix
 		    ./hosts/emperor/configuration.nix
         
@@ -87,9 +72,6 @@
                     # Load hardware config
                     inputs.nixos-hardware.nixosModules.lenovo-ideapad-s145-15api
 
-		    # Load lanazboote (secure boot)
-		    inputs.lanzaboote.nixosModules.lanzaboote
-                
                     inputs.home-manager.nixosModules.home-manager
                     {      
                         home-manager.useGlobalPkgs = true;
