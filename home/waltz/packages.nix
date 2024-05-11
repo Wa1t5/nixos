@@ -3,35 +3,32 @@
   imports = [
     # ./dotfiles/stylix/stylix.nix
     ./dotfiles/cava/cava.nix
-    ./dotfiles/discord/discord.nix
-    ./dotfiles/eww/eww.nix
+    # ./dotfiles/discord/discord.nix
+    # ./dotfiles/eww/eww.nix
     ./dotfiles/fuzzel/fuzzel.nix
     ./dotfiles/git/git.nix
     ./dotfiles/gpg/gpg.nix
-    ./dotfiles/hyprland/hyprland.nix
+    # ./dotfiles/hyprland/hyprland.nix
     ./dotfiles/kitty/kitty.nix
     ./dotfiles/librewolf/librewolf.nix
     ./dotfiles/mpv/mpv.nix
-    ./dotfiles/ncmpcpp/ncmpcpp.nix
+    # ./dotfiles/ncmpcpp/ncmpcpp.nix
     ./dotfiles/nixvim/nixvim.nix
     ./dotfiles/obs-studio/obs-studio.nix
     ./dotfiles/spicetify/spicetify.nix
-    ./dotfiles/swaylock/swaylock.nix
-    ./dotfiles/waybar/waybar.nix
+    # ./dotfiles/swaylock/swaylock.nix
+    # ./dotfiles/waybar/waybar.nix
     ./dotfiles/zsh/zsh.nix
   ];
 
   home.packages = with pkgs; [
       # Hosting
-      zrok
+      # zrok
 
       # Text editing / Coding
       obsidian
       lunarvim
-      godot_4
-
-      # Games
-      osu-lazer-bin
+      # godot_4
 
       # Virtualisation
       distrobox
@@ -40,9 +37,6 @@
       kitty
       direnv
 
-      # File sharing
-      localsend
-     
       # CLI
       btop
       fastfetch
@@ -68,9 +62,6 @@
 
       # Chat
       vesktop
-      ferdium
-      element-desktop
-      cinny-desktop
 
       # Security
       keepassxc
@@ -84,13 +75,13 @@
       xdg-utils
       
       # Provide some DE functionalities
-      brightnessctl
-      tofi
-      wl-clipboard
-      slurp
-      grim
-      waybar
-      swww
+      # brightnessctl
+      # tofi
+      # wl-clipboard
+      # slurp
+      # grim
+      # waybar
+      # swww
 
       # Fonts
       noto-fonts
@@ -103,6 +94,6 @@
 
       # Manage audio
       helvum
-      pavucontrol
+      # pavucontrol
   ];
 }
