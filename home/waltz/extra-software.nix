@@ -1,13 +1,20 @@
-{  pkgs, ... }:
+{  pkgs, inputs, ... }:
 {
   # Extra packages  
   programs = {
-
     # Dconf (required by hyprland)
     dconf = {
       enable = true;
     };
-    
+
+    # Enable hyprland 2-nd time
+    hyprland = {
+       enable = true;
+       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+       #portalPackage = inputs.xdpw.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+    };
+
+
     # Steam
     steam = {
       enable = true;

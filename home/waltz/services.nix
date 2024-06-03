@@ -1,20 +1,9 @@
-{ pkgs, ...}:
+{ ... }:
 {  
-        services = {
-            # Swayidle
-            swayidle = {
-                enable = true;
-                events = [
-                    { event = "lock"; command = "/etc/nixos/home/waltz/dotfiles/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
-                    { event = "after-resume"; command = "/etc/nixos/home/waltz/dotfiles/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
-                    { event = "before-sleep"; command = "/etc/nixos/home/waltz/dotfiles/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
-                ];
-
-		timeouts = [
-                    { timeout = 60 ; command = "/etc/nixos/home/waltz/dotfiles/swaylock/scripts/lock_screen.sh ${pkgs.swaylock-effects}/bin/swaylock"; }
-		];
-            };
-            
+  imports = [
+    ./dotfiles/hypridle/hypridle.nix
+  ];
+  services = {
             # Syncthing
             syncthing = {
                 enable = true;
@@ -30,7 +19,6 @@
             gpg-agent = {
                 enable = true;
                 enableSshSupport = true;
-                pinentryFlavor = "tty";
                 enableZshIntegration = true;
             };
  
@@ -51,5 +39,5 @@
             playerctld = {
                 enable = true;
             };
-        };
+          };
 }

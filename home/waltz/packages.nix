@@ -1,7 +1,8 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {  
   imports = [
     # ./dotfiles/stylix/stylix.nix
+    ./dotfiles/vscode/vscode.nix
     ./dotfiles/cava/cava.nix
     ./dotfiles/discord/discord.nix
     ./dotfiles/eww/eww.nix
@@ -10,28 +11,24 @@
     ./dotfiles/gpg/gpg.nix
     ./dotfiles/hyprland/hyprland.nix
     ./dotfiles/kitty/kitty.nix
-    ./dotfiles/librewolf/librewolf.nix
     ./dotfiles/mpv/mpv.nix
     ./dotfiles/ncmpcpp/ncmpcpp.nix
     ./dotfiles/nixvim/nixvim.nix
     ./dotfiles/obs-studio/obs-studio.nix
     ./dotfiles/spicetify/spicetify.nix
-    ./dotfiles/swaylock/swaylock.nix
+    ./dotfiles/hyprlock/hyprlock.nix
     ./dotfiles/waybar/waybar.nix
     ./dotfiles/zsh/zsh.nix
   ];
 
   home.packages = with pkgs; [
-      # Hosting
-      zrok
-
       # Text editing / Coding
       obsidian
       lunarvim
       godot_4
 
-      # Games
-      osu-lazer-bin
+      # Browser
+      brave
 
       # Virtualisation
       distrobox
@@ -39,9 +36,6 @@
       # Terminal
       kitty
       direnv
-
-      # File sharing
-      localsend
      
       # CLI
       btop
@@ -63,14 +57,10 @@
   
       # Media
       playerctl
-      spotify
-      feishin
+      # spotify (disable in favor of spicetify-nix)
 
       # Chat
       vesktop
-      ferdium
-      element-desktop
-      cinny-desktop
 
       # Security
       keepassxc

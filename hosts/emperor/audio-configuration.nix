@@ -19,10 +19,18 @@ in {
     jack.enable = true;
     wireplumber.enable = true;
   };
-  systemd.services.pipewire.serviceConfig.Nice = -20;
-  systemd.services.pipewire-pulse.serviceConfig.Nice = -20;
-  systemd.services.pipewire-media-session.serviceConfig.Nice = -20;
-  systemd.services.pipewire-session-manager.serviceConfig.Nice = -20;
+
+  # Wireplumber (remove this when I migrate it to nixos-hardware)
+  services.pipewire.wireplumber.extraConfig = {
+    "monitor.alsa.rules" = {
+      matches = [
+          { "device.name" = "~alsa_card.*"; }
+      ];
+      actions = {
+        update-props = { "session.suspend-timeout-seconds" = 0; };
+      };
+    };
+  };
 
   # Musnix
   musnix = {

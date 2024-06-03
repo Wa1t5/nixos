@@ -9,9 +9,6 @@
 #                                           |___/|_|                                                       |___/  
 ###################################################################################################################
 
-# REMOVE THIS WHEN UPDATING TO KERNEL 6.8
-env = WLR_DRM_NO_ATOMIC,1
-
 # Keys
 $MOD = SUPER
 
@@ -30,7 +27,7 @@ $media_keys = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/media_keys.sh
 $notify-low = dunstify -u low -t 600
 
 # Start
-exec-once = swww init &
+exec-once = swww-daemon --format xrgb &
 
 # Monitor
 monitor=,preferred,auto,1
@@ -46,7 +43,12 @@ input {
   touchpad {
     disable_while_typing = true
     natural_scroll = true
+    middle_button_emulation = true
   }
+}
+
+gestures {
+  workspace_swipe = true
 }
 
 # Plugins
@@ -251,9 +253,6 @@ bind = $MOD, mouse_up, workspace, e-1
 bindm = $MOD, mouse:272, movewindow
 bindm = $MOD, mouse:273, resizewindow
 
-# Window rulez to allow tearing
-# windowrulev2 = immediate, title:^(osu!)$
-
 # Window rules to allow selector classes to be floating
 windowrulev2 = float, class:^(selector)$
 windowrulev2 = pin, class:^(selector)$
@@ -265,11 +264,18 @@ windowrulev2 = center 1, class:^(selector)$
 # Only use this while using hyprwinwrap
 # windowrulev2 = xray 0, class:^(kitty)$
 
+opengl {
+  force_introspection = 1
+}
+
 debug {
   damage_tracking = 2
 }
 
 misc {
   force_default_wallpaper = 0
+  animate_manual_resizes = true
 }
+
+
 ''

@@ -41,7 +41,7 @@
   # Avoid systemd spamming Tuigreet
   systemd.services.greetd = {
     serviceConfig.Type = "idle";
-    unitConfig.After = [ "dhcpcd.service" ];
+    #unitConfig.After = [ "dhcpcd.service" ];
   };
 
   # LoginD config 

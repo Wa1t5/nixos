@@ -42,8 +42,8 @@
 		sizes.desktop = 12;
             };
 
-	    targets = {
-	      plymouth.blackBackground = true;
-	    };
+	    #targets = {
+	    #  plymouth.blackBackground = true;
+	    #};
 	};
 }

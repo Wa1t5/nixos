@@ -19,14 +19,14 @@
         };
 
 	# Extra host (can be used to block things like ads)
-        extraHosts = let
-          hostsPath = https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts;
-          hostsFile = builtins.fetchurl { 
-	    url = "${hostsPath}";
-	    sha256 = "0079x21cijk9q8zpi9isfwzn06mbxd8xd7di79ap6pnnsmbg9z5n";
-	  };
-	in builtins.readFile "${hostsFile}";
-        };
+        #extraHosts = let
+        #  hostsPath = https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts;
+        #  hostsFile = builtins.fetchurl { 
+	#    url = "${hostsPath}";
+	#    sha256 = "0079x21cijk9q8zpi9isfwzn06mbxd8xd7di79ap6pnnsmbg9z5n";
+	#  };
+	#in builtins.readFile "${hostsFile}";
+    };
 
     # Disable resolved in case of dnscrypt
     services.resolved.enable = true;

@@ -3,7 +3,8 @@
 
     inputs = {
         # Nix Hardware
-        nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+        #nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+        nixos-hardware.url = "github:Wa1t5/nixos-hardware/master"; # use my branch until I merge my changes on master branch
 
         # Nix pkgs
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -18,11 +19,28 @@
         stylix.url = "github:danth/stylix";
         
         # Hyprland
-        hyprland.url = "github:hyprwm/Hyprland";
+        hyprland = {
+          url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+        };
+
+        hyprlock = {
+          url = "git+https://github.com/hyprwm/Hyprlock?submodules=1";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
+        
+        hypridle = {
+          url = "git+https://github.com/hyprwm/Hypridle?submodules=1";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
+        
+        xdpw = {
+          url = "git+https://github.com/hyprwm/xdg-desktop-portal-hyprland?submodules=1";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         hyprland-plugins = {
-            url = "github:hyprwm/hyprland-plugins";
-            inputs.hyprland.follows = "hyprland";
+          url = "github:hyprwm/hyprland-plugins";
+          inputs.hyprland.follows = "hyprland";
         };
 
         hyprland-plugins-hyprgrass = {
@@ -36,18 +54,11 @@
 	# Nixvim
         nixvim.url = "github:nix-community/nixvim";
 
-	# Lanzabooter (Secure boot)
-	lanzaboote.url = "github:nix-community/lanzaboote";
-
-	# Bleeding edges packages in general
-  	# and custom kernel
-        chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
    };
 
 
 
     outputs = { nixpkgs, ... } @inputs: {
-      nixConfig = {
         nixosConfigurations = {
             # Emperor Host
             "emperor" = nixpkgs.lib.nixosSystem {
@@ -63,6 +74,7 @@
                 modules = [ 
                     # Import config.nix
 		    ./hosts/emperor/configuration.nix
+
         
                     # Softwares that need to be defined in
                     # configuration.nix but I removed
