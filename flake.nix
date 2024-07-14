@@ -54,21 +54,30 @@
 	# Nixvim
         nixvim.url = "github:nix-community/nixvim";
 
+	# Cosmic
+    	nixos-cosmic = {
+      	   url = "github:lilyinstarlight/nixos-cosmic";
+           inputs.nixpkgs.follows = "nixpkgs";
+    	};
+
    };
 
+   outputs = { nixpkgs, ... } @inputs: {
+        nix.settings = {
+            substituters = [ "https://cosmic.cachix.org/" ];
+            trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+        };
 
-
-    outputs = { nixpkgs, ... } @inputs: {
         nixosConfigurations = {
             # Emperor Host
             "emperor" = nixpkgs.lib.nixosSystem {
+
 
 		# System type
                 system = "x86_64-linux";
 
 		# Pass inputs as special args
 		specialArgs = { inherit inputs; };
-
 		
 		# Modules
                 modules = [ 
@@ -80,6 +89,9 @@
                     # configuration.nix but I removed
                     # for modularity
                     ./home/waltz/extra-software.nix
+
+		    # Load cosmic
+          	    nixos-cosmic.nixosModules.default
 
                     # Load hardware config
                     inputs.nixos-hardware.nixosModules.lenovo-ideapad-s145-15api
