@@ -5,19 +5,19 @@
     ./dotfiles/vscode/vscode.nix
     ./dotfiles/cava/cava.nix
     ./dotfiles/discord/discord.nix
-    ./dotfiles/eww/eww.nix
+    #./dotfiles/eww/eww.nix
     ./dotfiles/fuzzel/fuzzel.nix
     ./dotfiles/git/git.nix
     ./dotfiles/gpg/gpg.nix
-    ./dotfiles/hyprland/hyprland.nix
+    #./dotfiles/hyprland/hyprland.nix
     ./dotfiles/kitty/kitty.nix
     ./dotfiles/mpv/mpv.nix
     ./dotfiles/ncmpcpp/ncmpcpp.nix
-    ./dotfiles/nixvim/nixvim.nix
+    #./dotfiles/nixvim/nixvim.nix
     ./dotfiles/obs-studio/obs-studio.nix
     ./dotfiles/spicetify/spicetify.nix
-    ./dotfiles/hyprlock/hyprlock.nix
-    ./dotfiles/waybar/waybar.nix
+    #./dotfiles/hyprlock/hyprlock.nix
+    #./dotfiles/waybar/waybar.nix
     ./dotfiles/zsh/zsh.nix
   ];
 
