@@ -1,11 +1,5 @@
 {  services, pkgs, inputs, ... }:
 {
-  # Enable cosmic
-  services = {
-      desktopManager.cosmic.enable = true ;
-      displayManager.cosmic-greeter.enable = true;
-  };
-
   # Extra packages  
   programs = {
     # Dconf (required by hyprland)
