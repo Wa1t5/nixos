@@ -1,8 +1,8 @@
 { ... }:
 {  
-  #imports = [
-  #  ./dotfiles/hypridle/hypridle.nix
-  #];
+  imports = [
+    ./dotfiles/hypridle/hypridle.nix
+  ];
 
   services = {
             # Syncthing
