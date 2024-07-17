@@ -25,17 +25,14 @@
 
         hyprlock = {
           url = "git+https://github.com/hyprwm/Hyprlock?submodules=1";
-          inputs.nixpkgs.follows = "nixpkgs";
         };
         
         hypridle = {
           url = "git+https://github.com/hyprwm/Hypridle?submodules=1";
-          inputs.nixpkgs.follows = "nixpkgs";
         };
         
         xdpw = {
           url = "git+https://github.com/hyprwm/xdg-desktop-portal-hyprland?submodules=1";
-          inputs.nixpkgs.follows = "nixpkgs";
         };
 
         hyprland-plugins = {
@@ -57,21 +54,20 @@
 	# Cosmic
     	nixos-cosmic = {
       	   url = "github:lilyinstarlight/nixos-cosmic";
-           inputs.nixpkgs.follows = "nixpkgs";
     	};
 
    };
 
-   outputs = { nixpkgs, ... } @inputs: {
-        nix.settings = {
-            substituters = [ "https://cosmic.cachix.org/" ];
-            trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+	nixConfig = {
+            extra-substituters = [ "https://cosmic.cachix.org/" "https://hyprland.cachix.org/" ];
+            extra-trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
         };
 
+
+   outputs = { nixpkgs, ... } @inputs: {
         nixosConfigurations = {
             # Emperor Host
             "emperor" = nixpkgs.lib.nixosSystem {
-
 
 		# System type
                 system = "x86_64-linux";
@@ -94,7 +90,7 @@
           	    nixos-cosmic.nixosModules.default
 
                     # Load hardware config
-                    inputs.nixos-hardware.nixosModules.lenovo-ideapad-s145-15api
+                    #inputs.nixos-hardware.nixosModules.lenovo-ideapad-s145-15api
 
                     inputs.home-manager.nixosModules.home-manager
                     {      
