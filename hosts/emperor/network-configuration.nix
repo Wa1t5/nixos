@@ -3,7 +3,7 @@
    networking = {
         # Enable auto dhcp config
         useDHCP = true;
-        interfaces.wlp1s0.useDHCP = true;
+        interfaces.wlan0.useDHCP = true;
 
         # Set nameservers and disable resolv.conf
         nameservers = [ "1.1.1.1" ]; # change to 127.0.0.1 in case of dnscrypt
