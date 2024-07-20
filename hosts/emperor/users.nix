@@ -1,5 +1,5 @@
 { pkgs, ... }:
-{    
+{
   # Create waltz user account
   users.users.waltz = {
     isNormalUser = true;

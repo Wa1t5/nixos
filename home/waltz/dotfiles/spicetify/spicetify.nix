@@ -1,17 +1,22 @@
-{ inputs, pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
-  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
 in
 {
   programs.spicetify = {
     enable = true;
-    theme = spicePkgs.themes.DefaultDynamic;
-    enabledExtensions = with inputs.spicetify-nix.packages."x86_64-linux".default.extensions; [
-                    fullAppDisplay
-                    shuffle # shuffle+ (special characters are sanitized out of ext names)
-                    adblock                    
-                    popupLyrics
-                ];
-
+    theme = spicePkgs.themes.defaultDynamic;
+    enabledExtensions = with spicePkgs.extensions; [
+      adblock
+      groupSession
+      powerBar
+      songStats
+      beautifulLyrics
+      copyLyrics
+      volumePercentage
+      betterGenres
+      showQueueDuration
+      featureShuffle
+    ];
   };
 }

@@ -1,7 +1,7 @@
 ''
-# Disable warning when closing window
-confirm_os_window_close 0
+  # Disable warning when closing window
+  confirm_os_window_close 0
 
-# Disable SFX
-enable_audio_bell no
+  # Disable SFX
+  enable_audio_bell no
 ''

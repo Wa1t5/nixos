@@ -8,11 +8,12 @@
 }
 
 window#waybar {
+    background: @base;
     border-bottom: 0px solid rgba(100, 114, 125, 0.5);
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+    /*opacity: 0.2;*/
 }
 
 /* Workspaces bar */
@@ -26,19 +27,16 @@ window#waybar.hidden {
     padding: 0 2px;
 }
 
-/* Current active workspace */
-#workspaces button.active {
-}
 
-/* Color when a workspace need focus */
-#workspaces button.urgent {
-}
-
-
-/* Workspace hover effect | color  */
 button:hover {
+  box-shadow: none; /* Remove predefined box-shadow */
+  text-shadow: none; /* Remove predefined text-shadow */
+  background: none; /* Remove predefined background color (white) */
+  transition: none; /* Disable predefined animations */
+  border: none; /* Disable borders */
 }
 
+#workspaces,
 #clock,
 #battery,
 #temperature,
@@ -56,6 +54,7 @@ button:hover {
   padding-right: 10px;
   margin-bottom: 4px;
   border-radius: 15px;
+  color: @overlay0;
 }
 
 /* If workspaces is the leftmost module, omit left margin */

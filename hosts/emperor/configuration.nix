@@ -1,13 +1,13 @@
 { inputs, ... }:
 {
   imports =
-    [ 
+    [
       # Hardware config
       ./hardware-configuration.nix
 
       # Tablet config
       ./tablet-configuration.nix
-      
+
       # Kernel configuration
       ./kernel-configuration.nix
 
@@ -16,7 +16,7 @@
 
       # Graphics config
       ./graphics-configuration.nix
-      
+
       # Firewall
       ./firewall-configuration.nix
 
@@ -45,14 +45,14 @@
       ./users.nix
 
       # Realtime
-       ./realtime-group.nix
+      ./realtime-group.nix
     ];
-    
+
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Hostname
-  networking.hostName = "emperor"; 
+  networking.hostName = "emperor";
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
@@ -63,7 +63,7 @@
     font = "Lat2-Terminus16";
     keyMap = "br-abnt2";
   };
- 
+
   # Base system version
   system.stateVersion = "24.05";
 }

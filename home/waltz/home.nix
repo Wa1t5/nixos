@@ -1,30 +1,33 @@
 { pkgs, inputs, ... }:
-{            
-        # Set usrename and home dir
-        home.username = "waltz";
-        home.homeDirectory = "/home/waltz";
+{
+  # Set usrename and home dir
+  home.username = "waltz";
+  home.homeDirectory = "/home/waltz";
 
-        imports = [        
-	  # Packages
-          ./packages.nix
+  imports = [
+    # Packages
+    ./packages.nix
 
-          # Services
-          ./services.nix
-          
-          # Extra paths to add to home
-          ./extra-paths.nix  
+    # Services
+    ./services.nix
 
-          # Xdg
-          ./xdg-configuration.nix
+    # Extra paths to add to home
+    ./extra-paths.nix
 
-          # Specify xdg paths
-          ./xdg-paths.nix    
+    # Xdg
+    ./xdg-configuration.nix
 
-         # import spicetify
-          inputs.spicetify-nix.homeManagerModule
-        ];
-       
-        # Enable wayland for electron ozone apps
-        home.sessionVariables = { NIXOS_OZONE_WL = "1"; PATH = "/home/waltz/.local/bin:$PATH"; };
-        home.stateVersion = "24.05";
+    # Specify xdg paths
+    ./xdg-paths.nix
+
+    # import spicetify
+    inputs.spicetify-nix.homeManagerModules.default
+
+    # Import catppuccin
+    inputs.catppuccin.homeManagerModules.catppuccin
+  ];
+
+  # Enable wayland for electron ozone apps
+  home.sessionVariables = { NIXOS_OZONE_WL = "1"; PATH = "/home/waltz/.local/bin:$PATH"; };
+  home.stateVersion = "24.05";
 }

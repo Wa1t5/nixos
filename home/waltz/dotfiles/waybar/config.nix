@@ -1,13 +1,13 @@
 [
-    {
+  {
     # Waybar layer and position
     layer = "top";
-    position = "top";  # (top|bottom|left|right)
+    position = "top"; # (top|bottom|left|right)
 
     # Size
-    height = 1;  # Waybar height (to be removed for auto height)
+    height = 1; # Waybar height (to be removed for auto height)
     width = 1366; # Waybar width
-    spacing = 4;  # Gaps between modules (4px)
+    spacing = 4; # Gaps between modules (4px)
 
     # Modules left
     modules-left = [ "clock" "battery" "idle_inhibitor" "hyprland/workspaces" ];
@@ -16,65 +16,65 @@
     modules-center = [ "mpris" ];
 
     # Modules right
-    modules-right = [ "cava" "tray"  "pulseaudio" "backlight" "cpu" "temperature" ];
+    modules-right = [ "cava" "tray" "pulseaudio" "backlight" "cpu" "temperature" ];
 
     # MODULES CONFIG
 
     # Clock
     "clock" = {
-        format = "{:%H:%M} ";
-        format-alt = "{:%A, %B %d, %Y (%R)}";
-        tooltip-format = "<tt><small>{calendar}</small></tt>";
-        calendar = {
-            mode          = "year";
-            mode-mon-col  = 3;
-            weeks-pos     = "right";
-            on-scroll     = 1;
-            on-click-right = "mode";
-            format = {
-                months =     "<span color='#ffead3'><b>{}</b></span>";
-                days =       "<span color='#ecc6d9'><b>{}</b></span>";
-                weeks =      "<span color='#99ffdd'><b>W{}</b></span>";
-                weekdays =   "<span color='#ffcc66'><b>{}</b></span>";
-                today =      "<span color='#ff6699'><b><u>{}</u></b></span>";
-            };
+      format = "{:%H:%M} ";
+      format-alt = "{:%A, %B %d, %Y (%R)}";
+      tooltip-format = "<tt><small>{calendar}</small></tt>";
+      calendar = {
+        mode = "year";
+        mode-mon-col = 3;
+        weeks-pos = "right";
+        on-scroll = 1;
+        on-click-right = "mode";
+        format = {
+          months = "<span color='#ffead3'><b>{}</b></span>";
+          days = "<span color='#ecc6d9'><b>{}</b></span>";
+          weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+          weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+          today = "<span color='#ff6699'><b><u>{}</u></b></span>";
         };
-        actions = {
-            on-click-right = "mode";
-        };
+      };
+      actions = {
+        on-click-right = "mode";
+      };
     };
-    
+
     battery = {
-   	    bat = "BAT0";
-        interval = 60;
-    	  states = {
-            warning = 30;
-            critical = 15;
-    	  };
-    	  format = "{capacity}% {icon}";
-    	  format-icons = [" " " " " " " " " "];
-    	  max-length = 25;
-	  };
+      bat = "BAT0";
+      interval = 60;
+      states = {
+        warning = 30;
+        critical = 15;
+      };
+      format = "{capacity}% {icon}";
+      format-icons = [ " " " " " " " " " " ];
+      max-length = 25;
+    };
 
     "temperature" = {
-        thermal-zone = 0;
-        hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon/";
-        input-filename = "temp1_input";
-        critical-threshold = 80;
-        format-critical = "{temperatureC}°C ";
-        format = "{temperatureC}°C ";
+      thermal-zone = 0;
+      hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon/";
+      input-filename = "temp1_input";
+      critical-threshold = 80;
+      format-critical = "{temperatureC}°C ";
+      format = "{temperatureC}°C ";
     };
 
     "hyprland/workspaces" = {
-	      format = "{icon}";
-        persistent-workspaces = {
-            "*" = 10;
-        };
-        format-icons = {
-            active = " ";
-            default = "";
-        };
-	  };
+      format = "{icon}";
+      persistent-workspaces = {
+        "*" = 10;
+      };
+      format-icons = {
+        active = " ";
+        default = "";
+      };
+    };
 
     "mpd" = {
       format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon} {title}";
@@ -83,13 +83,13 @@
       interval = 10;
 
       title-len = 35;
-      
+
       consume-icons = {
         on = " ";
       };
       random-icons = {
-	off = "<span color=\"#f53c3c\"></span> ";
-	on =  " ";
+        off = "<span color=\"#f53c3c\"></span> ";
+        on = " ";
       };
       repeat-icons = {
         on = " ";
@@ -139,7 +139,7 @@
       ignored-players = [ "firefox" ];
     };
 
-    "cpu" =  {
+    "cpu" = {
       format = "{usage}% {icon}";
       format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
       interval = 10;
@@ -163,8 +163,8 @@
       on-click = "pavucontrol";
       scroll-step = 1;
     };
- 
-    "backlight"= {
+
+    "backlight" = {
       format = "{percent}% {icon}";
       format-icons = [ "" "" ];
     };
@@ -177,9 +177,9 @@
       format = "{icon}";
       format-icons = {
         activated = " ";
-	deactivated =  " ";
+        deactivated = " ";
       };
     };
 
-    }
+  }
 ]

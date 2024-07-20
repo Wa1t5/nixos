@@ -1,6 +1,6 @@
 {
   # Script to show song info
-  execute_on_song_change = "/etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh &>/dev/null"; 
+  execute_on_song_change = "/etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh &>/dev/null";
 
   # Enable visualization
   visualizer_data_source = "/tmp/mpd.fifo";
@@ -14,8 +14,8 @@
   browser_display_mode = "columns";
   search_engine_display_mode = "columns";
   playlist_editor_display_mode = "columns";
-                    
-  user_interface = "alternative";                    
+
+  user_interface = "alternative";
 
   now_playing_prefix = ">";
 }

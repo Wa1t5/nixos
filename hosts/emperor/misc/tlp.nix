@@ -1,7 +1,7 @@
 { ... }:
 {
   services.tlp = {
-    enable = true;
+    enable = false;
     settings = {
 
       ### CPU
@@ -20,10 +20,10 @@
       ### AMDGPU
       RADEON_DPM_PERF_LEVEL_ON_AC = "low";
       RADEON_DPM_PERF_LEVEL_ON_BAT = "low";
-      
+
       RADEON_DPM_STATE_ON_AC = "battery";
       RADEON_DPM_STATE_ON_BAT = "battery";
-      
+
       RADEON_POWER_PROFILE_ON_AC = "low";
       RADEON_POWER_PROFILE_ON_BAT = "low";
 
@@ -43,13 +43,13 @@
       DISK_APM_LEVEL_ON_AC = "128 128";
       DISK_APM_LEVEL_ON_BAT = "128 128";
 
-      DISK_SPINDOWN_TIMEOUT_ON_AC="0 0";
-      DISK_SPINDOWN_TIMEOUT_ON_BAT="0 0";  
+      DISK_SPINDOWN_TIMEOUT_ON_AC = "0 0";
+      DISK_SPINDOWN_TIMEOUT_ON_BAT = "0 0";
 
-      DISK_IOSCHED="mq-deadline mq-deadline";
+      DISK_IOSCHED = "mq-deadline mq-deadline";
 
-      SATA_LINKPWR_ON_AC="med_power_with_dipm";
-      SATA_LINKPWR_ON_BAT="med_power_with_dipm";
+      SATA_LINKPWR_ON_AC = "med_power_with_dipm";
+      SATA_LINKPWR_ON_BAT = "med_power_with_dipm";
 
       ### Filesystem
       DISK_IDLE_SECS_ON_AC = 0;

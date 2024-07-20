@@ -4,5 +4,5 @@
     enable = true;
     package = pkgs.eww-wayland;
     configDir = ./.;
-  };          
+  };
 }

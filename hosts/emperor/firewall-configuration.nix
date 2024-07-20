@@ -3,9 +3,10 @@
   networking.nftables.enable = true;
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 
+    allowedTCPPorts = [
       # Syncthing
-      8384 22000 
+      8384
+      22000
 
       # Localsend
       53317
@@ -13,9 +14,10 @@
       # Navidrome
       4533
     ];
-    allowedUDPPorts = [ 
+    allowedUDPPorts = [
       # Syncthing
-      22000 21027 
+      22000
+      21027
     ];
   };
 }

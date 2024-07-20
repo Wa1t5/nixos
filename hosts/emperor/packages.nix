@@ -3,8 +3,8 @@
   # Allow unfree
   nixpkgs.config.allowUnfree = true;
 
+  # Stylix
   imports = [
-    # Load stylix NixOS module (system-wide)
     inputs.stylix.nixosModules.stylix
     ../../home/waltz/dotfiles/stylix/stylix.nix
   ];
@@ -33,5 +33,5 @@
     podman = {
       enable = true;
     };
-  }; 
+  };
 }

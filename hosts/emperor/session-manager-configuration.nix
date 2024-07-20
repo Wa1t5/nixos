@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   # Enable swaylock to unlock session through PAM
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 
   # Polkit
   security = {
@@ -35,9 +35,9 @@
       default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd 'Hyprland'";
       };
-    };     
+    };
   };
-  
+
   # Avoid systemd spamming Tuigreet
   systemd.services.greetd = {
     serviceConfig.Type = "idle";
@@ -57,5 +57,5 @@
     # Hibernate delay
     HibernateDelaySec=600
   '';
-  
+
 }

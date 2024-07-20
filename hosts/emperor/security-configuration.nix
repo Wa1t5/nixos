@@ -17,6 +17,4 @@
 
   # Force dbus service to use apparmor
   services.dbus.apparmor = "disabled";
-
-
 }
