@@ -66,6 +66,12 @@
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
     };
+
+    # AN anime game launcher
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -73,12 +79,14 @@
     extra-substituters = [
       "https://cosmic.cachix.org/"
       "https://hyprland.cachix.org/"
-      "https://walker.cachix.org"
+      "https://walker.cachix.org/"
+      "https://ezkea.cachix.org/"
     ];
     extra-trusted-public-keys = [
       "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+      "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
     ];
   };
 
@@ -98,14 +106,10 @@
           # Import config.nix
           ./hosts/emperor/configuration.nix
 
-
           # Softwares that need to be defined in
           # configuration.nix but I removed
           # for modularity
           ./home/waltz/extra-software.nix
-
-          # Load catppuccin
-          inputs.catppuccin.nixosModules.catppuccin
 
           # Load hardware config
           inputs.nixos-hardware.nixosModules.lenovo-ideapad-s145-15api
@@ -126,3 +130,4 @@
     };
   };
 }
+

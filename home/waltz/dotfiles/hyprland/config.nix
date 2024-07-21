@@ -25,6 +25,7 @@
 
   # Predefined commands
   $notify-low = dunstify -u low -t 600
+  $get-workspace-name = hyprctl workspaces | awk '/workspace ID -[0-9]+ \(special:/ {print $4}' | sed 's/[()]//g' | sed 's/special://' | rofi -dmenu -p "special workspace"
 
   # Start
   exec-once = swww-daemon --format xrgb &
@@ -53,10 +54,7 @@
 
   # Plugins
   plugin {
-    hyprwinwrap {
-      # class is an EXACT match and NOT a regex!
-      class = kitty-bg
-    }
+    hyprwinwrap {  class = kitty-bg }
   }
 
   # General
@@ -152,15 +150,15 @@
   bind	= $MOD SHIFT, L, exec, loginctl lock-session
 
   # Wallpaper picker
-  bind = $MOD, W, exec, $wallpaper_picker
+  #bind = $MOD SHIFT, P, exec, $wallpaper_picker
 
   # Main Keybindings
   bind = $MOD, T, exec, $term
-  bind = $MOD, Return, exec, $launcher
-  bind = $MOD SHIFT, Q, killactive
+  bind = $MOD, Space, exec, $launcher
+  bind = $MOD, Q, killactive
   bind = $MOD SHIFT CTRL, E, exit
 
-  # MPD
+  # Mpris
   bind = ,XF86AudioPlay, exec, $media_keys "play" play-pause
   binde = ,XF86AudioNext, exec, $media_keys "play" position 5+
   bind = $MOD, XF86AudioNext, exec, $media_keys "play" next
@@ -182,10 +180,6 @@
   # Togle Audio | Mic
   bind = ,XF86AudioMute, exec, $media_keys "vol-mute" @DEFAULT_AUDIO_SINK@
   bind = $MOD,XF86AudioMute, exec, $media_keys "vol-mute" @DEFAULT_AUDIO_SOURCE@
-
-  # Change wallpaper and generate new colorscheme
-  bind = $MOD SHIFT, w, exec, $random_wallpaper &
-  bind = $MOD SHIFT, w, exec, $update_colorscheme &
 
   # Screenshot
   bind = $MOD, s, exec, grim - | wl-copy -t image/png && $notify-low "Screenshot" "Fullscreen"
@@ -237,16 +231,22 @@
   bind = $MOD, 0, workspace, 10
 
   # Move active window to a workspace with mainMod + SHIFT + [0-9]
-  bind = $MOD SHIFT, 1, movetoworkspace, 1
-  bind = $MOD SHIFT, 2, movetoworkspace, 2
-  bind = $MOD SHIFT, 3, movetoworkspace, 3
-  bind = $MOD SHIFT, 4, movetoworkspace, 4
-  bind = $MOD SHIFT, 5, movetoworkspace, 5
-  bind = $MOD SHIFT, 6, movetoworkspace, 6
-  bind = $MOD SHIFT, 7, movetoworkspace, 7
-  bind = $MOD SHIFT, 8, movetoworkspace, 8
-  bind = $MOD SHIFT, 9, movetoworkspace, 9
-  bind = $MOD SHIFT, 0, movetoworkspace, 10
+  bind = $MOD SHIFT, 1, movetoworkspacesilent, 1
+  bind = $MOD SHIFT, 2, movetoworkspacesilent, 2
+  bind = $MOD SHIFT, 3, movetoworkspacesilent, 3
+  bind = $MOD SHIFT, 4, movetoworkspacesilent, 4
+  bind = $MOD SHIFT, 5, movetoworkspacesilent, 5
+  bind = $MOD SHIFT, 6, movetoworkspacesilent, 6
+  bind = $MOD SHIFT, 7, movetoworkspacesilent, 7
+  bind = $MOD SHIFT, 8, movetoworkspacesilent, 8
+  bind = $MOD SHIFT, 9, movetoworkspacesilent, 9
+  bind = $MOD SHIFT, 0, movetoworkspacesilent, 10
+
+  # Activate special workspace
+  bind = $MOD, W, exec, hyprctl dispatch togglespecialworkspace $($get-workspace-name)
+
+  # Move window to special workspace
+  bind = $MOD SHIFT, W, exec, hyprctl dispatch movetoworkspacesilent special:$($get-workspace-name)
 
   # Scroll through existing workspaces with mainMod + scroll
   bind = $MOD, mouse_down, workspace, e+1

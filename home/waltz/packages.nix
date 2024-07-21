@@ -21,6 +21,7 @@
     ./dotfiles/rofi/rofi.nix
     ./dotfiles/yazi/yazi.nix
     #./dotfiles/stylix/stylix.nix
+    ./dotfiles/fcitx5/fcitx5.nix
   ];
 
   home.packages = with pkgs; [
@@ -28,7 +29,14 @@
     obsidian
     godot_4
     ghidra
-    cutter
+    (cutter.withPlugins (ps: with ps; [ rz-ghidra ]))
+    wireshark-qt
+
+    # Video editing
+    #davinci-resolve
+
+    # Study
+    anki
 
     # Browser
     brave

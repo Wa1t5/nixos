@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./dotfiles/hypridle/hypridle.nix
@@ -21,6 +21,12 @@
       enable = true;
       enableSshSupport = true;
       enableZshIntegration = true;
+      pinentryPackage = pkgs.pinentry-qt;
+    };
+
+    # OpenSnitch
+    opensnitch-ui = {
+      enable = true;
     };
 
     # Mpd
@@ -38,6 +44,11 @@
 
     # Playerctld
     playerctld = {
+      enable = true;
+    };
+
+    # Easyeffects
+    easyeffects = {
       enable = true;
     };
   };

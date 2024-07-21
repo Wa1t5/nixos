@@ -1,5 +1,9 @@
 { pkgs, inputs, ... }:
 {
+  imports = [
+    inputs.aagl.nixosModules.default
+  ];
+
   # Extra packages  
   programs = {
     # Dconf (required by hyprland)
@@ -12,9 +16,18 @@
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       #xwayland.enable = false;
-      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      #portalPackage = (pkgs.xdg-desktop-portal-hyprland.overrideAttrs { version = "1.3.0"; });
+      portalPackage = pkgs.xdg-desktop-portal-wlr;
     };
 
+    # An Anime Game Launcher
+    anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
+    anime-games-launcher.enable = true;
+    anime-borb-launcher.enable = true;
+    honkers-railway-launcher.enable = true;
+    honkers-launcher.enable = true;
+    wavey-launcher.enable = true;
+    sleepy-launcher.enable = true;
 
     # Steam
     steam = {

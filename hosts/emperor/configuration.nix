@@ -46,6 +46,9 @@
 
       # Realtime
       ./realtime-group.nix
+
+      # Virtualisation
+      ./virtualisation.nix
     ];
 
   # Enable flakes

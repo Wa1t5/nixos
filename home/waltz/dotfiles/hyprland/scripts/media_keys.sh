@@ -43,10 +43,10 @@ case $1 in
 
   play) 
     # Run command
-    playerctl -i firefox $2 $3
+    playerctl $2 $3
 
     # Notify
-    sh /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh
+    #sh /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh
   ;;
   *) echo "No valid operation was specified" ;;
 esac

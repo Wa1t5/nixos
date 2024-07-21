@@ -15,9 +15,10 @@
   services.pipewire.wireplumber.extraConfig = {
     "monitor.alsa.rules" = {
       matches = [
-        { "device.name" = "~alsa_card.*"; }
-        { "node.name" = "~alsa_input.*"; }
-        { "node.name" = " ~alsa_output.*"; }
+        { "node.name" = "*"; }
+        #{ "device.name" = "~alsa_card.*"; }
+        #{ "node.name" = "~alsa_input.*"; }
+        #{ "node.name" = " ~alsa_output.*"; }
       ];
       actions = {
         update-props = { "session.suspend-timeout-seconds" = 0; };

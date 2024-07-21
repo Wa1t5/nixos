@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, pkgs, ... }:
 {
   security = {
     # AppArmor
@@ -15,6 +15,39 @@
     protectKernelImage = false;
   };
 
-  # Force dbus service to use apparmor
-  services.dbus.apparmor = "disabled";
+  # Use doas instead of sudo
+  security.sudo.enable = false;
+  security.doas.enable = true;
+  security.doas.extraRules = [{
+    users = [ "waltz" ];
+    persist = true;
+  }];
+
+
+  environment.shellAliases.sudo = "doas";
+
+  # OpenSnitch
+  services.opensnitch = {
+    enable = true;
+    settings = {
+      Firewall = "nftables";
+      InterceptUnknown = true;
+      DefaultAction = "deny";
+      ProcMonitorMethod = "ebpf";
+    };
+    rules = {
+      systemd-timesyncd = {
+        name = "systemd-timesyncd";
+        enabled = true;
+        action = "allow";
+        duration = "always";
+        operator = {
+          type = "simple";
+          sensitive = false;
+          operand = "process.path";
+          data = "${lib.getBin pkgs.systemd}/lib/systemd/systemd-timesyncd";
+        };
+      };
+    };
+  };
 }

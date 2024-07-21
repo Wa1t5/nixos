@@ -6,9 +6,9 @@
     terminal = "${pkgs.kitty}/bin/kitty";
     plugins = with pkgs; [
       rofimoji
-      rofi-calc
-      rofi-obsidian
-      rofi-power-menu
+      #   rofi-calc
+      #   rofi-obsidian
+      #   rofi-power-menu
     ];
     extraConfig =
       {
