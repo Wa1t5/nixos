@@ -68,7 +68,7 @@
     layout = dwindle
 
     # Allow tearing
-    allow_tearing = true
+    allow_tearing = false
 
     # Border colors
     col.active_border = $accent $accentAlpha 45deg

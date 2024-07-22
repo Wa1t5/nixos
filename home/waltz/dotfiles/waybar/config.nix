@@ -16,7 +16,7 @@
     modules-center = [ "mpris" ];
 
     # Modules right
-    modules-right = [ "cava" "tray" "pulseaudio" "backlight" "cpu" "temperature" ];
+    modules-right = [ "tray" "pulseaudio" "backlight" "cpu" "temperature" ];
 
     # MODULES CONFIG
 
@@ -67,9 +67,9 @@
 
     "hyprland/workspaces" = {
       format = "{icon}";
-      persistent-workspaces = {
-        "*" = 10;
-      };
+      #persistent-workspaces = {
+      #  "*" = 10;
+      #};
       format-icons = {
         active = " ";
         default = "";
@@ -106,7 +106,7 @@
     };
 
     "cava" = {
-      framerate = 30;
+      framerate = 25;
       autosens = 1;
       sensitivity = 1;
       bars = 10;
@@ -127,7 +127,7 @@
       format = "{status_icon} {title}";
       format-paused = "{status_icon} {title}";
       format-stopped = "{status}";
-      title-len = 35;
+      title-len = 30;
       player-icons = {
         "default" = "▶";
         "mpv" = "🎵";

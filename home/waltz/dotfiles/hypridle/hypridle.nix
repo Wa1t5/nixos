@@ -11,8 +11,8 @@ in
     settings = {
       general = {
         lock_cmd = "pidof hyprlock || ${hyprlock}/bin/hyprlock"; # avoid starting multiple hyprlock instances.
-        before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
-        after_sleep_cmd = "${hyprland}/bin/hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
+        #before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
+        after_sleep_cmd = "loginctl lock-session && ${hyprland}/bin/hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
       };
 
       listener = [

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   # Enable swaylock to unlock session through PAM
-  security.pam.services.swaylock = { };
+  security.pam.services.hyprlock = { };
 
   # Polkit
   security = {

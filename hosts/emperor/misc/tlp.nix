@@ -21,14 +21,14 @@
       CPU_MAX_PERF_ON_BAT = 20;
 
       ### AMDGPU
-      RADEON_DPM_PERF_LEVEL_ON_AC = "auto";
-      RADEON_DPM_PERF_LEVEL_ON_BAT = "auto";
+      RADEON_DPM_PERF_LEVEL_ON_AC = "high";
+      RADEON_DPM_PERF_LEVEL_ON_BAT = "high";
 
       RADEON_DPM_STATE_ON_AC = "performance";
       RADEON_DPM_STATE_ON_BAT = "performance";
 
-      RADEON_POWER_PROFILE_ON_AC = "auto";
-      RADEON_POWER_PROFILE_ON_BAT = "auto";
+      RADEON_POWER_PROFILE_ON_AC = "high";
+      RADEON_POWER_PROFILE_ON_BAT = "high";
 
       ### Audio
       SOUND_POWER_SAVE_ON_AC = 0;
