@@ -14,7 +14,7 @@
 
   # Applications
   $term = kitty
-  $launcher = $(rofi -show drun)
+  $launcher = walker
 
   # Scripts
   $random_wallpaper = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/random_wallpaper.sh
@@ -25,13 +25,14 @@
 
   # Predefined commands
   $notify-low = dunstify -u low -t 600
-  $get-workspace-name = hyprctl workspaces | awk '/workspace ID -[0-9]+ \(special:/ {print $4}' | sed 's/[()]//g' | sed 's/special://' | rofi -dmenu -p "special workspace"
+  $get-workspace-name = hyprctl workspaces | awk '/workspace ID -[0-9]+ \(special:/ {print $4}' | sed 's/[()]//g' | sed 's/special://' | walker -d -f -p "special workspace"
 
   # Start
   exec-once = swww-daemon --format xrgb &
 
   # Monitor
-  monitor=,preferred,auto,1
+  #monitor=eDP-1,1366x768@60.06,0x0,1.0,bitdepth,10
+  monitor= , highres, auto, 1
 
   # Input
   input {
@@ -113,10 +114,6 @@
       enable_swallow = true
       swallow_regex = ^(kitty)$
 
-      # Direct scanout attempts to reduce lag when there is only
-      # one full scren application on the window (can give issues)
-      no_direct_scanout = false
-
       # (buggy) try to reduce delay rendering before the monitor
       render_ahead_of_time = false
   }
@@ -150,7 +147,7 @@
   bind	= $MOD SHIFT, L, exec, loginctl lock-session
 
   # Wallpaper picker
-  #bind = $MOD SHIFT, P, exec, $wallpaper_picker
+  bind = $MOD SHIFT, P, exec, $wallpaper_picker
 
   # Main Keybindings
   bind = $MOD, T, exec, $term

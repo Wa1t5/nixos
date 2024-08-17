@@ -1,11 +1,14 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, config, ... }:
 {
+  imports = [
+
+  ];
+
   # Hyprland
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = lib.mkIf config.wm.hyprland.enable {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd.enable = true;
-    systemd.enableXdgAutostart = true;
     #xwayland.enable = false;
     systemd.variables = [ "--all" ];
     extraConfig = '' 
@@ -14,10 +17,6 @@
 
                 # Add .local/bin to PATH
                 env = PATH,/home/waltz/.local/bin:$PATH
-
-                # Start gnome polkit
-                exec-once = "systemctl --user start app-polkit\\x2dgnome\\x2dauthentication\\x2dagent\\x2d1@autostart.service &"
-                exec-once = "systemctl --user start polkit-gnome-authentication-agent-1.service &"
             '' + import ./config.nix;
 
     #plugins = [

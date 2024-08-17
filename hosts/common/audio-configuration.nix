@@ -1,7 +1,7 @@
-{ ... }:
+{ lib, ... }:
 {
   # Pipewire
-  services.pipewire = {
+  services.pipewire = lib.mkDefault {
     enable = true;
     #audio.enable = true;
     alsa.enable = false;
@@ -10,4 +10,7 @@
     jack.enable = true;
     wireplumber.enable = true;
   };
+
+  # Pulseaudio
+  hardware.pulseaudio.enable = lib.mkForce false;
 }

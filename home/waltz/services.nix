@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 {
   imports = [
     ./dotfiles/hypridle/hypridle.nix
+    ./config.nix
   ];
 
   services = {
@@ -11,7 +12,7 @@
     };
 
     # Dunst
-    dunst = {
+    dunst = lib.mkIf config.wm.enable {
       enable = true;
       settings = import ./dotfiles/dunst/dunst.nix;
     };
@@ -22,11 +23,6 @@
       enableSshSupport = true;
       enableZshIntegration = true;
       pinentryPackage = pkgs.pinentry-qt;
-    };
-
-    # OpenSnitch
-    opensnitch-ui = {
-      enable = true;
     };
 
     # Mpd
@@ -49,7 +45,7 @@
 
     # Easyeffects
     easyeffects = {
-      enable = true;
+      enable = false; # Reenable after they fix deepfilternet
     };
   };
 }

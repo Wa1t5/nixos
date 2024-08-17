@@ -67,6 +67,9 @@
       url = "github:lilyinstarlight/nixos-cosmic";
     };
 
+    # Walker
+    walker.url = "github:abenz1267/walker";
+
     # AN anime game launcher
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";

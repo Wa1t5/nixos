@@ -1,11 +1,12 @@
-{ services, pkgs, inputs, ... }:
+{ services, pkgs, inputs, lib, config, ... }:
 let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  hyprlock = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
+  #hyprlock = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
+  hyprlock = pkgs.hyprlock;
   hypridle = inputs.hypridle.packages.${pkgs.system}.hypridle;
 in
 {
-  services.hypridle = {
+  services.hypridle = lib.mkIf config.wm.hyprland.enable {
     enable = true;
     package = inputs.hypridle.packages.${pkgs.system}.hypridle;
     settings = {

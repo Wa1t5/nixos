@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ inputs, lib, ... }:
 {
   # Set usrename and home dir
   home.username = "waltz";
@@ -20,14 +20,22 @@
     # Specify xdg paths
     ./xdg-paths.nix
 
+    # Toplevel config
+    ./config.nix
+
     # import spicetify
     inputs.spicetify-nix.homeManagerModules.default
 
     # Import catppuccin
     inputs.catppuccin.homeManagerModules.catppuccin
+
+    # Import walker
+    inputs.walker.homeManagerModules.default
   ];
+
 
   # Enable wayland for electron ozone apps
   home.sessionVariables = { NIXOS_OZONE_WL = "1"; PATH = "/home/waltz/.local/bin:$PATH"; };
-  home.stateVersion = "24.05";
+
+  home.stateVersion = "24.11";
 }

@@ -1,8 +1,8 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, config, ... }:
 {
-  programs.hyprlock = {
+  programs.hyprlock = lib.mkIf config.wm.hyprland.enable {
     enable = true;
-    package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
+    #package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
     extraConfig = import ./config.nix;
   };
 }

@@ -11,24 +11,24 @@
       CPU_BOOST_ON_AC = 0;
       CPU_BOOST_ON_BAT = 0;
 
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "power";
+      #CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      #CPU_ENERGY_PERF_POLICY_ON_AC = "power";
 
       CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 20;
+      #CPU_MAX_PERF_ON_AC = 20;
 
       CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 20;
+      #CPU_MAX_PERF_ON_BAT = 20;
 
       ### AMDGPU
-      RADEON_DPM_PERF_LEVEL_ON_AC = "high";
-      RADEON_DPM_PERF_LEVEL_ON_BAT = "high";
+      RADEON_DPM_PERF_LEVEL_ON_AC = "auto";
+      RADEON_DPM_PERF_LEVEL_ON_BAT = "auto";
 
       RADEON_DPM_STATE_ON_AC = "performance";
       RADEON_DPM_STATE_ON_BAT = "performance";
 
-      RADEON_POWER_PROFILE_ON_AC = "high";
-      RADEON_POWER_PROFILE_ON_BAT = "high";
+      RADEON_POWER_PROFILE_ON_AC = "auto";
+      RADEON_POWER_PROFILE_ON_BAT = "auto";
 
       ### Audio
       SOUND_POWER_SAVE_ON_AC = 0;

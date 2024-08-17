@@ -1,19 +1,12 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, config, ... }:
 {
   # XDG desktop portal
-  xdg = {
+  xdg = lib.mkIf config.wm.enable {
     portal = {
       enable = true;
       xdgOpenUsePortal = true;
-      #extraPortals = [ inputs.xdpw.packages.${pkgs.system}.xdg-desktop-portal-hyprland ];
-      #configPackages = [ inputs.xdpw.packages.${pkgs.system}.xdg-desktop-portal-hyprland ];
-      extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
-      configPackages = [ pkgs.xdg-desktop-portal-wlr ];
-      #extraPortals = [ (pkgs.xdg-desktop-portal-hyprland.overrideAttrs { version = "1.3.0"; }) ];
-      #configPackages = [ (pkgs.xdg-desktop-portal-hyprland.overrideAttrs { version = "1.3.0"; }) ];
-      #config = {
-      #  common = { default = [ "hypr" ]; };
-      #};
+      extraPortals = lib.mkIf config.wm.hyprland.enable [ pkgs.xdg-desktop-portal-hyprland ];
+      configPackages = lib.mkIf config.wm.hyprland.enable [ pkgs.xdg-desktop-portal-hyprland ];
     };
   };
 }

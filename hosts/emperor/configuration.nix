@@ -6,49 +6,46 @@
       ./hardware-configuration.nix
 
       # Tablet config
-      ./tablet-configuration.nix
+      ../common/tablet-configuration.nix
 
       # Kernel configuration
-      ./kernel-configuration.nix
+      ../common/kernel-configuration.nix
 
       # Network config
-      ./network-configuration.nix
+      ../common/network-configuration.nix
 
       # Graphics config
-      ./graphics-configuration.nix
+      ../common/graphics-configuration.nix
 
       # Firewall
-      ./firewall-configuration.nix
+      ../common/firewall-configuration.nix
 
       # Security
-      ./security-configuration.nix
+      ../common/security-configuration.nix
 
       # Packages
       ./packages.nix
 
-      # XDG
-      # ./xdg-configuration.nix
-
       # Boot
-      ./boot-configuration.nix
+      ../common/boot-configuration.nix
 
       # Session Management
-      ./session-manager-configuration.nix
+      ../common/session-manager-configuration.nix
 
       # Audio
-      ./audio-configuration.nix
+      ../common/audio-configuration.nix
 
       # Misc
       ./misc/misc.nix
 
       # Users
-      ./users.nix
+      ../common/users.nix
 
       # Realtime
-      ./realtime-group.nix
+      ../common/realtime-group.nix
 
       # Virtualisation
-      ./virtualisation.nix
+      ../common/virtualisation.nix
     ];
 
   # Enable flakes

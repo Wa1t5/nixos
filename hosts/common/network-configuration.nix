@@ -1,6 +1,6 @@
-{ ... }:
+{ lib, ... }:
 {
-  networking = {
+  networking = lib.mkDefault {
     # Enable auto dhcp config
     useDHCP = true;
     interfaces.wlan0.useDHCP = true;
@@ -24,7 +24,7 @@
         hostsPath = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts";
         hostsFile = builtins.fetchurl {
           url = "${hostsPath}";
-          sha256 = "1kdvji5l43i70zxw6hbb5f8iilswv2iq7zysyvasjvhmv049fxpw";
+          sha256 = "0wlq0faqdmjxc1s2ipqlxfbi0xf246j3njx4nk8iqwiipbmdh3mi";
         };
       in
       builtins.readFile "${hostsFile}";

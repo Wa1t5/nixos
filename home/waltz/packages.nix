@@ -22,9 +22,12 @@
     ./dotfiles/yazi/yazi.nix
     #./dotfiles/stylix/stylix.nix
     ./dotfiles/fcitx5/fcitx5.nix
+    ./dotfiles/walker/walker.nix
   ];
 
   home.packages = with pkgs; [
+
+
     # Text editing / Coding / RSE
     obsidian
     godot_4
@@ -56,7 +59,7 @@
     lsd
     bat
     dysk
-    delta
+    #delta
     du-dust
     fd
     nixpkgs-fmt # Nix code formatter
@@ -96,7 +99,7 @@
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
     noto-fonts-emoji-blob-bin
-    jetbrains-mono
+    #jetbrains-mono
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" ]; })
 
     # Manage audio
