@@ -25,14 +25,15 @@
 
   # Predefined commands
   $notify-low = dunstify -u low -t 600
-  $get-workspace-name = hyprctl workspaces | awk '/workspace ID -[0-9]+ \(special:/ {print $4}' | sed 's/[()]//g' | sed 's/special://' | walker -d -f -p "special workspace"
+  $get-workspace-name = hyprctl workspaces | awk '/workspace ID -[0-9]+ \(special:/ {print $4}' | sed 's/[()]//g' | sed 's/special://' | rofi -dmenu -p "special workspace"
 
   # Start
   exec-once = swww-daemon --format xrgb &
+  exec-once = hyprlock &
 
   # Monitor
-  #monitor=eDP-1,1366x768@60.06,0x0,1.0,bitdepth,10
-  monitor= , highres, auto, 1
+  monitor=eDP-1,1366x768@60.06,0x0,1.0,bitdepth,10
+  #monitor= , highres, auto, 1
 
   # Input
   input {

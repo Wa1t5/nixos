@@ -6,10 +6,4 @@
     target = ".config/wireplumber";
     recursive = true;
   };
-
-  # rofimoji
-  home.file."rofimoji.rc" = {
-    source = ./dotfiles/rofi/rofimoji.rc;
-    target = ".config/rofimoji.rc";
-  };
 }
