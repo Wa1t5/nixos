@@ -25,7 +25,7 @@
     tmp.cleanOnBoot = true;
 
     # Mount /tmp on RAM
-    tmp.useTmpfs = true; # disable when building large packages
+    tmp.useTmpfs = false; # disable when building large packages
     tmp.tmpfsSize = "70%";
   };
 }

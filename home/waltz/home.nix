@@ -33,7 +33,6 @@
     inputs.walker.homeManagerModules.default
   ];
 
-
   # Enable wayland for electron ozone apps
   home.sessionVariables = { NIXOS_OZONE_WL = "1"; PATH = "/home/waltz/.local/bin:$PATH"; };
 

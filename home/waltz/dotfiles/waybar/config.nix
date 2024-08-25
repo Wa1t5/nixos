@@ -136,7 +136,6 @@
         "paused" = " ";
         "playing" = " ";
       };
-      ignored-players = [ "firefox" ];
     };
 
     "cpu" = {

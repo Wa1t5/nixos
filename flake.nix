@@ -70,10 +70,16 @@
     # Walker
     walker.url = "github:abenz1267/walker";
 
-    # AN anime game launcher
+    # An anime game launcher
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Zen Browser
+    zen-browser = {
+      url = "github:MarceColl/zen-browser-flake";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -121,6 +127,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "bkp";
 
             # Import waltz's config
             home-manager.users.waltz = import ./home/waltz/home.nix;

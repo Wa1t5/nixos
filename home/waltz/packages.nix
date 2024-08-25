@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     ./dotfiles/catppuccin/catppuccin.nix
@@ -26,24 +26,22 @@
   ];
 
   home.packages = with pkgs; [
-
-
     # Text editing / Coding / RSE
     obsidian
     godot_4
-    ghidra
-    (cutter.withPlugins (ps: with ps; [ rz-ghidra ]))
-    wireshark-qt
 
-    # Video editing
-    #davinci-resolve
+    # File Manager
+    pcmanfm
+
+    # Image viewer
+    imv
 
     # Study
     anki
 
     # Browser
-    brave
-    floorp
+    #brave
+    inputs.zen-browser.packages."${pkgs.system}".specific
 
     # Terminal
     kitty
@@ -69,7 +67,6 @@
 
     # Media
     playerctl
-    # spotify (disable in favor of spicetify-nix)
 
     # Chat
     vesktop
@@ -94,12 +91,10 @@
     swww
 
     # Fonts
-    noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
     noto-fonts-emoji-blob-bin
-    #jetbrains-mono
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" ]; })
 
     # Manage audio

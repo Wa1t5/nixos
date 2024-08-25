@@ -4,7 +4,7 @@
   services.pipewire = lib.mkDefault {
     enable = true;
     #audio.enable = true;
-    alsa.enable = false;
+    alsa.enable = true;
     alsa.support32Bit = false;
     pulse.enable = true;
     jack.enable = true;
@@ -12,5 +12,5 @@
   };
 
   # Pulseaudio
-  hardware.pulseaudio.enable = lib.mkForce false;
+  hardware.pulseaudio.enable = lib.mkDefault false;
 }

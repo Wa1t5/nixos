@@ -45,7 +45,7 @@
 
     # Easyeffects
     easyeffects = {
-      enable = false; # Reenable after they fix deepfilternet
+      enable = true; # Reenable after they fix deepfilternet
     };
   };
 }

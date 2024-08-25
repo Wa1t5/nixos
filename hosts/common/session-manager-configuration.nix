@@ -16,17 +16,16 @@
   };
 
   # LoginD config 
-  services.logind.extraConfig = ''
-    # don’t shutdown when power button is short-pressed
-    HandlePowerKey=hybrid-sleep
-    HandleSuspendKey=hybrid-sleep
-    HandleHibernateKey=hybrid-sleep
+  services.logind = {
+    powerKey = "hybrid-sleep";
+    rebootKey = "hybrid-sleep";
+    suspendKey = "hybrid-sleep";
+    hibernateKey = "hybrid-sleep";
+    lidSwitch = "hybrid-sleep";
+    lidSwitchExternalPower = "hybrid-sleep";
 
-    # Suspend when lid is closed
-    HandleLidSwitch=hybrid-sleep
-
-    # Hibernate delay
-    HibernateDelaySec=600
-  '';
-
+    powerKeyLongPress = "hybrid-sleep";
+    rebootKeyLongPress = "hybrid-sleep";
+    suspendKeyLongPress = "hybrid-sleep";
+  };
 }
