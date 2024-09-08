@@ -3,13 +3,13 @@
   # Options
   options = {
     wm.enable = lib.mkOption {
-      default = true;
+      default = false;
       type = lib.types.bool;
       description = "Enable WM mode";
     };
 
     wm.hyprland.enable = lib.mkOption {
-      default = true;
+      default = false;
       type = lib.types.bool;
       description = "Enable Hyprland compositor";
     };
@@ -20,10 +20,16 @@
       description = "Enable steam and other gaming related options";
     };
 
-    de.deepin.enable = lib.mkOption {
+    de.cosmic.enable = lib.mkOption {
       default = false;
       type = lib.types.bool;
-      description = "Enable deepin desktop environment";
+      description = "Enable cosmic desktop environment";
+    };
+
+    de.gnome.enable = lib.mkOption {
+      default = true;
+      type = lib.types.bool;
+      description = "Enable gnome desktop environment";
     };
   };
 }

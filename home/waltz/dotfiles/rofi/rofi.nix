@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 {
   programs.rofi = {
-    enable = true;
+    enable = lib.mkIf config.wm.enable true;
     package = pkgs.rofi-wayland;
     terminal = "${pkgs.kitty}/bin/kitty";
   };

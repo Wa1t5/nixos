@@ -16,11 +16,14 @@
 
   # GTK
   gtk.enable = true;
-  gtk.catppuccin.enable = lib.mkIf config.wm.enable true;
+  gtk.catppuccin.enable = true;
+
+  # Gnome
+  gtk.catppuccin.gnomeShellTheme = true;
 
   # QT
   qt.enable = true;
-  qt.style.catppuccin.enable = lib.mkIf config.wm.enable true;
+  qt.style.catppuccin.enable = true;
   qt.platformTheme.name = "kvantum";
   qt.style.name = "kvantum";
 

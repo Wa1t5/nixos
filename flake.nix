@@ -3,16 +3,21 @@
 
   inputs = {
     # Nix Hardware
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware = {
+      url = "github:Wa1t5/nixos-hardware/master";
+    };
 
     # Nixpkgs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     # Home Manager
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Sops-nix
+    sops-nix.url = "github:Mic92/sops-nix";
 
     # Catpuccin
     catppuccin.url = "github:catppuccin/nix";
@@ -60,11 +65,12 @@
     };
 
     # Nixvim
-    nixvim.url = "github:nix-community/nixvim";
+    nixvim.url = "github:nix-community/nixvim/nixos-24.05";
 
     # Cosmic
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Walker
@@ -72,8 +78,8 @@
 
     # An anime game launcher
     aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Zen Browser
@@ -84,17 +90,19 @@
   };
 
   nixConfig = {
-    extra-trusted-users = [ "waltz" ];
+    #extra-trusted-users = [ "waltz" ];
     extra-substituters = [
       "https://cosmic.cachix.org/"
       "https://hyprland.cachix.org/"
       "https://walker.cachix.org/"
+      "https://walker-git.cachix.org/"
       "https://ezkea.cachix.org/"
     ];
     extra-trusted-public-keys = [
       "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+      "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
       "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
     ];
   };
@@ -112,6 +120,9 @@
 
         # Modules
         modules = [
+          # Import sops-nix
+          inputs.sops-nix.nixosModules.sops
+
           # Import config.nix
           ./hosts/emperor/configuration.nix
 
@@ -119,6 +130,7 @@
           # configuration.nix but I removed
           # for modularity
           ./home/waltz/extra-software.nix
+
 
           # Load hardware config
           inputs.nixos-hardware.nixosModules.lenovo-ideapad-s145-15api

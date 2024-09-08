@@ -19,7 +19,7 @@
 
     # GPG Agent
     gpg-agent = {
-      enable = true;
+      enable = false;
       enableSshSupport = true;
       enableZshIntegration = true;
       pinentryPackage = pkgs.pinentry-qt;
@@ -27,7 +27,7 @@
 
     # Mpd
     mpd = {
-      enable = true;
+      enable = false;
       network = { startWhenNeeded = true; };
       extraConfig = import ./dotfiles/mpd/config.nix;
       playlistDirectory = "/home/waltz/music/Playlists";
@@ -35,7 +35,7 @@
 
     # Mpd mpris
     mpd-mpris = {
-      enable = true;
+      enable = false;
     };
 
     # Playerctld

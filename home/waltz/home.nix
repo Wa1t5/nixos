@@ -36,5 +36,5 @@
   # Enable wayland for electron ozone apps
   home.sessionVariables = { NIXOS_OZONE_WL = "1"; PATH = "/home/waltz/.local/bin:$PATH"; };
 
-  home.stateVersion = "24.11";
+  home.stateVersion = "24.05";
 }

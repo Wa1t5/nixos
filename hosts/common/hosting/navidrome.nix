@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 {
   services.navidrome = {
-    enable = false;
+    enable = true;
     openFirewall = true;
     settings = {
       # Use music folder on waltz home dir
@@ -28,8 +28,7 @@
       Spotify.Secret = "8f2beeec39f64fe6bbc63598110437ad";
 
       # UI
-      UILoginBackgroundUrl = "https://w.wallhaven.cc/full/ox/wallhaven-oxz8l7.jpg";
-
+      UILoginBackgroundUrl = "https://w.wallhaven.cc/full/pk/wallhaven-pk5z5m.png";
     };
   };
 

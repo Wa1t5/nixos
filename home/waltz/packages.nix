@@ -1,10 +1,12 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, config, ... }:
 {
   imports = [
     ./dotfiles/catppuccin/catppuccin.nix
     ./dotfiles/vscode/vscode.nix
+    ./dotfiles/beets/beets.nix
     ./dotfiles/cava/cava.nix
     ./dotfiles/discord/discord.nix
+    ./dotfiles/ssh/ssh.nix
     #./dotfiles/eww/eww.nix
     ./dotfiles/git/git.nix
     ./dotfiles/gpg/gpg.nix
@@ -21,27 +23,27 @@
     ./dotfiles/rofi/rofi.nix
     ./dotfiles/yazi/yazi.nix
     #./dotfiles/stylix/stylix.nix
-    ./dotfiles/fcitx5/fcitx5.nix
+    ./dotfiles/ime/ime.nix
     ./dotfiles/walker/walker.nix
+    ./dotfiles/gnome/gnome.nix
   ];
+
+
 
   home.packages = with pkgs; [
     # Text editing / Coding / RSE
     obsidian
     godot_4
 
-    # File Manager
-    pcmanfm
-
-    # Image viewer
-    imv
-
     # Study
     anki
 
     # Browser
-    #brave
     inputs.zen-browser.packages."${pkgs.system}".specific
+
+    # Music
+    feishin
+    nicotine-plus
 
     # Terminal
     kitty
@@ -82,14 +84,6 @@
     libnotify
     xdg-utils
 
-    # Provide some DE functionalities
-    brightnessctl
-    wl-clipboard
-    slurp
-    grim
-    waybar
-    swww
-
     # Fonts
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
@@ -97,8 +91,28 @@
     noto-fonts-emoji-blob-bin
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" ]; })
 
+    # icon themes
+    gnome.adwaita-icon-theme
+
     # Manage audio
     helvum
     pavucontrol
+
+    (lib.mkIf config.wm.enable (
+      # File Manager
+      pcmanfm
+
+        # Image viewer
+        imv
+
+        # Provide some DE functionalities
+        brightnessctl
+        wl-clipboard
+        slurp
+        grim
+        waybar
+        swww
+    ))
   ];
+
 }
