@@ -1,7 +1,7 @@
-{ ... }:
+{ lib, config, ... }:
 {
   programs.waybar = {
-    enable = true;
+    enable = lib.mkIf config.wm.enable true;
     style = import ./style.nix;
     settings = import ./config.nix;
     systemd = {

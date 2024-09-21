@@ -25,7 +25,7 @@
   services.power-profiles-daemon.enable = lib.mkForce false;
 
   # Cosmic DE | TODO: Remove when they fix the bug about no keyboard layouts being shown in settings
-  systemd.tmpfiles.rules = [
+  systemd.tmpfiles.rules = lib.mkIf config.de.cosmic.enable [
     "L /usr/share/X11/xkb/rules/base.xml - - - - ${pkgs.xkeyboard_config}/share/X11/xkb/rules/base.xml"
   ];
 
@@ -37,6 +37,7 @@
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
     gnome.gnome-maps
+    gnome.totem
   ]);
 
   # GreetD and gnome polkit

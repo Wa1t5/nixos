@@ -3,6 +3,7 @@
   imports = [
     ./audio-configuration.nix
     ./boot-configuration.nix
+    ./configuration.nix
     ./firewall-configuration.nix
     ./graphics-configuration.nix
     ./kernel-configuration.nix

@@ -5,6 +5,7 @@
     secrets."wg_soulseek_private_key" = {
       sopsFile = "/etc/nixos/secrets/wireguard-private-keys.yaml";
       format = "yaml";
+      owner = "systemd-network";
     };
   };
 

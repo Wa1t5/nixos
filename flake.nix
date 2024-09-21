@@ -26,9 +26,9 @@
     stylix.url = "github:danth/stylix";
 
     # Hyprland
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    };
+    #hyprland = {
+    #  url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    #};
 
     hyprlock = {
       url = "git+https://github.com/hyprwm/Hyprlock?submodules=1";
@@ -41,21 +41,6 @@
     xdpw = {
       url = "git+https://github.com/hyprwm/xdg-desktop-portal-hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprland-plugins-hyprgrass = {
-      url = "github:horriblename/hyprgrass";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprland-plugins-hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
     };
 
     # Spicetify
@@ -90,7 +75,8 @@
   };
 
   nixConfig = {
-    #extra-trusted-users = [ "waltz" ];
+    # Extra caches
+    extra-trusted-users = [ "waltz" ];
     extra-substituters = [
       "https://cosmic.cachix.org/"
       "https://hyprland.cachix.org/"
@@ -105,6 +91,7 @@
       "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
       "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
     ];
+
   };
 
   outputs = { nixpkgs, ... } @inputs: {

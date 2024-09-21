@@ -40,7 +40,7 @@
 
     # Playerctld
     playerctld = {
-      enable = true;
+      enable = lib.mkIf config.wm.enable true;
     };
 
     # Easyeffects

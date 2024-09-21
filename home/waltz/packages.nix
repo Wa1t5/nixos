@@ -35,15 +35,36 @@
     obsidian
     godot_4
 
+    # Virtualisation
+    gnome.gnome-boxes
+
+    # Torrenting
+    qbittorrent
+
     # Study
     anki
 
+    # BTC
+    wasabiwallet
+    electrum
+
     # Browser
-    inputs.zen-browser.packages."${pkgs.system}".specific
+    #inputs.zen-browser.packages."${pkgs.system}".specific
+    vivaldi
+
+    # Video editor
+    #davinci-resolve
+    kdenlive
+
+    # Drawing
+    krita
 
     # Music
     feishin
     nicotine-plus
+
+    # Video
+    celluloid
 
     # Terminal
     kitty
@@ -62,7 +83,11 @@
     #delta
     du-dust
     fd
+
+    # Nix
     nixpkgs-fmt # Nix code formatter
+    nixos-generators
+    deadnix
 
     # Torrent
     qbittorrent
@@ -75,7 +100,7 @@
 
     # Security
     keepassxc
-    gnupg
+    age
 
     # Sync
     syncthing
@@ -114,5 +139,4 @@
         swww
     ))
   ];
-
 }

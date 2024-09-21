@@ -1,4 +1,4 @@
-{ lib, options, ... }:
+{ lib, ... }:
 {
   # Options
   options = {

@@ -1,5 +1,22 @@
-{ ... }:
+{ pkgs, ... }:
 {
-  # Waydroid
-  virtualisation.waydroid.enable = false;
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu = {
+        # Enable TPM emulation
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = [
+            (pkgs.OVMFFull.override {
+              secureBoot = true;
+              tpmSupport = true;
+            }).fd
+          ];
+        };
+      };
+    };
+  };
+
 }

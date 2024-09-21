@@ -9,6 +9,7 @@
       { package = pkgs.gnomeExtensions.vitals; }
       { package = pkgs.gnomeExtensions.blur-my-shell; }
       { package = pkgs.gnomeExtensions.kimpanel; }
+      { package = pkgs.gnomeExtensions.hibernate-status-button; }
     ];
   };
 
@@ -19,10 +20,11 @@
     "org/gnome" = {
       enabled-extensions = [
         pkgs.gnomeExtensions.user-themes.extensionUuid
-	pkgs.gnomeExtensions.appindicator.extensionUuid
+        pkgs.gnomeExtensions.appindicator.extensionUuid
         pkgs.gnomeExtensions.vitals.extensionUuid
         pkgs.gnomeExtensions.blur-my-shell.extensionUuid
-	pkgs.gnomeExtensions.kimpanel.extensionUuid
+        pkgs.gnomeExtensions.kimpanel.extensionUuid
+        pkgs.gnomeExtensions.hibernate-status-button.extensionUuid
       ];
       disabled-extensions = [
         pkgs.gnomeExtensions.system-monitor.extensionUuid

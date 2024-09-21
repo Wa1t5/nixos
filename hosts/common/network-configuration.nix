@@ -1,4 +1,4 @@
-{ lib, config, pkgs, inputs, ... }:
+{ lib, ... }:
 {
   # Systemd-networkd
   systemd.network = lib.mkForce {
@@ -7,7 +7,6 @@
       "wlan0" = {
         matchConfig.Name = "wlan0";
         networkConfig.DHCP = "ipv4";
-        #linkConfig.MACAddressPolicy = "random";
       };
       "wg-soulseek" = {
         matchConfig.Name = "wg-soulseek";
@@ -25,19 +24,14 @@
   };
 
   networking = {
+    # Uncomment when using dnscrypt
+    nameservers = [ "127.0.0.1" "::1" ];
+
     # Disable dhcpcd config
     useDHCP = lib.mkForce false;
 
-    # Set nameservers and disable resolv.conf
-    #nameservers = [ "127.0.0.1" "::1" ]; # change to 127.0.0.1 in case of dnscrypt
-
-    # Uncomment in case of using dnscrypt
-    #dhcpcd.extraConfig = "nohook resolv.conf";
-    #networkmanager.dns = "none";
-
     # Wireless networks
     wireless = {
-
       # Wpa supplicant
       enable = lib.mkForce false;
 
@@ -54,18 +48,18 @@
         hostsPath = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts";
         hostsFile = builtins.fetchurl {
           url = "${hostsPath}";
-          sha256 = "1b2d6z1kz7qmb08ffkwh1jxpw2v0m1h0z6jlg9fn4wysywc5pnv4";
+          sha256 = "0fjw019603vizz95znvr0022bn6d5bnf4iv6vv41h27g7lyidh3q";
         };
       in
       builtins.readFile "${hostsFile}";
   };
 
   # Enable systemd-resolved (Disable resolved in case of dnscrypt)
-  services.resolved.enable = lib.mkForce true;
+  services.resolved.enable = lib.mkForce false;
 
   # DNSCrypt
   services.dnscrypt-proxy2 = {
-    enable = false;
+    enable = true;
     settings = {
       # Use ipv6
       ipv6_servers = true;
