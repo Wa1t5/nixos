@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib, config, ... }:
+{ lib, config, ... }:
 {
   programs.hyprlock = lib.mkIf config.wm.hyprland.enable {
     enable = true;

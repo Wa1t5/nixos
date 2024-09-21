@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 {
   services.lidarr = {
     enable = false;

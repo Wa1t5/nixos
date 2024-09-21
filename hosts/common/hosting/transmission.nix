@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 {
   services.transmission = {
     enable = false;

@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 {
   # Set usrename and home dir
   home.username = "waltz";

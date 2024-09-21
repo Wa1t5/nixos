@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   # Nix Options
   nix.settings = {

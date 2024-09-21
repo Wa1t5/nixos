@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, config, ... }:
+{ pkgs, lib, config, ... }:
 {
   # XDG desktop portal
   xdg = lib.mkIf config.wm.enable {

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   # Enable swaylock to unlock session through PAM
   security.pam.services.hyprlock = { };
