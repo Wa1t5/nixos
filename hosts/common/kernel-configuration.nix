@@ -21,6 +21,7 @@
   # Enable ZRam
   zramSwap = {
     enable = true;
-    algorithm = "lz4";
+    algorithm = "lzo-rle";
+    priority = 10;
   };
 }

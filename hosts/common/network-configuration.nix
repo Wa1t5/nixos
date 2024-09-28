@@ -25,7 +25,7 @@
 
   networking = {
     # Uncomment when using dnscrypt
-    nameservers = [ "127.0.0.1" "::1" ];
+    # nameservers = [ "127.0.0.1" "::1" ];
 
     # Disable dhcpcd config
     useDHCP = lib.mkForce false;
@@ -55,11 +55,11 @@
   };
 
   # Enable systemd-resolved (Disable resolved in case of dnscrypt)
-  services.resolved.enable = lib.mkForce false;
+  services.resolved.enable = lib.mkForce true;
 
   # DNSCrypt
   services.dnscrypt-proxy2 = {
-    enable = true;
+    enable = false;
     settings = {
       # Use ipv6
       ipv6_servers = true;

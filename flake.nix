@@ -8,11 +8,11 @@
     };
 
     # Nixpkgs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Home Manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -38,11 +38,6 @@
       url = "git+https://github.com/hyprwm/Hypridle?submodules=1";
     };
 
-    xdpw = {
-      url = "git+https://github.com/hyprwm/xdg-desktop-portal-hyprland?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Spicetify
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -50,7 +45,7 @@
     };
 
     # Nixvim
-    nixvim.url = "github:nix-community/nixvim/nixos-24.05";
+    nixvim.url = "github:nix-community/nixvim";
 
     # Cosmic
     nixos-cosmic = {
@@ -63,14 +58,14 @@
 
     # An anime game launcher
     aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Zen Browser
     zen-browser = {
       url = "github:MarceColl/zen-browser-flake";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -91,7 +86,6 @@
       "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
       "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
     ];
-
   };
 
   outputs = { nixpkgs, ... } @inputs: {

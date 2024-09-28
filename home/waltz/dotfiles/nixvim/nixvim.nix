@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, config, ... }:
 {
   imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
@@ -19,11 +19,14 @@
     colorschemes.catppuccin.enable = true;
 
 
-
-    clipboard.register = "unnamedplus";
-    clipboard.providers.wl-copy.enable = true;
+    clipboard.register = lib.mkIf config.wm.enable "unnamedplus";
+    clipboard.providers.wl-copy.enable = lib.mkIf config.wm.enable true;
 
     plugins = {
+      mini = {
+	enable = true;
+	modules.icons = true;
+      };
       lsp = {
         enable = true;
         servers = {

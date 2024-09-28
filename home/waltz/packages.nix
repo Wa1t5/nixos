@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, inputs, ... }:
 {
   imports = [
     ./dotfiles/catppuccin/catppuccin.nix
@@ -49,7 +49,7 @@
     electrum
 
     # Browser
-    #inputs.zen-browser.packages."${pkgs.system}".specific
+    inputs.zen-browser.packages."${pkgs.system}".specific
     vivaldi
 
     # Video editor
@@ -117,7 +117,7 @@
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" ]; })
 
     # icon themes
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
 
     # Manage audio
     helvum
