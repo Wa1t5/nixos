@@ -1,7 +1,7 @@
 { ... }:
 {
   services.tlp = {
-    enable = true;
+    enable = false;
     settings = {
 
       ### CPU
