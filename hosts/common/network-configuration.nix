@@ -43,15 +43,15 @@
     networkmanager.enable = lib.mkForce false;
 
     #  Extra host (can be used to block things like ads)
-    extraHosts =
-      let
-        hostsPath = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts";
-        hostsFile = builtins.fetchurl {
-          url = "${hostsPath}";
-          sha256 = "0fjw019603vizz95znvr0022bn6d5bnf4iv6vv41h27g7lyidh3q";
-        };
-      in
-      builtins.readFile "${hostsFile}";
+    #extraHosts =
+    #  let
+    #    hostsPath = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts";
+    #    hostsFile = builtins.fetchurl {
+    #      url = "${hostsPath}";
+    #      sha256 = "0fjw019603vizz95znvr0022bn6d5bnf4iv6vv41h27g7lyidh3q";
+    #    };
+    #  in
+    #  builtins.readFile "${hostsFile}";
   };
 
   # Enable systemd-resolved (Disable resolved in case of dnscrypt)

@@ -26,6 +26,7 @@
     ./dotfiles/ime/ime.nix
     ./dotfiles/walker/walker.nix
     ./dotfiles/gnome/gnome.nix
+    ./dotfiles/plasma/plasma.nix
   ];
 
 
@@ -38,19 +39,11 @@
     # Virtualisation
     gnome.gnome-boxes
 
-    # Torrenting
-    qbittorrent
-
     # Study
     anki
 
-    # BTC
-    wasabiwallet
-    electrum
-
     # Browser
     inputs.zen-browser.packages."${pkgs.system}".specific
-    vivaldi
 
     # Video editor
     #davinci-resolve
@@ -138,5 +131,8 @@
         waybar
         swww
     ))
+
+    # Catppuccin theme for plasma
+    (pkgs.catppuccin-kde.override { flavour = [ "mocha" ]; accents = [ "mauve" ]; winDecStyles = [ "classic" ]; })
   ];
 }

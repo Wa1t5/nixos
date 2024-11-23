@@ -27,9 +27,15 @@
     };
 
     de.gnome.enable = lib.mkOption {
-      default = true;
+      default = false;
       type = lib.types.bool;
       description = "Enable gnome desktop environment";
+    };
+
+    de.plasma.enable = lib.mkOption {
+      default = true;
+      type = lib.types.bool;
+      description = "Enable kde plasma desktop environment";
     };
   };
 }

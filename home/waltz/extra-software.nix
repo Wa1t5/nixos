@@ -1,4 +1,5 @@
 { pkgs, inputs, lib, config, ... }:
+
 {
   imports = [
     inputs.aagl.nixosModules.default
@@ -40,6 +41,11 @@
     totem
   ]);
 
+  # Plasma desktop
+  services.displayManager.sddm.enable = lib.mkIf config.de.plasma.enable true;
+  services.displayManager.sddm.wayland.enable = lib.mkIf config.de.plasma.enable true;
+  services.desktopManager.plasma6.enable = lib.mkIf config.de.plasma.enable true;
+
   # GreetD and gnome polkit
   systemd.user.services.polkit-gnome-authentication-agent-1 = lib.mkIf config.wm.enable {
     enable = true;
@@ -74,13 +80,5 @@
 
   # Extra packages  
 
-
-  environment.systemPackages = lib.mkIf config.gaming.enable [
-    (pkgs.lutris.override {
-      extraLibraries = pkgs: [
-        pkgs.adwaita-icon-theme
-      ];
-    })
-  ];
 }
 

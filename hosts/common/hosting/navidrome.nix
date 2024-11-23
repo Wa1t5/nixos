@@ -1,8 +1,8 @@
 { lib, ... }:
 {
   services.navidrome = {
-    enable = true;
-    openFirewall = true;
+    enable = false;
+    openFirewall = false;
     settings = {
       # Use music folder on waltz home dir
       MusicFolder = "/home/waltz/music";

@@ -36,4 +36,12 @@
     enable = true;
     env.XKB_LAYOUT = "br";
   };
+
+  environment.systemPackages = lib.mkIf config.gaming.enable [
+    (pkgs.lutris.override {
+      extraLibraries = pkgs: [
+        pkgs.adwaita-icon-theme
+      ];
+    })
+  ];
 }

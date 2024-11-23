@@ -16,6 +16,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Plasma Manager
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     # Sops-nix
     sops-nix.url = "github:Mic92/sops-nix";
 
@@ -64,7 +71,7 @@
 
     # Zen Browser
     zen-browser = {
-      url = "github:MarceColl/zen-browser-flake";
+      url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -31,6 +31,9 @@
 
     # Import walker
     inputs.walker.homeManagerModules.default
+
+    # Import plasma manager
+    inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
 
   # Enable wayland for electron ozone apps
