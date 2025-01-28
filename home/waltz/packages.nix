@@ -27,6 +27,7 @@
     ./dotfiles/walker/walker.nix
     ./dotfiles/gnome/gnome.nix
     ./dotfiles/plasma/plasma.nix
+    ./dotfiles/fontconfig/fontconfig.nix
   ];
 
 
@@ -34,7 +35,6 @@
   home.packages = with pkgs; [
     # Text editing / Coding / RSE
     obsidian
-    godot_4
 
     # Virtualisation
     gnome.gnome-boxes
@@ -45,19 +45,8 @@
     # Browser
     inputs.zen-browser.packages."${pkgs.system}".specific
 
-    # Video editor
-    #davinci-resolve
-    kdenlive
-
-    # Drawing
-    krita
-
     # Music
-    feishin
     nicotine-plus
-
-    # Video
-    celluloid
 
     # Terminal
     kitty
@@ -89,7 +78,8 @@
     playerctl
 
     # Chat
-    vesktop
+    #vesktop
+    discord
 
     # Security
     keepassxc
@@ -117,8 +107,8 @@
     pavucontrol
 
     (lib.mkIf config.wm.enable (
-      # File Manager
-      pcmanfm
+        # File Manager
+        pcmanfm
 
         # Image viewer
         imv
@@ -131,8 +121,5 @@
         waybar
         swww
     ))
-
-    # Catppuccin theme for plasma
-    (pkgs.catppuccin-kde.override { flavour = [ "mocha" ]; accents = [ "mauve" ]; winDecStyles = [ "classic" ]; })
   ];
 }

@@ -1,14 +1,12 @@
 { lib, config, ... }:
 {
-
-
   catppuccin = lib.mkIf config.wm.enable {
     enable = true;
     accent = "mauve";
     flavor = "mocha";
 
     pointerCursor = {
-      enable = false;
+      enable = true;
       accent = "mauve";
       flavor = "mocha";
     };

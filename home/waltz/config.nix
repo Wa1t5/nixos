@@ -3,19 +3,19 @@
   # Options
   options = {
     wm.enable = lib.mkOption {
-      default = false;
+      default = true;
       type = lib.types.bool;
       description = "Enable WM mode";
     };
 
     wm.hyprland.enable = lib.mkOption {
-      default = false;
+      default = true;
       type = lib.types.bool;
       description = "Enable Hyprland compositor";
     };
 
     gaming.enable = lib.mkOption {
-      default = true;
+      default = false;
       type = lib.types.bool;
       description = "Enable steam and other gaming related options";
     };
@@ -33,7 +33,7 @@
     };
 
     de.plasma.enable = lib.mkOption {
-      default = true;
+      default = false;
       type = lib.types.bool;
       description = "Enable kde plasma desktop environment";
     };
