@@ -50,15 +50,30 @@
   services.desktopManager.plasma6.enable = lib.mkIf config.de.plasma.enable true;
 
   # GreetD and gnome polkit
-  systemd.user.services.polkit-gnome-authentication-agent-1 = lib.mkIf config.wm.enable {
+  #systemd.user.services.polkit-gnome-authentication-agent-1 = lib.mkIf config.wm.enable {
+  #  enable = true;
+  #  description = "polkit-gnome-authentication-agent-1";
+  #  wantedBy = [ "graphical-session.target" ];
+  #  wants = [ "graphical-session.target" ];
+  #  after = [ "graphical-session.target" ];
+  #  serviceConfig = {
+  #    Type = "simple";
+  #    ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  #    Restart = "on-failure";
+  #    RestartSec = 1;
+  #    TimeoutStopSec = 10;
+  #  };
+  #};
+
+  systemd.user.services.hyprpolkitagent = lib.mkIf config.wm.enable {
     enable = true;
-    description = "polkit-gnome-authentication-agent-1";
+    description = "hyprpolkitagent";
     wantedBy = [ "graphical-session.target" ];
     wants = [ "graphical-session.target" ];
     after = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;
