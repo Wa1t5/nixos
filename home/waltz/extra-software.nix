@@ -12,12 +12,15 @@
   # Dconfig
   programs.dconf.enable = true;
 
+  # UWSM
+  programs.uwsm = lib.mkIf config.wm.enable {
+    enable = true;
+  };
+
   # Enable hyprland 2-nd time
   programs.hyprland = lib.mkIf config.wm.hyprland.enable {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    portalPackage = pkgs.xdg-desktop-portal-wlr;
-    #portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+    withUWSM = true;
   };
 
   # Cosmic desktop
@@ -67,12 +70,12 @@
     enable = true;
     settings = {
       initial_session = {
-        command = "Hyprland";
+        command = "uwsm start hyprland.desktop";
         user = "waltz";
       };
       default_session = {
         #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd 'Hyprland'";
-        command = "Hyprland";
+        command = "uwsm start hyprland.desktop";
         user = "waltz";
       };
     };

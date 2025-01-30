@@ -7,10 +7,9 @@
   # Hyprland
   wayland.windowManager.hyprland = lib.mkIf config.wm.hyprland.enable {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    systemd.enable = true;
+    systemd.enable = false;
+    
     #xwayland.enable = false;
-    systemd.variables = [ "--all" ];
     extraConfig = '' 
                 # Force electron apps to use wayland backend
                 env = NIXOS_OZONE_WL,1
