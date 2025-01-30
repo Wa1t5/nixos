@@ -114,6 +114,7 @@
         imv
 
         # Provide some DE functionalities
+        hyprsunset
         brightnessctl
         wl-clipboard
         slurp
