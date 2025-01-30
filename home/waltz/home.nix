@@ -30,7 +30,7 @@
     inputs.catppuccin.homeManagerModules.catppuccin
 
     # Import walker
-    inputs.walker.homeManagerModules.default
+    #inputs.walker.homeManagerModules.default
 
     # Import plasma manager
     inputs.plasma-manager.homeManagerModules.plasma-manager
