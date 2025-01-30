@@ -28,12 +28,12 @@
   $get-workspace-name = hyprctl workspaces | awk '/workspace ID -[0-9]+ \(special:/ {print $4}' | sed 's/[()]//g' | sed 's/special://' | rofi -dmenu -p "special workspace"
 
   # Start
-  exec-once = swww-daemon --format xrgb &
-  exec-once = hyprlock &
+  exec-once = uwsm app -- swww-daemon --format xrgb &
+  exec-once = uwsm app -- hyprlock &
 
   # Monitor
-  monitor=eDP-1,1366x768@60.06,0x0,1.0,bitdepth,10
-  #monitor= , highres, auto, 1
+  #monitor=eDP-1,1366x768@60.06,0x0,1.0,bitdepth,10
+  monitor= , highres, auto, 1
 
   # Input
   input {
@@ -145,43 +145,43 @@
   }
 
   # Lock screen
-  bind	= $MOD SHIFT, L, exec, loginctl lock-session
+  bind	= $MOD SHIFT, L, exec, uwsm app -- loginctl lock-session
 
   # Wallpaper picker
-  bind = $MOD SHIFT, P, exec, $wallpaper_picker
+  bind = $MOD SHIFT, P, exec, uwsm app -- $wallpaper_picker
 
   # Main Keybindings
-  bind = $MOD, T, exec, $term
-  bind = $MOD, Space, exec, $launcher
+  bind = $MOD, T, exec, uwsm app -- $term
+  bind = $MOD, Space, exec, uwsm app -- $launcher
   bind = $MOD, Q, killactive
   bind = $MOD SHIFT CTRL, E, exit
 
   # Mpris
-  bind = ,XF86AudioPlay, exec, $media_keys "play" play-pause
-  binde = ,XF86AudioNext, exec, $media_keys "play" position 5+
-  bind = $MOD, XF86AudioNext, exec, $media_keys "play" next
-  bind = $MOD, XF86AudioPrev, exec, $media_keys "play" previous
-  binde = ,XF86AudioPrev, exec, $media_keys "play" position 5-
+  bind = ,XF86AudioPlay, exec, uwsm app -- $media_keys "play" play-pause
+  binde = ,XF86AudioNext, exec, uwsm app -- $media_keys "play" position 5+
+  bind = $MOD, XF86AudioNext, exec, uwsm app -- $media_keys "play" next
+  bind = $MOD, XF86AudioPrev, exec, uwsm app -- $media_keys "play" previous
+  binde = ,XF86AudioPrev, exec, uwsm app -- $media_keys "play" position 5-
 
   # Control screen brightness
-  binde = ,XF86MonBrightnessUp,   exec, $media_keys "bright" 10+
-  binde = ,XF86MonBrightnessDown, exec, $media_keys "bright" 10-
+  binde = ,XF86MonBrightnessUp,   exec, uwsm app -- $media_keys "bright" 10+
+  binde = ,XF86MonBrightnessDown, exec, uwsm app -- $media_keys "bright" 10-
 
   # Volume
-  binde = ,XF86AudioRaiseVolume, exec, $media_keys "vol" @DEFAULT_AUDIO_SINK@ 0.05+
-  binde = ,XF86AudioLowerVolume, exec, $media_keys "vol" @DEFAULT_AUDIO_SINK@ 0.05-
+  binde = ,XF86AudioRaiseVolume, exec, uwsm app -- $media_keys "vol" @DEFAULT_AUDIO_SINK@ 0.05+
+  binde = ,XF86AudioLowerVolume, exec, uwsm app -- $media_keys "vol" @DEFAULT_AUDIO_SINK@ 0.05-
 
   # Microphone volume
-  binde = $MOD, XF86AudioRaiseVolume, exec, $media_keys "vol" @DEFAULT_AUDIO_SOURCE@ 0.05+
-  binde = $MOD, XF86AudioLowerVolume, exec, $media_keys "vol" @DEFAULT_AUDIO_SOURCE@ 0.05-
+  binde = $MOD, XF86AudioRaiseVolume, exec, uwsm app -- $media_keys "vol" @DEFAULT_AUDIO_SOURCE@ 0.05+
+  binde = $MOD, XF86AudioLowerVolume, exec, uwsm app -- $media_keys "vol" @DEFAULT_AUDIO_SOURCE@ 0.05-
 
   # Togle Audio | Mic
-  bind = ,XF86AudioMute, exec, $media_keys "vol-mute" @DEFAULT_AUDIO_SINK@
-  bind = $MOD,XF86AudioMute, exec, $media_keys "vol-mute" @DEFAULT_AUDIO_SOURCE@
+  bind = ,XF86AudioMute, exec, uwsm app -- $media_keys "vol-mute" @DEFAULT_AUDIO_SINK@
+  bind = $MOD,XF86AudioMute, exec, uwsm app -- $media_keys "vol-mute" @DEFAULT_AUDIO_SOURCE@
 
   # Screenshot
-  bind = $MOD, s, exec, grim - | wl-copy -t image/png && $notify-low "Screenshot" "Fullscreen"
-  bind = $MOD SHIFT, s, exec, grim -g "$(slurp)" - | wl-copy -t image/png && $notify-low "Screenshot" "Partial"
+  bind = $MOD, s, exec, uwsm app -- grim - | wl-copy -t image/png && $notify-low "Screenshot" "Fullscreen"
+  bind = $MOD SHIFT, s, exec, uwsm app -- grim -g "$(slurp)" - | wl-copy -t image/png && $notify-low "Screenshot" "Partial"
 
   # Toggle Floating
   bind = $MOD SHIFT, space, togglefloating, active
@@ -241,10 +241,10 @@
   bind = $MOD SHIFT, 0, movetoworkspacesilent, 10
 
   # Activate special workspace
-  bind = $MOD, W, exec, hyprctl dispatch togglespecialworkspace $($get-workspace-name)
+  bind = $MOD, W, exec, uwsm app -- hyprctl dispatch togglespecialworkspace $($get-workspace-name)
 
   # Move window to special workspace
-  bind = $MOD SHIFT, W, exec, hyprctl dispatch movetoworkspacesilent special:$($get-workspace-name)
+  bind = $MOD SHIFT, W, exec, uwsm app -- hyprctl dispatch movetoworkspacesilent special:$($get-workspace-name)
 
   # Scroll through existing workspaces with mainMod + scroll
   bind = $MOD, mouse_down, workspace, e+1

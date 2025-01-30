@@ -85,12 +85,12 @@
     enable = true;
     settings = {
       initial_session = {
-        command = "uwsm start hyprland.desktop";
+        command = "uwsm start -S hyprland.desktop";
         user = "waltz";
       };
       default_session = {
         #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd 'Hyprland'";
-        command = "uwsm start hyprland.desktop";
+        command = "uwsm start -S hyprland.desktop";
         user = "waltz";
       };
     };
