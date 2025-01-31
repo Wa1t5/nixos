@@ -5,7 +5,7 @@
     ./dotfiles/vscode/vscode.nix
     ./dotfiles/beets/beets.nix
     ./dotfiles/cava/cava.nix
-    ./dotfiles/discord/discord.nix
+    #./dotfiles/discord/discord.nix
     ./dotfiles/ssh/ssh.nix
     #./dotfiles/eww/eww.nix
     ./dotfiles/git/git.nix
@@ -79,7 +79,7 @@
 
     # Chat
     #vesktop
-    discord
+    (pkgs.discord.override { withVencord = true; withOpenASAR = true; })
 
     # Security
     keepassxc

@@ -3,7 +3,7 @@
   imports = [ ./discord-krisp.nix ];
 
   programs.discord = {
-    enable = false;
+    enable = true;
     wrapDiscord = true;
   };
 }

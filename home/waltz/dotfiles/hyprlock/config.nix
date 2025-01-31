@@ -5,8 +5,8 @@
       monitor =
       path = /home/waltz/.config/hypr/pfp
       size = 150 
-      rounding = -5  
-      border_size = 4
+      rounding = -5
+      border_size = 1
       border_color = $accent 
       rotate = 0  
       reload_time = -1 
