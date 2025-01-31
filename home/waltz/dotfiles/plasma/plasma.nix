@@ -1,7 +1,7 @@
-{ config, lib, ... }: 
+{ config, lib, ... }:
 {
   programs.plasma = lib.mkIf config.de.eanble.plasma {
-      shortcuts = {
+    shortcuts = {
       "ActivityManager"."switch-to-activity-23d3e688-ca7e-4f48-afff-429cbea080f6" = [ ];
       "KDE Keyboard Layout Switcher"."Switch keyboard layout to English (US)" = [ ];
       "KDE Keyboard Layout Switcher"."Switch keyboard layout to Portuguese (Brazil)" = [ ];
@@ -10,17 +10,17 @@
       "kaccess"."Toggle Screen Reader On and Off" = "Meta+Alt+S";
       "kcm_touchpad"."Disable Touchpad" = "Touchpad Off";
       "kcm_touchpad"."Enable Touchpad" = "Touchpad On";
-      "kcm_touchpad"."Toggle Touchpad" = ["Touchpad Toggle" "Meta+Ctrl+Zenkaku Hankaku,Touchpad Toggle" "Meta+Ctrl+Zenkaku Hankaku"];
+      "kcm_touchpad"."Toggle Touchpad" = [ "Touchpad Toggle" "Meta+Ctrl+Zenkaku Hankaku,Touchpad Toggle" "Meta+Ctrl+Zenkaku Hankaku" ];
       "kmix"."decrease_microphone_volume" = "Microphone Volume Down";
       "kmix"."decrease_volume" = "Volume Down";
       "kmix"."decrease_volume_small" = "Shift+Volume Down";
       "kmix"."increase_microphone_volume" = "Microphone Volume Up";
       "kmix"."increase_volume" = "Volume Up";
       "kmix"."increase_volume_small" = "Shift+Volume Up";
-      "kmix"."mic_mute" = ["Microphone Mute" "Meta+Volume Mute,Microphone Mute" "Meta+Volume Mute,Mute Microphone"];
+      "kmix"."mic_mute" = [ "Microphone Mute" "Meta+Volume Mute,Microphone Mute" "Meta+Volume Mute,Mute Microphone" ];
       "kmix"."mute" = "Volume Mute";
       "ksmserver"."Halt Without Confirmation" = "none,,Shut Down Without Confirmation";
-      "ksmserver"."Lock Session" = ["Screensaver" "Meta+Ctrl+Alt+L,Meta+L" "Screensaver,Lock Session"];
+      "ksmserver"."Lock Session" = [ "Screensaver" "Meta+Ctrl+Alt+L,Meta+L" "Screensaver,Lock Session" ];
       "ksmserver"."Log Out" = "Ctrl+Alt+Del";
       "ksmserver"."Log Out Without Confirmation" = "none,,Log Out Without Confirmation";
       "ksmserver"."LogOut" = "none,,Log Out";
@@ -33,7 +33,7 @@
       "kwin"."Decrease Opacity" = "none,,Decrease Opacity of Active Window by 5%";
       "kwin"."Edit Tiles" = "Meta+T";
       "kwin"."Expose" = "Meta+\\,,Ctrl+F9,Toggle Present Windows (Current desktop)";
-      "kwin"."ExposeAll" = ["Ctrl+F10" "Launch (C),Ctrl+F10" "Launch (C),Toggle Present Windows (All desktops)"];
+      "kwin"."ExposeAll" = [ "Ctrl+F10" "Launch (C),Ctrl+F10" "Launch (C),Toggle Present Windows (All desktops)" ];
       "kwin"."ExposeClass" = "Ctrl+F7";
       "kwin"."ExposeClassCurrentDesktop" = [ ];
       "kwin"."Grid View" = "Meta+G";
@@ -46,7 +46,7 @@
       "kwin"."MoveZoomLeft" = [ ];
       "kwin"."MoveZoomRight" = [ ];
       "kwin"."MoveZoomUp" = [ ];
-      "kwin"."Overview" = ["Meta+Tab" "Meta+W,Meta+W,Toggle Overview"];
+      "kwin"."Overview" = [ "Meta+Tab" "Meta+W,Meta+W,Toggle Overview" ];
       "kwin"."PoloniumCycleEngine" = "Meta+|,none,Polonium: Cycle Engine";
       "kwin"."PoloniumFocusAbove" = [ ];
       "kwin"."PoloniumFocusBelow" = [ ];
@@ -197,7 +197,7 @@
       "kwin"."Window to Screen 6" = "none,,Move Window to Screen 6";
       "kwin"."Window to Screen 7" = "none,,Move Window to Screen 7";
       "kwin"."view_actual_size" = "Meta+0";
-      "kwin"."view_zoom_in" = ["Meta++" "Meta+=,Meta++" "Meta+=,Zoom In"];
+      "kwin"."view_zoom_in" = [ "Meta++" "Meta+=,Meta++" "Meta+=,Zoom In" ];
       "kwin"."view_zoom_out" = "Meta+-";
       "mediacontrol"."mediavolumedown" = "none,,Media volume down";
       "mediacontrol"."mediavolumeup" = "none,,Media volume up";
@@ -219,8 +219,8 @@
       "org_kde_powerdevil"."Sleep" = "Sleep";
       "org_kde_powerdevil"."Toggle Keyboard Backlight" = "Keyboard Light On/Off";
       "org_kde_powerdevil"."Turn Off Screen" = [ ];
-      "org_kde_powerdevil"."powerProfile" = ["Battery" "Meta+B,Battery" "Meta+B,Switch Power Profile"];
-      "plasmashell"."activate application launcher" = ["Meta" "Alt+F1,Meta" "Alt+F1,Activate Application Launcher"];
+      "org_kde_powerdevil"."powerProfile" = [ "Battery" "Meta+B,Battery" "Meta+B,Switch Power Profile" ];
+      "plasmashell"."activate application launcher" = [ "Meta" "Alt+F1,Meta" "Alt+F1,Activate Application Launcher" ];
       "plasmashell"."activate task manager entry 1" = "Meta+1";
       "plasmashell"."activate task manager entry 10" = "none,Meta+0,Activate Task Manager Entry 10";
       "plasmashell"."activate task manager entry 2" = "Meta+2";
@@ -347,9 +347,7 @@
       "kxkbrc"."Layout"."VariantList" = "";
       "plasma-localerc"."Formats"."LANG" = "en_US.UTF-8";
     };
-    dataFile = {
-
-    };
+    dataFile = { };
 
   };
 }

@@ -24,8 +24,8 @@
 
     plugins = {
       mini = {
-	enable = true;
-	#modules.icons = true;
+        enable = true;
+        #modules.icons = true;
       };
       lsp = {
         enable = true;
