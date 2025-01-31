@@ -7,8 +7,8 @@
   # Hyprland
   wayland.windowManager.hyprland = lib.mkIf config.wm.hyprland.enable {
     enable = true;
-    systemd.enable = false;
-    
+    systemd.enable = true;
+
     #xwayland.enable = false;
     extraConfig = '' 
                 # Force electron apps to use wayland backend

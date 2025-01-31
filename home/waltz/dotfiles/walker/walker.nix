@@ -1,8 +1,10 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 {
   programs.walker = {
     enable = lib.mkIf config.wm.enable true;
+    package = pkgs.walker;
     runAsService = true;
+
 
     config.builtins = {
       clipboard.prefix = "cl";

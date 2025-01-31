@@ -1,7 +1,6 @@
 { config, lib, ... }: 
 {
-  programs.plasma = {
-    enable = lib.mkIf config.de.enable.plasma true;
+  programs.plasma = lib.mkIf config.de.eanble.plasma {
       shortcuts = {
       "ActivityManager"."switch-to-activity-23d3e688-ca7e-4f48-afff-429cbea080f6" = [ ];
       "KDE Keyboard Layout Switcher"."Switch keyboard layout to English (US)" = [ ];
@@ -351,7 +350,6 @@
     dataFile = {
 
     };
-  };
 
   };
 }

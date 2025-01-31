@@ -8,7 +8,7 @@
     };
 
     # Nixpkgs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Home Manager
     home-manager = {
@@ -32,19 +32,6 @@
     # Stylix
     stylix.url = "github:danth/stylix";
 
-    # Hyprland
-    #hyprland = {
-    #  url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    #};
-
-    hyprlock = {
-      url = "git+https://github.com/hyprwm/Hyprlock?submodules=1";
-    };
-
-    hypridle = {
-      url = "git+https://github.com/hyprwm/Hypridle?submodules=1";
-    };
-
     # Spicetify
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -53,15 +40,6 @@
 
     # Nixvim
     nixvim.url = "github:nix-community/nixvim";
-
-    # Cosmic
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Walker
-    walker.url = "github:abenz1267/walker";
 
     # An anime game launcher
     aagl = {
@@ -80,17 +58,9 @@
     # Extra caches
     extra-trusted-users = [ "waltz" ];
     extra-substituters = [
-      "https://cosmic.cachix.org/"
-      "https://hyprland.cachix.org/"
-      "https://walker.cachix.org/"
-      "https://walker-git.cachix.org/"
       "https://ezkea.cachix.org/"
     ];
     extra-trusted-public-keys = [
-      "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
-      "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
       "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
     ];
   };

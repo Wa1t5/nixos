@@ -1,19 +1,12 @@
 { services, pkgs, inputs, lib, config, ... }:
-let
-  hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  #hyprlock = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
-  hyprlock = pkgs.hyprlock;
-  hypridle = inputs.hypridle.packages.${pkgs.system}.hypridle;
-in
 {
   services.hypridle = lib.mkIf config.wm.hyprland.enable {
     enable = true;
-    package = inputs.hypridle.packages.${pkgs.system}.hypridle;
     settings = {
       general = {
-        lock_cmd = "pidof hyprlock || ${hyprlock}/bin/hyprlock"; # avoid starting multiple hyprlock instances.
+        lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock"; # avoid starting multiple hyprlock instances.
         before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
-        after_sleep_cmd = "loginctl lock-session && ${hyprland}/bin/hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
+        after_sleep_cmd = "loginctl lock-session && ${pkgs.hyprland}/bin/hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
       };
 
       listener = [

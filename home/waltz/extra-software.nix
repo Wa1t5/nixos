@@ -3,7 +3,6 @@
 {
   imports = [
     inputs.aagl.nixosModules.default
-    inputs.nixos-cosmic.nixosModules.default
     ./dotfiles/steam/steam.nix
     ./dotfiles/aagl/aagl.nix
     ./config.nix # Current file is impoted by uplevel options.nix thus needing to import config manually
@@ -12,27 +11,10 @@
   # Dconfig
   programs.dconf.enable = true;
 
-  # UWSM
-  programs.uwsm = lib.mkIf config.wm.enable {
-    enable = true;
-  };
-
   # Enable hyprland 2-nd time
   programs.hyprland = lib.mkIf config.wm.hyprland.enable {
     enable = true;
-    withUWSM = true;
   };
-
-  # Cosmic desktop
-  services.desktopManager.cosmic.enable = lib.mkIf config.de.cosmic.enable true;
-  services.displayManager.cosmic-greeter.enable = lib.mkIf config.de.cosmic.enable true;
-  services.power-profiles-daemon.enable = lib.mkForce false;
-
-  # Cosmic DE | TODO: Remove when they fix the bug about no keyboard layouts being shown in settings
-  #systemd.tmpfiles.rules = lib.mkIf config.de.cosmic.enable [
-  #  "L /usr/share/X11/xkb/rules/base.xml - - - - ${pkgs.xkeyboard_config}/share/X11/xkb/rules/base.xml"
-  #];
-
 
   # Gnome desktop
   services.xserver.enable = lib.mkIf config.de.gnome.enable true;
@@ -85,12 +67,12 @@
     enable = true;
     settings = {
       initial_session = {
-        command = "uwsm start -S hyprland.desktop";
+        command = "Hyprland";
         user = "waltz";
       };
       default_session = {
         #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd 'Hyprland'";
-        command = "uwsm start -S hyprland.desktop";
+        command = "Hyprland";
         user = "waltz";
       };
     };

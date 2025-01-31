@@ -24,7 +24,7 @@
     ./dotfiles/yazi/yazi.nix
     #./dotfiles/stylix/stylix.nix
     ./dotfiles/ime/ime.nix
-    ./dotfiles/walker/walker.nix
+    #./dotfiles/walker/walker.nix
     ./dotfiles/gnome/gnome.nix
     ./dotfiles/plasma/plasma.nix
     ./dotfiles/fontconfig/fontconfig.nix
@@ -37,13 +37,13 @@
     obsidian
 
     # Virtualisation
-    gnome.gnome-boxes
+    gnome-boxes
 
     # Study
     anki
 
     # Browser
-    inputs.zen-browser.packages."${pkgs.system}".specific
+    inputs.zen-browser.packages."${pkgs.system}".default
 
     # Music
     nicotine-plus
@@ -97,7 +97,8 @@
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
     noto-fonts-emoji-blob-bin
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" ]; })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.noto
 
     # icon themes
     adwaita-icon-theme
@@ -106,21 +107,20 @@
     helvum
     pavucontrol
 
-    (lib.mkIf config.wm.enable (
-        # File Manager
-        pcmanfm
 
-        # Image viewer
-        imv
+    # File Manager
+    pcmanfm
 
-        # Provide some DE functionalities
-        hyprsunset
-        brightnessctl
-        wl-clipboard
-        slurp
-        grim
-        waybar
-        swww
-    ))
+    # Image viewer
+    imv
+
+    # Provide some DE functionalities
+    hyprsunset
+    brightnessctl
+    wl-clipboard
+    slurp
+    grim
+    waybar
+    swww
   ];
 }

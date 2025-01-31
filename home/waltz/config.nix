@@ -20,12 +20,6 @@
       description = "Enable steam and other gaming related options";
     };
 
-    de.cosmic.enable = lib.mkOption {
-      default = false;
-      type = lib.types.bool;
-      description = "Enable cosmic desktop environment";
-    };
-
     de.gnome.enable = lib.mkOption {
       default = false;
       type = lib.types.bool;
