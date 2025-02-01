@@ -25,6 +25,7 @@
       format = "{:%H:%M} ";
       format-alt = "{:%A, %B %d, %Y (%R)}";
       tooltip-format = "<tt><small>{calendar}</small></tt>";
+      locale = "ja_JP.UTF-8";
       calendar = {
         mode = "year";
         mode-mon-col = 3;
@@ -71,8 +72,18 @@
       #  "*" = 10;
       #};
       format-icons = {
-        active = " ";
-        default = "";
+        "1" = "一";
+        "2" = "二";
+        "3" = "三";
+        "4" = "四";
+        "5" = "五";
+        "6" = "六";
+        "7" = "七";
+        "8" = "八";
+        "9" = "九";
+        "10" = "十";
+        #active = " ";
+        #default = "";
       };
     };
 

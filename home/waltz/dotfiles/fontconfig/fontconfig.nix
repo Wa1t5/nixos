@@ -3,10 +3,10 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      monospace = [ "NotoMono Nerd Font Mono" ];
-      serif = [ "NotoSerif Nerd Font Mono" ];
-      sansSerif = [ "NotoSansM Nerd Font Mono" ];
-      emoji = [ "Noto Emoji" ];
+      monospace = [ "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
+      sansSerif = [ "Noto Serif" "Noto Serif CJK JP" ];
+      serif = [ "Noto Serif" "Noto Serif CJK JP" ];
+      emoji = [ "Noto Emoji" "Noto Music" ];
     };
   };
 }

@@ -159,11 +159,12 @@
   bind = $MOD SHIFT CTRL, E, exit
 
   # Mpris
-  bind = ,XF86AudioPlay, exec, $media_keys "play" play-pause
-  binde = ,XF86AudioNext, exec, $media_keys "play" position 5+
-  bind = $MOD, XF86AudioNext, exec, $media_keys "play" next
-  bind = $MOD, XF86AudioPrev, exec, $media_keys "play" previous
-  binde = ,XF86AudioPrev, exec, $media_keys "play" position 5-
+  bind =  , XF86AudioPlay, exec, $media_keys "play" play-pause
+  binde = $MOD, XF86AudioNext, exec, $media_keys "play" position 5+
+  binde = $MOD, XF86AudioPrev, exec, $media_keys "play" position 5-
+  bind = , XF86AudioNext, exec, $media_keys "play" next
+  bind = , XF86AudioPrev, exec, $media_keys "play" previous
+
 
   # Control screen brightness
   binde = ,XF86MonBrightnessUp,   exec, $media_keys "bright" 10+

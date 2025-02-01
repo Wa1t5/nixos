@@ -9,9 +9,9 @@
       "ca-derivations"
       "cgroups"
       "dynamic-derivations"
-      #"git-hashing"
+      "git-hashing"
       "no-url-literals"
-      #"verified-fetches"
+      "verified-fetches"
     ];
     auto-optimise-store = true;
 
@@ -44,6 +44,11 @@
   time.timeZone = "America/Sao_Paulo";
 
   # System locale and console keymap
+  i18n.supportedLocales = [
+    "C.UTF-8/UTF-8"
+    "en_US.UTF-8/UTF-8"
+    "ja_JP.UTF-8/UTF-8"
+  ];
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LANGUAGE = "en_US.UTF-8";
@@ -65,5 +70,5 @@
   };
 
   # Base system version
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }

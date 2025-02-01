@@ -1,9 +1,14 @@
 { ... }:
 {
-  imports = [ ./discord-krisp.nix ];
+  #imports = [ ./discord-krisp.nix ];
 
-  programs.discord = {
+  programs.moonlight-mod = {
     enable = true;
-    wrapDiscord = true;
   };
+
+
+  #programs.discord = {
+  #  enable = true;
+  #  wrapDiscord = true;
+  #};
 }

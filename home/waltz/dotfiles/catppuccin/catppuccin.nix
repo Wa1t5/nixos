@@ -5,26 +5,20 @@
     accent = "mauve";
     flavor = "mocha";
 
-    pointerCursor = {
+    cursors = {
       enable = true;
       accent = "mauve";
       flavor = "mocha";
     };
+
+    kvantum.enable = true;
+
+    hyprland.enable = true;
+
+    gtk.gnomeShellTheme = true;
+    gtk.enable = true;
   };
 
-  # GTK
   gtk.enable = true;
   gtk.catppuccin.enable = true;
-
-  # Gnome
-  gtk.catppuccin.gnomeShellTheme = true;
-
-  # QT
-  qt.enable = true;
-  qt.style.catppuccin.enable = true;
-  qt.platformTheme.name = "kvantum";
-  qt.style.name = "kvantum";
-
-  # Hyprland
-  wayland.windowManager.hyprland.catppuccin.enable = lib.mkIf config.wm.enable true;
 }

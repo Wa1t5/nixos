@@ -5,7 +5,7 @@
     ./dotfiles/vscode/vscode.nix
     ./dotfiles/beets/beets.nix
     ./dotfiles/cava/cava.nix
-    #./dotfiles/discord/discord.nix
+    ./dotfiles/discord/discord.nix
     ./dotfiles/ssh/ssh.nix
     #./dotfiles/eww/eww.nix
     ./dotfiles/git/git.nix
@@ -28,6 +28,7 @@
     ./dotfiles/gnome/gnome.nix
     ./dotfiles/plasma/plasma.nix
     ./dotfiles/fontconfig/fontconfig.nix
+    ./dotfiles/emacs/emacs.nix
   ];
 
 
@@ -79,7 +80,9 @@
 
     # Chat
     #vesktop
-    (pkgs.discord.override { withVencord = true; withOpenASAR = true; })
+    discord
+    #inputs.moonlight.packages."${pkgs.system}".discord
+    #(pkgs.discord.override { withVencord = true; withOpenASAR = false; })
 
     # Security
     keepassxc
@@ -93,6 +96,7 @@
     xdg-utils
 
     # Fonts
+    noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji

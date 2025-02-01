@@ -3,7 +3,7 @@
 * 
 {
     /* Fonts */
-    font-family: Noto;
+    font-family: "Noto Sans Mono CJK JP";
     font-size: 17px;
 }
 
@@ -25,6 +25,10 @@ window#waybar.hidden {
 
 #workspaces button {
     padding: 0 2px;
+}
+
+#workspaces button.active {
+  color: @mauve;
 }
 
 

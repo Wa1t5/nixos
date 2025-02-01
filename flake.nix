@@ -52,6 +52,18 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Moonlight Patch
+    moonlight = {
+      url = "github:moonlight-mod/moonlight";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Emacs overlay
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -59,9 +71,11 @@
     extra-trusted-users = [ "waltz" ];
     extra-substituters = [
       "https://ezkea.cachix.org/"
+      "https://nix-community.cachix.org/"
     ];
     extra-trusted-public-keys = [
       "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
 
@@ -95,6 +109,11 @@
 
           inputs.home-manager.nixosModules.home-manager
           {
+            nixpkgs.overlays = [
+              inputs.moonlight.overlays.default
+              inputs.emacs-overlay.overlays.default
+            ];
+
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "bkp";
