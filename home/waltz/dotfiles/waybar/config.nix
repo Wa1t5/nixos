@@ -23,8 +23,9 @@
     # Clock
     "clock" = {
       format = "{:%H:%M} ";
-      format-alt = "{:%A, %B %d, %Y (%R)}";
-      tooltip-format = "<tt><small>{calendar}</small></tt>";
+      format-alt = "{:%A, %B %d, %Y (%R)} ";
+      #tooltip-format = "<tt><small>{calendar}</small></tt>";
+      tooltip-format = "\n<span size='9pt' font='Noto Sans Mono CJK JP'>{calendar}</span>";
       locale = "ja_JP.UTF-8";
       calendar = {
         mode = "year";
@@ -36,7 +37,8 @@
           months = "<span color='#ffead3'><b>{}</b></span>";
           days = "<span color='#ecc6d9'><b>{}</b></span>";
           weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-          weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+          #weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+          weekdays = "<u><b>日 月 火 水 木 金 土</b></u>       <u><b>日 月 火 水 木 金 土</b></u>       <u><b>日 月 火 水 木 金 土</b></u>";
           today = "<span color='#ff6699'><b><u>{}</u></b></span>";
         };
       };

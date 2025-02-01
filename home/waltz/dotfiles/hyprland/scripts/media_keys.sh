@@ -16,7 +16,7 @@ case $1 in
     get_volume="$(wpctl get-volume ${2} | awk -F'[. ]' '{print $3}')"
 
     # Notify
-    dunstify -u low -t 600 -h string:x-dunst-stack-tag:audio "Audio: $(echo ${2} | awk -F'[_@]' '{print $4}') [${get_volume}%]" -h int:value:${get_volume}
+    #dunstify -u low -t 600 -h string:x-dunst-stack-tag:audio "Audio: $(echo ${2} | awk -F'[_@]' '{print $4}') [${get_volume}%]" -h int:value:${get_volume}
   ;;
 
   vol-mute)
@@ -27,7 +27,7 @@ case $1 in
     [[ $(wpctl get-volume ${2} | awk '{print $3}') == "" ]] && mute_status="Unmuted" || mute_status="Muted"
 
     # Notify
-    dunstify -u low -t 600  "Audio: $(echo ${2} | awk -F'[_@]' '{print $4}')" $mute_status | awk -F'[\[\]]' '{print $2}'
+    #dunstify -u low -t 600  "Audio: $(echo ${2} | awk -F'[_@]' '{print $4}')" $mute_status | awk -F'[\[\]]' '{print $2}'
   ;;
 
   bright)
@@ -38,7 +38,7 @@ case $1 in
     get_bright="$(brightnessctl g)"
 
     # Notify
-    dunstify -u low -t 600 -h string:x-dunst-stack-tag:bright "Screen: Bright [${get_bright}%]" -h int:value:${get_bright}
+    #dunstify -u low -t 600 -h string:x-dunst-stack-tag:bright "Screen: Bright [${get_bright}%]" -h int:value:${get_bright}
   ;;
 
   play) 

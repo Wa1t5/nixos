@@ -110,8 +110,8 @@
           inputs.home-manager.nixosModules.home-manager
           {
             nixpkgs.overlays = [
-              inputs.moonlight.overlays.default
-              inputs.emacs-overlay.overlays.default
+              #inputs.moonlight.overlays.default
+              #inputs.emacs-overlay.overlays.default
             ];
 
             home-manager.useGlobalPkgs = true;

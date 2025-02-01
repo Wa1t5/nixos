@@ -1,7 +1,7 @@
 { ... }:
 {
   programs.cava = {
-    enable = false;
+    enable = true;
     settings = import ./config.nix;
   };
 }

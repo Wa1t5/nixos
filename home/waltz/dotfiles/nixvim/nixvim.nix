@@ -11,18 +11,14 @@
   # Nixvim
   programs.nixvim = {
     enable = true;
-
     defaultEditor = true;
-
-    luaLoader.enable = false;
-
     colorschemes.catppuccin.enable = true;
-
-
-    clipboard.register = lib.mkIf config.wm.enable "unnamedplus";
-    clipboard.providers.wl-copy.enable = lib.mkIf config.wm.enable true;
+    clipboard.register = "unnamedplus";
 
     plugins = {
+      neorg = {
+        enable = true;
+      };
       mini = {
         enable = true;
         #modules.icons = true;
@@ -43,10 +39,10 @@
       lsp-status.enable = true;
       lsp-lines.enable = true;
 
-      cmp-nvim-lsp.enable = true;
-      cmp-buffer.enable = true;
-      cmp-async-path.enable = true;
-      cmp-treesitter.enable = true;
+      #cmp-nvim-lsp.enable = true;
+      #cmp-buffer.enable = true;
+      #cmp-async-path.enable = true;
+      #cmp-treesitter.enable = true;
       cmp = {
         enable = true;
         autoEnableSources = true;
@@ -56,20 +52,19 @@
           { name = "buffer"; }
           { name = "treesitter"; }
         ];
-        settings.mappings = {
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-          "<C-e>" = "cmp.mapping.close()";
-          "<C-f>" = "cmp.mapping.scroll_docs(4)";
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
-          "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-          "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-        };
       };
 
-      treesitter.enable = true;
+      treesitter = {
+        enable = true;
+        settings = {
+          auto_install = true;
+          highlight.enable = true;
+          indent.enable = true;
+        };
+      };
       treesitter-context.enable = true;
       treesitter-refactor.enable = true;
+      treesitter-textobjects.enable = true;
 
       neo-tree.enable = true;
 
@@ -78,9 +73,6 @@
       direnv.enable = true;
 
       lualine.enable = true;
-
-
-
     };
 
     # Options

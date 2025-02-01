@@ -30,6 +30,7 @@
   # Start
   exec-once = swww-daemon --format xrgb &
   exec-once = hyprlock &
+  exec-once = syshud &
 
   # Monitor
   #monitor=eDP-1,1366x768@60.06,0x0,1.0,bitdepth,10

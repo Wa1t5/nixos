@@ -80,9 +80,8 @@
 
     # Chat
     #vesktop
-    discord
-    #inputs.moonlight.packages."${pkgs.system}".discord
-    #(pkgs.discord.override { withVencord = true; withOpenASAR = false; })
+    #discord
+    (pkgs.discord.override { withVencord = true; withOpenASAR = false; })
 
     # Security
     keepassxc
@@ -126,5 +125,6 @@
     grim
     waybar
     swww
+    syshud
   ];
 }
