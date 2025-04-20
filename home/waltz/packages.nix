@@ -1,5 +1,4 @@
-{ pkgs, lib, config, inputs, ... }:
-{
+{ pkgs, inputs, ... }: {
   imports = [
     ./dotfiles/catppuccin/catppuccin.nix
     #./dotfiles/vscode/vscode.nix
@@ -31,8 +30,6 @@
     ./dotfiles/emacs/emacs.nix
     ./dotfiles/zed/zed.nix
   ];
-
-
 
   home.packages = with pkgs; [
     # Text editing / Coding / RSE
@@ -84,7 +81,10 @@
 
     # Chat
     vesktop
-    (pkgs.discord.override { withVencord = true; withOpenASAR = false; })
+    (pkgs.discord.override {
+      withVencord = true;
+      withOpenASAR = false;
+    })
 
     # Security
     keepassxc
@@ -112,7 +112,6 @@
     # Manage audio
     helvum
     pavucontrol
-
 
     # File Manager
     pcmanfm

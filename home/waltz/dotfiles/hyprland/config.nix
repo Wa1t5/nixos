@@ -270,10 +270,6 @@
   # Only use this while using hyprwinwrap
   # windowrulev2 = xray 0, class:^(kitty)$
 
-  opengl {
-    force_introspection = 1
-  }
-
   debug {
     damage_tracking = 2
   }

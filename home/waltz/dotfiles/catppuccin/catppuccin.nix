@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   catppuccin = lib.mkIf config.themes.catppuccin.enable {
     enable = true;
     accent = "mauve";
@@ -14,6 +13,7 @@
     kvantum.enable = true;
 
     hyprland.enable = true;
+    hyprlock.useDefaultConfig = false;
 
     gtk.gnomeShellTheme = true;
     gtk.enable = true;
