@@ -27,13 +27,10 @@
     inputs.spicetify-nix.homeManagerModules.default
 
     # Import catppuccin
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
 
     # Import plasma manager
     inputs.plasma-manager.homeManagerModules.plasma-manager
-
-    # Moonlight patch
-    inputs.moonlight.homeModules.default
   ];
 
   # Enable wayland for electron ozone apps

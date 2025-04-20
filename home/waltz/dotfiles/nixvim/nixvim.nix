@@ -16,17 +16,15 @@
     clipboard.register = "unnamedplus";
 
     plugins = {
-      neorg = {
-        enable = true;
-      };
       mini = {
         enable = true;
-        #modules.icons = true;
+        modules.icons.enable = true;
+        mockDevIcons = true;
       };
       lsp = {
         enable = true;
         servers = {
-          nil-ls = { enable = true; settings.formatting.command = [ "nixpkgs-fmt" ]; };
+          nil_ls = { enable = true; settings.formatting.command = [ "nixpkgs-fmt" ]; };
           clangd.enable = true;
           cmake.enable = true;
           dartls.enable = true;
@@ -34,7 +32,7 @@
       };
       lsp-format = {
         enable = true;
-        setup = { "nil-ls".sync = true; };
+        settings = { "nil-ls".sync = true; };
       };
       lsp-status.enable = true;
       lsp-lines.enable = true;
@@ -56,7 +54,9 @@
 
       treesitter = {
         enable = true;
+        autoLoad = true;
         settings = {
+          ensure_installed = [ "norg" ];
           auto_install = true;
           highlight.enable = true;
           indent.enable = true;

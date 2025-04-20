@@ -2,10 +2,10 @@
 {
   imports = [
     ./dotfiles/catppuccin/catppuccin.nix
-    ./dotfiles/vscode/vscode.nix
+    #./dotfiles/vscode/vscode.nix
     ./dotfiles/beets/beets.nix
     ./dotfiles/cava/cava.nix
-    ./dotfiles/discord/discord.nix
+    #./dotfiles/discord/discord.nix
     ./dotfiles/ssh/ssh.nix
     #./dotfiles/eww/eww.nix
     ./dotfiles/git/git.nix
@@ -29,6 +29,7 @@
     ./dotfiles/plasma/plasma.nix
     ./dotfiles/fontconfig/fontconfig.nix
     ./dotfiles/emacs/emacs.nix
+    ./dotfiles/zed/zed.nix
   ];
 
 
@@ -51,6 +52,7 @@
 
     # Terminal
     kitty
+    warp-terminal
     direnv
 
     # CLI
@@ -59,7 +61,8 @@
     imagemagick
     yt-dlp
 
-    # CLI (GNU tools replacement)            
+    # CLI (GNU tools replacement)
+    p7zip
     lsd
     bat
     dysk
@@ -69,6 +72,7 @@
 
     # Nix
     nixpkgs-fmt # Nix code formatter
+    nixfmt
     nixos-generators
     deadnix
 
@@ -79,8 +83,7 @@
     playerctl
 
     # Chat
-    #vesktop
-    #discord
+    vesktop
     (pkgs.discord.override { withVencord = true; withOpenASAR = false; })
 
     # Security

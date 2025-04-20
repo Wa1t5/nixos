@@ -1,11 +1,11 @@
-{ pkgs, inputs, ... }:
+{ pkgs, lib, inputs, ... }:
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
 in
 {
   programs.spicetify = {
     enable = true;
-    theme = spicePkgs.themes.defaultDynamic;
+    theme = lib.mkForce spicePkgs.themes.defaultDynamic;
     enabledExtensions = with spicePkgs.extensions; [
       adblock
       groupSession

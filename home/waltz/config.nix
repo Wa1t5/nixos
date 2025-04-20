@@ -14,6 +14,18 @@
       description = "Enable Hyprland compositor";
     };
 
+    themes.catppuccin.enable = lib.mkOption {
+      default = true;
+      type = lib.types.bool;
+      description = "Enable the catppuccin theme";
+    };
+
+    themes.stylix.enable = lib.mkOption {
+      default = false;
+      type = lib.types.bool;
+      description = "Enable the stylix dynamic theme";
+    };
+
     gaming.enable = lib.mkOption {
       default = false;
       type = lib.types.bool;

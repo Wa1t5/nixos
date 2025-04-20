@@ -52,18 +52,6 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Moonlight Patch
-    moonlight = {
-      url = "github:moonlight-mod/moonlight";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Emacs overlay
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   nixConfig = {

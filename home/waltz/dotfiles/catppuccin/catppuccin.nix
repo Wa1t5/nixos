@@ -1,6 +1,6 @@
 { lib, config, ... }:
 {
-  catppuccin = lib.mkIf config.wm.enable {
+  catppuccin = lib.mkIf config.themes.catppuccin.enable {
     enable = true;
     accent = "mauve";
     flavor = "mocha";
@@ -19,6 +19,6 @@
     gtk.enable = true;
   };
 
-  gtk.enable = true;
-  gtk.catppuccin.enable = true;
+  gtk.enable = lib.mkIf config.themes.catppuccin.enable true;
+  gtk.catppuccin.enable = lib.mkIf config.themes.catppuccin.enable true;
 }

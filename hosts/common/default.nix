@@ -14,6 +14,7 @@
     ./session-manager-configuration.nix
     ./tablet-configuration.nix
     ./users.nix
+    ./fontconfig.nix
     ./virtualisation.nix
     ./services.nix
     ./sops.nix

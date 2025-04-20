@@ -16,6 +16,8 @@
     auto-optimise-store = true;
 
     trusted-users = [ "waltz" ];
+
+    download-buffer-size = 524288000;
   };
 
   nix = {

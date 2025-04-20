@@ -9,6 +9,9 @@
     enable = true;
     systemd.enable = true;
 
+    package = null;
+    portalPackage = null;
+
     #xwayland.enable = false;
     extraConfig = '' 
                 # Force electron apps to use wayland backend
