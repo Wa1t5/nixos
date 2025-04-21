@@ -1,19 +1,14 @@
-{ pkgs, lib, config, ... }:
-{
-  imports = [
-    ./dotfiles/hypridle/hypridle.nix
-    ./config.nix
-  ];
+{ pkgs, lib, config, ... }: {
+  imports =
+    [ ./dotfiles/hypridle/hypridle.nix ./dotfiles/mako/mako.nix ./config.nix ];
 
   services = {
     # Syncthing
-    syncthing = {
-      enable = true;
-    };
+    syncthing = { enable = true; };
 
     # Dunst
     dunst = lib.mkIf config.wm.enable {
-      enable = true;
+      enable = false;
       settings = import ./dotfiles/dunst/dunst.nix;
     };
 
@@ -34,18 +29,12 @@
     };
 
     # Mpd mpris
-    mpd-mpris = {
-      enable = false;
-    };
+    mpd-mpris = { enable = false; };
 
     # Playerctld
-    playerctld = {
-      enable = lib.mkIf config.wm.enable true;
-    };
+    playerctld = { enable = lib.mkIf config.wm.enable true; };
 
     # Easyeffects
-    easyeffects = {
-      enable = true;
-    };
+    easyeffects = { enable = true; };
   };
 }

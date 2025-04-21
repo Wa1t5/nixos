@@ -5,7 +5,7 @@
       monitor =
       path = /home/waltz/.config/hypr/pfp
       size = 150
-      rounding = 10
+      rounding = 100
       border_size = 1
       border_color = $accent
       rotate = 0
@@ -18,31 +18,23 @@
     }
 
 
-    label {
-      monitor =
-      text = Welcome, $USER
-
-      text_align = center
-
-      position = 0, 0
-
-      color = $accent
-
-      halign = center
-      valign = center
+    #label {
+    #  monitor =
+    #  text = Welcome, $USER
+    #  text_align = center
+    #  position = 0, 0
+    #  color = $accent
+    #  halign = center
+    #  valign = center
     }
 
 
     label {
       monitor =
       text = $TIME
-
       text_align = center
-
       position = 0, 210
-
       color = $accent
-
       halign = center
       valign = center
     }
@@ -57,7 +49,6 @@
       border_color = $accent
       rotate = 0
       xray = false
-
       position = 0, 210
       halign = center
       valign = center
@@ -70,21 +61,21 @@
       outline_thickness = 3
       dots_size = 0.33
       dots_spacing = 0.15
-      dots_center = false
+      dots_center = true
       dots_rounding = -1
       outer_color = $accent
-      inner_color = $accent
-      font_color = transparent
-      fade_on_empty = true
+      inner_color = $surface0
+      font_color = $text
+      fade_on_empty = false
       fade_timeout = 1000
       placeholder_text = <span foreground="##$textAlpha"><i>󰌾 Logged in as </i><span foreground="##$accentAlpha">$USER</span></span>
       hide_input = false
       rounding = -1
-      check_color = rgb(204, 136, 34)
-      fail_color = rgb(204, 34, 34)
+      check_color = $accent
+      fail_color = $red
       fail_text = <i>$FAIL <b>($ATTEMPTS)</b></i>
       fail_transition = 300
-      capslock_color = -1
+      capslock_color = $yellow
       numlock_color = -1
       bothlock_color = -1
       invert_numlock = false
@@ -99,7 +90,6 @@
     background {
       monitor =
       path = screenshot
-
       blur_passes = 1
       blur_size = 4
       noise = 0.0117

@@ -17,6 +17,6 @@ export SWWW_TRANSITION_DURATION=10
 
 swww img $@ &
 
-cp $@ /etc/nixos/home/waltz/stylix/
+#cp $@ /etc/nixos/home/waltz/stylix/
 
-. /etc/nixos/home/waltz/dotfiles/hyprland/scripts/update_colorscheme.sh "$@"
+#. /etc/nixos/home/waltz/dotfiles/hyprland/scripts/update_colorscheme.sh "$@"

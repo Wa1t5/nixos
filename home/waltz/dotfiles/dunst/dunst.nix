@@ -83,7 +83,6 @@
     # Set to 0 to disable.
     frame_width = 3;
 
-
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
     # of size frame_width will be drawn around each notification instead.
@@ -153,11 +152,11 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s%p</b>\n%b";
+    #format = "<b>%s%p</b>\n%b";
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
-    alignment = "center;";
+    #alignment = "center";
 
     # Vertical alignment of message text and icon.
     # Possible values are "top", "center" and "bottom".
@@ -208,7 +207,8 @@
     max_icon_size = 128;
 
     # Paths to default icons (only neccesary when not using recursive icon lookup)
-    icon_path = "/usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/";
+    icon_path =
+      "/usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/";
 
     ### History ###
 
@@ -289,6 +289,9 @@
     mouse_left_click = "close_current";
     mouse_middle_click = "do_action, close_current";
     mouse_right_click = "close_all";
+
+    ## background
+    background = lib.mkForce "#ffffff";
   };
 
   # Experimental features that may or may not work correctly. Do not expect them
@@ -302,20 +305,11 @@
     per_monitor_dpi = "false";
   };
 
-  urgency_low = {
-    background = lib.mkForce "#000000";
-    timeout = "600ms";
-  };
+  urgency_low = { timeout = "600ms"; };
 
-  urgency_normal = {
-    background = lib.mkForce "#000000";
-    timeout = 10;
-  };
+  urgency_normal = { timeout = 10; };
 
-  urgency_critical = {
-    background = lib.mkForce "#000000";
-    timeout = 0;
-  };
+  urgency_critical = { timeout = 0; };
 
   # Every section that isn't one of the above is interpreted as a rules to
   # override settings for certain messages.
@@ -366,7 +360,7 @@
   # SCRIPTING
   # You can specify a script that gets run when the rule matches by
   # setting the "script" option.
-  # The script will be called as follows:
+  # The script will be called as follow-s:
   #   script appname summary body icon urgency
   # where urgency can be "LOW", "NORMAL" or "CRITICAL".
   #
