@@ -4,4 +4,8 @@
 
   # Disable SFX
   enable_audio_bell no
+
+  # BG
+  background_opacity 0.5
+  background #000000
 ''
