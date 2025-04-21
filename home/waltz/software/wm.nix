@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   imports = [
     ../dotfiles/hyprland/hyprland.nix
     ../dotfiles/ime/ime.nix

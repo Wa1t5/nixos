@@ -5,13 +5,13 @@
 # $3 - percentage
 
 # Notification low priority
-# dunstify -u low -t 600 
+# dunstify -u low -t 600
 
 case $1 in
   vol)
     # Set vol
     wpctl set-volume "${2}" "${3}"
-    
+
     # Get audio info
     get_volume="$(wpctl get-volume ${2} | awk -F'[. ]' '{print $3}')"
 
@@ -41,7 +41,12 @@ case $1 in
     #dunstify -u low -t 600 -h string:x-dunst-stack-tag:bright "Screen: Bright [${get_bright}%]" -h int:value:${get_bright}
   ;;
 
-  play) 
+  temp)
+    hyprctl hyprsunset temperature $2
+    hyprctl hyprsunset temperature > ~/.config/hypr/screen-temperature
+  ;;
+
+  play)
     # Run command
     playerctl $2 $3
 

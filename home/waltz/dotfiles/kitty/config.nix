@@ -7,5 +7,5 @@
 
   # BG
   background_opacity 0.5
-  background #000000
+  #background #000000
 ''

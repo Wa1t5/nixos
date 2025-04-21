@@ -31,6 +31,7 @@
   exec-once = swww-daemon --format xrgb &
   exec-once = hyprlock &
   exec-once = syshud &
+  exec-once = hyprctl hyprsunset temperature $(cat ~/.config/hypr/screen-temperature)
 
   # Monitor
   #monitor=eDP-1,1366x768@60.06,0x0,1.0,bitdepth,10
@@ -57,7 +58,11 @@
 
   # Plugins
   plugin {
-    hyprwinwrap {  class = kitty-bg }
+    hyprwinwrap { class = kitty-bg }
+    overview {
+      panelHeight = 100
+      hideTopLayers = true;
+    }
   }
 
   # General
@@ -159,6 +164,9 @@
   bind = $MOD, Q, killactive
   bind = $MOD SHIFT CTRL, E, exit
 
+  # Workspace overview
+  bind = $MOD, Tab, overview:toggle
+
   # Mpris
   bind =  , XF86AudioPlay, exec, $media_keys "play" play-pause
   binde = $MOD, XF86AudioNext, exec, $media_keys "play" position 5+
@@ -171,8 +179,8 @@
   binde = ,XF86MonBrightnessDown, exec, $media_keys "bright" 10-
 
   # Control screen temperature with hyprsunset
-  binde = $MOD ,XF86MonBrightnessUp,   exec, hyprctl hyprsunset temperature +100
-  binde = $MOD ,XF86MonBrightnessDown, exec, hyprctl hyprsunset temperature -100
+  binde = $MOD ,XF86MonBrightnessUp,   exec, $media_keys "temp" +100
+  binde = $MOD ,XF86MonBrightnessDown, exec, $media_keys "temp" -100
 
   # Volume
   binde = ,XF86AudioRaiseVolume, exec, $media_keys "vol" @DEFAULT_AUDIO_SINK@ 0.05+

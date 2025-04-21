@@ -3,9 +3,7 @@
 
   inputs = {
     # Nix Hardware
-    nixos-hardware = {
-      url = "github:Wa1t5/nixos-hardware/master";
-    };
+    nixos-hardware = { url = "github:Wa1t5/nixos-hardware/master"; };
 
     # Nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -52,6 +50,14 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Hyprland
+    hyprland = { url = "github:HyprWM/Hyprland"; };
+
+    Hyprspace = {
+      url = "github:KZDKM/Hyprspace/e2a18d6cf1e5e362a6845f53978167b49922d1a4";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   nixConfig = {
@@ -60,14 +66,16 @@
     extra-substituters = [
       "https://ezkea.cachix.org/"
       "https://nix-community.cachix.org/"
+      "https://hyprland.cachix.org"
     ];
     extra-trusted-public-keys = [
       "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
   };
 
-  outputs = { nixpkgs, ... } @inputs: {
+  outputs = { nixpkgs, ... }@inputs: {
     nixosConfigurations = {
       # Emperor Host
       "emperor" = nixpkgs.lib.nixosSystem {
@@ -90,7 +98,6 @@
           # configuration.nix but I removed
           # for modularity
           ./home/waltz/extra-software.nix
-
 
           # Load hardware config
           inputs.nixos-hardware.nixosModules.lenovo-ideapad-s145-15api
@@ -117,4 +124,3 @@
     };
   };
 }
-

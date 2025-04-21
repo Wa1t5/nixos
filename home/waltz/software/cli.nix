@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ../dotfiles/ssh/ssh.nix
     ../dotfiles/beets/beets.nix
