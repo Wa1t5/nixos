@@ -52,12 +52,16 @@
     };
 
     # Hyprland
-    hyprland = { url = "github:HyprWM/Hyprland"; };
+    hyprland.url = "github:HyprWM/Hyprland";
 
+    # Hyprspace
     Hyprspace = {
       url = "github:KZDKM/Hyprspace/e2a18d6cf1e5e362a6845f53978167b49922d1a4";
       inputs.hyprland.follows = "hyprland";
     };
+
+    # Walker
+    walker.url = "github:abenz1267/walker";
   };
 
   nixConfig = {

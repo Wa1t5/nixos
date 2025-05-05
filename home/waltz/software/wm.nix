@@ -7,8 +7,9 @@
     ../dotfiles/hyprlock/hyprlock.nix
     ../dotfiles/waybar/waybar.nix
     ../dotfiles/rofi/rofi.nix
+    ../dotfiles/tofi/tofi.nix
     ../dotfiles/yazi/yazi.nix
-    #../dotfiles/walker/walker.nix
+    ../dotfiles/walker/walker.nix
   ];
 
   home.packages = with pkgs; [

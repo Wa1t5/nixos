@@ -13,14 +13,16 @@
   $MOD = SUPER
 
   # Applications
-  $term = kitty
-  $launcher = rofi -show drun
+  $term = foot
+  #$launcher = rofi -show drun
+  $launcher = tofi-drun
 
   # Scripts
   $random_wallpaper = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/random_wallpaper.sh
   $update_colorscheme = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/update_colorscheme.sh
   $music_status = /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh
   $wallpaper_picker = $(kitty --detach --class=selector yazi ~/img/wallpapers)
+  $wallpaper_picker = $(foot --app-id=selector yazi ~/img/wallpapers)
   $media_keys = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/media_keys.sh
 
   # Predefined commands
@@ -31,7 +33,7 @@
   exec-once = swww-daemon --format xrgb &
   exec-once = hyprlock &
   exec-once = syshud &
-  exec-once = hyprctl hyprsunset temperature $(cat ~/.config/hypr/screen-temperature)
+  exec-once = sleep 30 && hyprctl hyprsunset temperature $(cat ~/.config/hypr/screen-temperature)
 
   # Monitor
   #monitor=eDP-1,1366x768@60.06,0x0,1.0,bitdepth,10
@@ -274,7 +276,6 @@
   windowrulev2 = pin, class:^(selector)$
   windowrulev2 = size 50% 50%, class:^(selector)$
   windowrulev2 = center 1, class:^(selector)$
-
 
   # Disable xray on terminal windows
   # This probably have some performance impact

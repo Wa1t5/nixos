@@ -6,6 +6,7 @@
     #../dotfiles/eww/eww.nix
     ../dotfiles/mpv/mpv.nix
     ../dotfiles/kitty/kitty.nix
+    ../dotfiles/foot/foot.nix
     ../dotfiles/nixvim/nixvim.nix
     ../dotfiles/gpg/gpg.nix
     ../dotfiles/cava/cava.nix
@@ -17,7 +18,6 @@
   home.packages = with pkgs; [
     # Terminal
     kitty
-    warp-terminal
     direnv
 
     # CLI

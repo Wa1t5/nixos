@@ -1,8 +1,19 @@
 { pkgs, lib, config, ... }: {
-  imports =
-    [ ./dotfiles/hypridle/hypridle.nix ./dotfiles/mako/mako.nix ./config.nix ];
+  imports = [
+    ../dotfiles/hypridle/hypridle.nix
+    ../dotfiles/mako/mako.nix
+    ../config.nix
+    ./servers.nix
+  ];
+
 
   services = {
+
+    # PSD (Profile Sync Daemon)
+    psd = {
+      enable = true;
+    };
+
     # Syncthing
     syncthing = { enable = true; };
 

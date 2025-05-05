@@ -1,4 +1,5 @@
-{ lib, config, ... }: {
+{ lib, inputs, config, ... }: {
+  imports = [ inputs.catppuccin.homeModules.catppuccin ];
   catppuccin = lib.mkIf config.themes.catppuccin.enable {
     enable = true;
     accent = "mauve";

@@ -10,5 +10,6 @@
 
     # Music
     nicotine-plus
+
   ];
 }
