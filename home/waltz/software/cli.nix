@@ -36,8 +36,6 @@
     fd
 
     # Nix
-    nixpkgs-fmt # Nix code formatter
-    nixfmt
     nixos-generators
     deadnix
   ];

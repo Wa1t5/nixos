@@ -12,5 +12,6 @@
     ./theming.nix
     ./virtualisation.nix
     ./wm.nix
+    ./languages.nix
   ];
 }

@@ -2,7 +2,7 @@
   imports = [
     ../dotfiles/emacs/emacs.nix
     ../dotfiles/zed/zed.nix
-    #../dotfiles/vscode/vscode.nix
+    ../dotfiles/vscode/vscode.nix
     ../dotfiles/git/git.nix
     ../dotfiles/obs-studio/obs-studio.nix
   ];
