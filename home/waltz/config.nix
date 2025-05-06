@@ -27,7 +27,7 @@
     };
 
     gaming.enable = lib.mkOption {
-      default = false;
+      default = true;
       type = lib.types.bool;
       description = "Enable steam and other gaming related options";
     };

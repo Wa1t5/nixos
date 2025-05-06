@@ -13,7 +13,7 @@
     oh-my-zsh = {
       enable = true;
     };
-    initExtra = ''
+    initContent = ''
       # Load p10k config
       source ~/.p10k.zsh
 

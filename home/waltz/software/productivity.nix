@@ -13,5 +13,8 @@
 
     # Study
     anki
+
+    # Game dev
+    unityhub
   ];
 }

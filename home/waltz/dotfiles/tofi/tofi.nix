@@ -4,6 +4,8 @@
   programs.tofi = lib.mkIf config.wm.enable {
     enable = true;
     settings = {
+      terminal = "foot";
+      drun-launch = true;
       background-color = lib.mkForce "#00000000";
       border-color = lib.mkForce "#00000000";
       border-size = 0;

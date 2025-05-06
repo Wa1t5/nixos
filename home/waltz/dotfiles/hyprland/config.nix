@@ -162,7 +162,7 @@
 
   # Main Keybindings
   bind = $MOD, T, exec, $term
-  bind = $MOD, Space, exec, $launcher
+  bind = $MOD, Return, exec, $launcher
   bind = $MOD, Q, killactive
   bind = $MOD SHIFT CTRL, E, exit
 

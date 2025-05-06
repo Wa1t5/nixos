@@ -1,8 +1,7 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
+{ lib
+, config
+, pkgs
+, ...
 }:
 {
   programs.zed-editor = {
@@ -10,6 +9,7 @@
 
     extensions = [
       "c"
+      "csharp"
       "nix"
       "dart"
       "catppuccin-blur"
@@ -35,11 +35,17 @@
             };
           };
         };
+        omnisharp = {
+          binary = {
+            path = "${pkgs.omnisharp-roslyn}/bin/OmniSharp";
+	    arguments = [ "-v" "-lsp" ];
+          };
+        };
         dart = {
           binary = {
             path = lib.getExe pkgs.dart;
+            arguments = [ "language-server" ];
           };
-          arguments = [ "language-server" ];
         };
       };
       features = {

@@ -1,4 +1,4 @@
 { pkgs, ... }: {
 
-  home.packages = with pkgs; [ osu-lazer-bin ];
+  home.packages = with pkgs; [ osu-lazer-bin prismlauncher ];
 }
