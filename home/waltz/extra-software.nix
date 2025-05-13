@@ -5,7 +5,7 @@
     inputs.aagl.nixosModules.default
     ./dotfiles/steam/steam.nix
     ./dotfiles/aagl/aagl.nix
-    ./config.nix # Current file is impoted by uplevel options.nix thus needing to import config manually
+    ./config.nix # Current file is imported by uplevel options.nix thus needing to import config manually
   ];
 
   # Dconfig
