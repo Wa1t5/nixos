@@ -6,10 +6,10 @@
   # Latest realtime kernel
   # boot.kernelPackages = pkgs.linuxPackages-rt_latest;
 
-  # Kernel modules available on initra
+  # Kernel modules available on initramfs
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "cryptd" "aesni_intel" ];
 
-  # Kernel modules to force load on iniram
+  # Kernel modules to force load on initramfs
   boot.initrd.kernelModules = [ ];
 
   # Kernel modules to force load

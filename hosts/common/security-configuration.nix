@@ -1,6 +1,11 @@
-{ ... }:
-{
+{ ... }: {
   security = {
+    # Kwallet
+    pam.services.kwallet = {
+      name = "kwallet";
+      enableKwallet = true;
+    };
+
     # AppArmor
     apparmor = {
       enable = false;
@@ -22,7 +27,6 @@
     users = [ "waltz" ];
     persist = true;
   }];
-
 
   environment.shellAliases.sudo = "doas";
 }

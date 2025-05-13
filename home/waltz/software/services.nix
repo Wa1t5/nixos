@@ -6,13 +6,10 @@
     ./servers.nix
   ];
 
-
   services = {
 
     # PSD (Profile Sync Daemon)
-    psd = {
-      enable = true;
-    };
+    psd = { enable = true; };
 
     # Syncthing
     syncthing = { enable = true; };
@@ -28,7 +25,7 @@
       enable = false;
       enableSshSupport = true;
       enableZshIntegration = true;
-      pinentryPackage = pkgs.pinentry-qt;
+      pinentry.package = pkgs.pinentry-qt;
     };
 
     # Mpd

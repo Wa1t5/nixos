@@ -35,6 +35,11 @@
             arguments = [ "language-server" ];
           };
         };
+	rust-analyzer = {
+	  binary = {
+	    path = lib.getExe pkgs.rust-analyzer;
+	  };
+	};
       };
       features = { copilot = false; };
       telemetry = { metrics = false; };
