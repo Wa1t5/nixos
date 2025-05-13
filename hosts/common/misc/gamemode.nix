@@ -1,7 +1,7 @@
-{ lib, config, ... }:
+{ ... }:
 {
-  programs.gamemode = lib.mkIf config.gaming.enable {
-    enable = true;
+  programs.gamemode = {
+    enable = false;
     enableRenice = true;
   };
 }

@@ -27,14 +27,14 @@
     # Nix-store optimiser
     optimise = {
       dates = [ "19:00" "00:00" "13:00" ];
-      automatic = true;
+      automatic = false;
     };
 
     # Nix garbage collector
     gc = {
       randomizedDelaySec = "1h";
       dates = "weekly";
-      automatic = true;
+      automatic = false;
     };
 
     # Avoid system slowdowns by lowering nix-daemon priority
