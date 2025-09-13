@@ -8,6 +8,11 @@
     ./config.nix # Current file is imported by uplevel options.nix thus needing to import config manually
   ];
 
+  # Gnome keyring
+  services.gnome.gnome-keyring = lib.mkIf config.wm.enable {
+    enable = true;
+  };
+
   # Dconfig
   programs.dconf.enable = true;
 

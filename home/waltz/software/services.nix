@@ -8,6 +8,9 @@
   ];
 
   services = {
+    gnome-keyring = lib.mkIf config.wm.enable {
+      enable = true;
+    };
 
     # PSD (Profile Sync Daemon)
     psd = { enable = true; };

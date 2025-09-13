@@ -1,10 +1,10 @@
-{ ... }: {
+{ config, ... }: {
   security = {
     # Kwallet
-    pam.services.kwallet = {
-      name = "kwallet";
-      enableKwallet = true;
-    };
+    #pam.services.kwallet = {
+    #  name = "kwallet";
+    #  enableKwallet = true;
+    #};
 
     # AppArmor
     apparmor = {
