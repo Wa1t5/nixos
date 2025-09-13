@@ -6,9 +6,9 @@
     settings = {
       anchor = "top-right";
       layer = "overlay";
-      backgroundColor = lib.mkForce "#00000080";
-      defaultTimeout = 2400;
-      borderSize = 3;
+      background-color = lib.mkForce "#00000080";
+      default-timeout = 2400;
+      border-size = 3;
     };
   };
 }

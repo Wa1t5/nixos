@@ -21,8 +21,9 @@
   $random_wallpaper = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/random_wallpaper.sh
   $update_colorscheme = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/update_colorscheme.sh
   $music_status = /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh
-  $wallpaper_picker = $(kitty --detach --class=selector yazi ~/img/wallpapers)
+  #$wallpaper_picker = $(kitty --detach --class=selector yazi ~/img/wallpapers)
   $wallpaper_picker = $(foot --app-id=selector yazi ~/img/wallpapers)
+  $clipboard_history = $(foot --app-id=selector clipse)
   $media_keys = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/media_keys.sh
 
   # Predefined commands
@@ -152,6 +153,9 @@
 
   # Wallpaper picker
   bind = $MOD SHIFT, P, exec, $wallpaper_picker
+
+  # Clipboard history
+  bind = $MOD SHIFT, V, exec, $clipboard_history
 
   # Main Keybindings
   bind = $MOD, T, exec, $term

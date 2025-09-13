@@ -2,6 +2,7 @@
   imports = [
     ../dotfiles/hypridle/hypridle.nix
     ../dotfiles/mako/mako.nix
+    ../dotfiles/clipse/clipse.nix
     ../config.nix
     ./servers.nix
   ];
