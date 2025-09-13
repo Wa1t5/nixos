@@ -8,8 +8,16 @@
     ./config.nix # Current file is imported by uplevel options.nix thus needing to import config manually
   ];
 
+  # Add vscode to path (so unity detect it)
+  environment.etc."/usr/bin/code".source = "${pkgs.vscode}/bin/code";
+
+
   # Gnome keyring
   services.gnome.gnome-keyring = lib.mkIf config.wm.enable {
+    enable = true;
+  };
+
+  programs.seahorse = lib.mkIf config.wm.enable {
     enable = true;
   };
 
