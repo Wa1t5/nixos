@@ -59,6 +59,7 @@
       monitor =
       size = 200, 30
       outline_thickness = 3
+      inner_color = rgba(17, 17, 17, 1.0)
       dots_size = 0.33
       dots_spacing = 0.15
       dots_center = true
@@ -68,7 +69,6 @@
       font_color = $text
       fade_on_empty = false
       fade_timeout = 1000
-      placeholder_text = <span foreground="##$textAlpha"><i>󰌾 Logged in as </i><span foreground="##$accentAlpha">$USER</span></span>
       hide_input = false
       rounding = -1
       check_color = $accent

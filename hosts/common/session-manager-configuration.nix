@@ -16,16 +16,16 @@
   };
 
   # LoginD config 
-  services.logind = {
-    powerKey = "hybrid-sleep";
-    rebootKey = "hybrid-sleep";
-    suspendKey = "hybrid-sleep";
-    hibernateKey = "hybrid-sleep";
-    lidSwitch = "hybrid-sleep";
-    lidSwitchExternalPower = "hybrid-sleep";
+  services.logind.settings.Login = {
+    HandlePowerKey = "hybrid-sleep";
+    HandleRebootKey = "hybrid-sleep";
+    HandleSuspendKey = "hybrid-sleep";
+    HandleHibernateKey = "hybrid-sleep";
+    HandleLidSwitch = "hybrid-sleep";
+    HandleLidSwitchExternalPower = "hybrid-sleep";
 
-    powerKeyLongPress = "hybrid-sleep";
-    rebootKeyLongPress = "hybrid-sleep";
-    suspendKeyLongPress = "hybrid-sleep";
+    HandlePowerKeyLongPress = "hybrid-sleep";
+    HandleRebootKeyLongPress = "hybrid-sleep";
+    HandleSuspendKeyLongPress = "hybrid-sleep";
   };
 }

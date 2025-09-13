@@ -7,6 +7,10 @@
 
     # Nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-aseprite-fix = {
+      url = "github:NixOS/nixpkgs/7b10b7951c1a7621289a9bae2e2a09368d7b99e3";
+      flake = false;
+    };
 
     # Home Manager
     home-manager = {
@@ -28,7 +32,10 @@
     catppuccin.url = "github:catppuccin/nix";
 
     # Stylix
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Spicetify
     spicetify-nix = {
@@ -106,6 +113,7 @@
 
           # Load hardware config
           inputs.nixos-hardware.nixosModules.lenovo-ideapad-s145-15api
+
 
           inputs.home-manager.nixosModules.home-manager
           {

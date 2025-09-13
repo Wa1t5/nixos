@@ -1,5 +1,5 @@
 { config, inputs, lib, ... }: {
-  imports = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+  imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
   programs.plasma = lib.mkIf config.de.enable.plasma {
     shortcuts = {
       "ActivityManager"."switch-to-activity-23d3e688-ca7e-4f48-afff-429cbea080f6" =

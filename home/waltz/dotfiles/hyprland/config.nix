@@ -54,10 +54,6 @@
     }
   }
 
-  gestures {
-    workspace_swipe = true
-  }
-
   # Plugins
   plugin {
     hyprwinwrap { class = kitty-bg }
@@ -81,7 +77,7 @@
     allow_tearing = false
 
     # Border colors
-    col.active_border = $accent $accent 45deg
+    #col.active_border = $accent $accent 45deg
   }
 
   # Decoration
@@ -124,9 +120,6 @@
       # Enable widnow swallowing
       enable_swallow = true
       swallow_regex = ^(kitty)$
-
-      # (buggy) try to reduce delay rendering before the monitor
-      render_ahead_of_time = false
   }
 
   # Animations
@@ -167,7 +160,7 @@
   bind = $MOD SHIFT CTRL, E, exit
 
   # Workspace overview
-  bind = $MOD, Tab, overview:toggle
+  #bind = $MOD, Tab, overview:toggle
 
   # Mpris
   bind =  , XF86AudioPlay, exec, $media_keys "play" play-pause
@@ -177,8 +170,8 @@
   bind = , XF86AudioPrev, exec, $media_keys "play" previous
 
   # Control screen brightness
-  binde = ,XF86MonBrightnessUp,   exec, $media_keys "bright" 10+
-  binde = ,XF86MonBrightnessDown, exec, $media_keys "bright" 10-
+  binde = ,XF86MonBrightnessUp,   exec, $media_keys "bright" 10%+
+  binde = ,XF86MonBrightnessDown, exec, $media_keys "bright" 10%-
 
   # Control screen temperature with hyprsunset
   binde = $MOD ,XF86MonBrightnessUp,   exec, $media_keys "temp" +100

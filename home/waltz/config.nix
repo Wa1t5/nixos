@@ -15,13 +15,13 @@
     };
 
     themes.catppuccin.enable = lib.mkOption {
-      default = true;
+      default = false;
       type = lib.types.bool;
       description = "Enable the catppuccin theme";
     };
 
     themes.stylix.enable = lib.mkOption {
-      default = false;
+      default = true;
       type = lib.types.bool;
       description = "Enable the stylix dynamic theme";
     };

@@ -16,10 +16,10 @@
     hyprland.enable = true;
     hyprlock.useDefaultConfig = false;
 
-    gtk.gnomeShellTheme = true;
-    gtk.enable = true;
+    #gtk.gnomeShellTheme = true;
+    #gtk.enable = true;
   };
 
-  gtk.enable = lib.mkIf config.themes.catppuccin.enable true;
-  gtk.catppuccin.enable = lib.mkIf config.themes.catppuccin.enable true;
+  #gtk.enable = lib.mkIf config.themes.catppuccin.enable true;
+  #gtk.catppuccin.enable = lib.mkIf config.themes.catppuccin.enable true;
 }

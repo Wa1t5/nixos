@@ -13,7 +13,7 @@
       corner-radius = 0;
       height = "100%";
       width = "100%";
-      font-size = 17;
+     # font-size = 17;
     };
   };
 }

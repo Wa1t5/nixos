@@ -1,6 +1,6 @@
 { inputs, lib, config, ... }:
 {
-  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
+  imports = [ inputs.nixvim.homeModules.nixvim ];
 
   # Neovim
   programs.neovim = {

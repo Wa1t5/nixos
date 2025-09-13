@@ -33,7 +33,7 @@
       + import ./config.nix;
 
     plugins = [
-      inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+      #inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
       #	    inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       #    inputs.hyprland-plugins-hyprgrass.packages.${pkgs.system}.default
       #    inputs.hyprland-plugins-hyprspace.packages.${pkgs.system}.default

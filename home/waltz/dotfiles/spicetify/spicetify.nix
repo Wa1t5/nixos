@@ -5,7 +5,7 @@ in {
 
   programs.spicetify = {
     enable = true;
-    theme = lib.mkForce spicePkgs.themes.defaultDynamic;
+    #theme = lib.mkForce spicePkgs.themes.defaultDynamic;
     enabledExtensions = with spicePkgs.extensions; [
       adblock
       groupSession

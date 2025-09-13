@@ -16,6 +16,9 @@
     polkit_gnome
     greetd.greetd
     greetd.tuigreet
+
+    # Bluetooth tui
+    bluetui
   ];
 
   # TODO: Remove this when obsidian decides to update their old electron version

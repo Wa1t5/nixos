@@ -163,10 +163,10 @@
       format-bluetooth = "{volume}% {icon}";
       format-icons = {
         car = "";
-        default = [ "" "" ];
+        default = [ "" " " ];
         hands-free = "";
-        headphone = "";
-        headset = "";
+        headphone = " ";
+        headset = " ";
         phone = "";
         portable = "";
       };

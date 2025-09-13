@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   imports = [
-    #../dotfiles/stylix/stylix.nix
+    ../dotfiles/stylix/stylix-hm.nix
     ../dotfiles/catppuccin/catppuccin.nix
   ];
 

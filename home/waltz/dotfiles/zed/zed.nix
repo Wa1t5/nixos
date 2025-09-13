@@ -1,6 +1,6 @@
 { lib, config, pkgs, ... }: {
   programs.zed-editor = {
-    enable = true;
+    enable = false;
 
     extensions = [ "c" "csharp" "zig" "nix" "dart" "catppuccin-blur" ];
     userSettings = {
