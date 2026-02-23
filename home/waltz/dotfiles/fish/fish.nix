@@ -4,6 +4,7 @@
     enable = true;
 
     shellAliases = {
+      ripgrep = "rg";
       ls = "lsd";
       cat = "bat";
       df = "dysk";
