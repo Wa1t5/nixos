@@ -16,6 +16,6 @@
 
     # Game dev
     unityhub
-    inputs.nixpkgs-aseprite-fix.legacyPackages.x86_64-linux.aseprite
+    aseprite
   ];
 }

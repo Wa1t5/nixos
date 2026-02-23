@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   # Set usrename and home dir
   home.username = "waltz";
   home.homeDirectory = "/home/waltz";
@@ -29,5 +30,5 @@
     PATH = "/home/waltz/.local/bin:$PATH";
   };
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "26.05";
 }

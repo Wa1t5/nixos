@@ -13,9 +13,9 @@
         with pkgs; [
 
           # Requirements for gamescope xwayland
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
+          libXcursor
+          libXi
+          libXinerama
           libpng
           libvorbis
           stdenv.cc.cc.lib

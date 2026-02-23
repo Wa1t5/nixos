@@ -2,73 +2,48 @@
   description = "General Waltz Config";
 
   inputs = {
-    # Nix Hardware
-    nixos-hardware = { url = "github:Wa1t5/nixos-hardware/master"; };
-
-    # Nixpkgs
+    nixos-hardware = {
+      url = "github:Wa1t5/nixos-hardware/master";
+    };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-aseprite-fix = {
       url = "github:NixOS/nixpkgs/7b10b7951c1a7621289a9bae2e2a09368d7b99e3";
       flake = false;
     };
-
-    # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Plasma Manager
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-
-    # Sops-nix
     sops-nix.url = "github:Mic92/sops-nix";
-
-    # Catpuccin
     catppuccin.url = "github:catppuccin/nix";
-
-    # Stylix
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Spicetify
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Nixvim
     nixvim.url = "github:nix-community/nixvim";
-
-    # An anime game launcher
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Zen Browser
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Hyprland
     hyprland.url = "github:HyprWM/Hyprland";
-
-    # Hyprspace
     Hyprspace = {
-      #url = "github:KZDKM/Hyprspace/33663be68a4b2f20e9c2f6a14f18cc1d8a60110f";
       url = "github:myamusashi/Hyprspace";
       inputs.hyprland.follows = "hyprland";
     };
-
-    # Walker
+    vicinae.url = "github:vicinaehq/vicinae";
     walker.url = "github:abenz1267/walker";
   };
 
@@ -87,53 +62,54 @@
     ];
   };
 
-  outputs = { nixpkgs, ... }@inputs: {
-    nixosConfigurations = {
-      # Emperor Host
-      "emperor" = nixpkgs.lib.nixosSystem {
+  outputs =
+    { nixpkgs, ... }@inputs:
+    {
+      nixosConfigurations = {
+        # Emperor Host
+        "emperor" = nixpkgs.lib.nixosSystem {
 
-        # System type
-        system = "x86_64-linux";
+          # System type
+          system = "x86_64-linux";
 
-        # Pass inputs as special args
-        specialArgs = { inherit inputs; };
+          # Pass inputs as special args
+          specialArgs = { inherit inputs; };
 
-        # Modules
-        modules = [
-          # Import sops-nix
-          inputs.sops-nix.nixosModules.sops
+          # Modules
+          modules = [
+            # Import sops-nix
+            inputs.sops-nix.nixosModules.sops
 
-          # Import config.nix
-          ./hosts/emperor/configuration.nix
+            # Import config.nix
+            ./hosts/emperor/configuration.nix
 
-          # Softwares that need to be defined in
-          # configuration.nix but I removed
-          # for modularity
-          ./home/waltz/extra-software.nix
+            # Softwares that need to be defined in
+            # configuration.nix but I removed
+            # for modularity
+            ./home/waltz/extra-software.nix
 
-          # Load hardware config
-          inputs.nixos-hardware.nixosModules.lenovo-ideapad-s145-15api
+            # Load hardware config
+            inputs.nixos-hardware.nixosModules.lenovo-ideapad-s145-15api
 
+            inputs.home-manager.nixosModules.home-manager
+            {
+              nixpkgs.overlays = [
+                #inputs.moonlight.overlays.default
+                #inputs.emacs-overlay.overlays.default
+              ];
 
-          inputs.home-manager.nixosModules.home-manager
-          {
-            nixpkgs.overlays = [
-              #inputs.moonlight.overlays.default
-              #inputs.emacs-overlay.overlays.default
-            ];
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "bkp";
 
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "bkp";
+              # Import waltz's config
+              home-manager.users.waltz = import ./home/waltz/home.nix;
 
-            # Import waltz's config
-            home-manager.users.waltz = import ./home/waltz/home.nix;
-
-            # Pass flakes to home-manager files
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
-        ];
+              # Pass flakes to home-manager files
+              home-manager.extraSpecialArgs = { inherit inputs; };
+            }
+          ];
+        };
       };
     };
-  };
 }

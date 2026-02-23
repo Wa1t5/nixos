@@ -1,4 +1,10 @@
-{ lib, config, pkgs, inputs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   stylix = lib.mkIf config.themes.stylix.enable {
     enable = true;
@@ -10,7 +16,8 @@
     opacity.popups = 0.8;
     opacity.terminal = 0.7;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-terminal-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    #base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-terminal-dark.yaml";
 
     cursor = {
       package = pkgs.catppuccin-cursors.mochaMauve;
@@ -20,20 +27,20 @@
 
     fonts = {
       monospace = {
-        package = pkgs.noto-fonts;
-        name = "Noto Sans Mono";
+        package = pkgs.jetbrains-mono;
+        name = "JetBrains Mono";
       };
       sansSerif = {
-        package = pkgs.noto-fonts;
-        name = "Noto Serif";
+        package = pkgs.inter;
+        name = "Inter";
       };
       serif = {
-        package = pkgs.noto-fonts;
-        name = "Noto Serif";
+        package = pkgs.source-serif-pro;
+        name = "Souce Serif Pro";
       };
       emoji = {
-        package = pkgs.noto-fonts;
-        name = "Noto Emoji";
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
       };
     };
   };

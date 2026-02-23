@@ -21,12 +21,13 @@
   };
 
   nix = {
-    # Use Latest nix package
-    #package = pkgs.nixVersions.nix_2_23;
-
     # Nix-store optimiser
     optimise = {
-      dates = [ "19:00" "00:00" "13:00" ];
+      dates = [
+        "19:00"
+        "00:00"
+        "13:00"
+      ];
       automatic = false;
     };
 
@@ -38,8 +39,8 @@
     };
 
     # Avoid system slowdowns by lowering nix-daemon priority
-    daemonIOSchedClass = "idle";
-    daemonCPUSchedPolicy = "idle";
+    #daemonIOSchedClass = "idle";
+    #daemonCPUSchedPolicy = "idle";
   };
 
   # Set your time zone.
@@ -72,5 +73,5 @@
   };
 
   # Base system version
-  system.stateVersion = "25.05";
+  system.stateVersion = "26.05";
 }

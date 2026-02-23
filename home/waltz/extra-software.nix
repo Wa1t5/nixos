@@ -94,7 +94,7 @@
     enable = true;
     settings = {
       initial_session = {
-        command = "Hyprland";
+        command = "start-hyprland";
         user = "waltz";
       };
       default_session = {

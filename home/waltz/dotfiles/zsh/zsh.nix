@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   programs.zsh = {
-    enable = true;
+    enable = false;
 
     plugins = [
       {
@@ -21,6 +21,7 @@
       eval "$(direnv hook zsh)"
 
       # Aliases
+      alias rg="ripgrep"
       alias ls="lsd"
       alias cat="bat"
       alias df="dysk"

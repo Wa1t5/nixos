@@ -58,7 +58,7 @@
   services.resolved.enable = lib.mkForce true;
 
   # DNSCrypt
-  services.dnscrypt-proxy2 = {
+  services.dnscrypt-proxy = {
     enable = false;
     settings = {
       # Use ipv6

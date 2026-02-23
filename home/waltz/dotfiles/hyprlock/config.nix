@@ -57,6 +57,7 @@
 
     input-field {
       monitor =
+      font_color = $accent
       size = 200, 30
       outline_thickness = 3
       inner_color = rgba(17, 17, 17, 1.0)
@@ -80,7 +81,6 @@
       bothlock_color = -1
       invert_numlock = false
       swap_font_color = false
-
       position = 0, -50
       halign = center
       valign = center

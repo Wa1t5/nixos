@@ -1,8 +1,5 @@
 { pkgs, ... }:
 {
-  #programs.git-credential-oauth = {
-  #  enable = true;
-  #};
   home.packages = with pkgs; [
     git
     git-credential-manager
@@ -10,12 +7,14 @@
 
   programs.git = {
     enable = true;
-    userName = "waltz";
-    userEmail = "79410846+Wa1t5@users.noreply.github.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "waltz";
+        email = "79410846+Wa1t5@users.noreply.github.com";
+      };
       credential = {
-	helper = "manager";
-	credentialStore = "cache";
+        helper = "manager";
+        credentialStore = "cache";
       };
     };
   };

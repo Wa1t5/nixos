@@ -52,6 +52,7 @@
   #cpu,
   #pulseaudio,
   #backlight,
+  #network
   #idle_inhibitor {
     margin-top: 4px;
     margin-left: 4px;

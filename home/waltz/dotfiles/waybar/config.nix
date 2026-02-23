@@ -10,15 +10,40 @@
     spacing = 4; # Gaps between modules (4px)
 
     # Modules left
-    modules-left = [ "clock" "battery" "idle_inhibitor" "hyprland/workspaces" ];
+    modules-left = [
+      "clock"
+      "battery"
+      "idle_inhibitor"
+      "hyprland/workspaces"
+    ];
 
     # Modules center
     modules-center = [ "mpris" ];
 
     # Modules right
-    modules-right = [ "tray" "pulseaudio" "backlight" "cpu" "temperature" ];
+    modules-right = [
+      "tray"
+      "network"
+      "pulseaudio"
+      "backlight"
+      "cpu"
+      "temperature"
+    ];
 
     # MODULES CONFIG
+
+    "network" = {
+      interface = "wlan0";
+      format = "{ifname}";
+      format-wifi = "({signalStrength}%)  ";
+      format-ethernet = "{ipaddur}/{cidr} 󰊗 ";
+      format-disconnected = "";
+      tooltip-format = "{ifname} via {gwaddr} 󰊗 ";
+      tooltip-format-wifi = "{essid} ({signalStrength}%)  ";
+      tooltip-format-ethernet = "{ifname}  ";
+      tooltip-format-disconnected = "Disconnected";
+      max-length = 50;
+    };
 
     # Clock
     "clock" = {
@@ -55,7 +80,13 @@
         critical = 15;
       };
       format = "{capacity}% {icon}";
-      format-icons = [ " " " " " " " " " " ];
+      format-icons = [
+        " "
+        " "
+        " "
+        " "
+        " "
+      ];
       max-length = 25;
     };
 
@@ -133,7 +164,16 @@
       monstercat = false;
       waves = false;
       input_delay = 4;
-      format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+      format-icons = [
+        "▁"
+        "▂"
+        "▃"
+        "▄"
+        "▅"
+        "▆"
+        "▇"
+        "█"
+      ];
     };
 
     "mpris" = {
@@ -153,7 +193,16 @@
 
     "cpu" = {
       format = "{usage}% {icon}";
-      format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+      format-icons = [
+        "▁"
+        "▂"
+        "▃"
+        "▄"
+        "▅"
+        "▆"
+        "▇"
+        "█"
+      ];
       interval = 10;
       max-length = 10;
     };
@@ -163,7 +212,10 @@
       format-bluetooth = "{volume}% {icon}";
       format-icons = {
         car = "";
-        default = [ "" " " ];
+        default = [
+          ""
+          " "
+        ];
         hands-free = "";
         headphone = " ";
         headset = " ";
@@ -178,7 +230,10 @@
 
     "backlight" = {
       format = "{percent}% {icon}";
-      format-icons = [ "" "" ];
+      format-icons = [
+        ""
+        ""
+      ];
     };
 
     "tray" = {

@@ -14,8 +14,8 @@
     nano # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     polkit_gnome
-    greetd.greetd
-    greetd.tuigreet
+    greetd
+    tuigreet
 
     # Bluetooth tui
     bluetui
@@ -28,8 +28,8 @@
   #];
 
   # Enable zsh shell
-  programs.zsh.enable = true;
-
+  #programs.zsh.enable = true;
+  programs.fish.enable = true;
   # Virt
   #virtualisation = {
   # Podman

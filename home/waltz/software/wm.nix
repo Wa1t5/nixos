@@ -1,10 +1,12 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
   imports = [
     ../dotfiles/hyprland/hyprland.nix
     ../dotfiles/ime/ime.nix
     ../dotfiles/fontconfig/fontconfig.nix
     #../dotfiles/mako/mako.nix
     ../dotfiles/hyprlock/hyprlock.nix
+    ../dotfiles/vicinae/vicinae.nix
     ../dotfiles/waybar/waybar.nix
     ../dotfiles/rofi/rofi.nix
     ../dotfiles/tofi/tofi.nix

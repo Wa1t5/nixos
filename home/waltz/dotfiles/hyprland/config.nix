@@ -13,9 +13,10 @@
   $MOD = SUPER
 
   # Applications
-  $term = foot
+  $term = ghostty 
   #$launcher = rofi -show drun
-  $launcher = tofi-drun
+  $launcher-dmenu = rofi -dmenu -p
+  $launcher = vicinae toggle
 
   # Scripts
   $random_wallpaper = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/random_wallpaper.sh
@@ -28,7 +29,7 @@
 
   # Predefined commands
   $notify-low = dunstify -u low -t 600
-  $get-workspace-name = hyprctl workspaces | awk '/workspace ID -[0-9]+ \(special:/ {print $4}' | sed 's/[()]//g' | sed 's/special://' | rofi -dmenu -p "special workspace"
+  $get-workspace-name = hyprctl workspaces | awk '/workspace ID -[0-9]+ \(special:/ {print $4}' | sed 's/[()]//g' | sed 's/special://' | $launcher-dmenu "special workspace"
 
   # Start
   exec-once = swww-daemon --format xrgb &
@@ -37,7 +38,6 @@
   exec-once = sleep 30 && hyprctl hyprsunset temperature $(cat ~/.config/hypr/screen-temperature)
 
   # Monitor
-  #monitor=eDP-1,1366x768@60.06,0x0,1.0,bitdepth,10
   monitor= , highres, auto, 1
 
   # Input
@@ -53,6 +53,13 @@
       natural_scroll = true
       middle_button_emulation = true
     }
+  }
+
+  # Touchpad gestures
+  gestures {
+    workspace_swipe_invert = false
+    workspace_swipe_distance = 700
+    gesture= 3, horizontal, workspace
   }
 
   # Plugins
@@ -105,11 +112,12 @@
   }
 
   # Blur layers
-  layerrule = blur,waybar
-  layerrule = blur,launcher
+  layerrule = blur on, match:namespace waybar
+  layerrule = blur on, match:namespace launcher
+  layerrule = blur on, match:namespace vicinae
 
   misc {
-      # Enable vfr (lower refresh rate when nothing is hapenning on the screen)
+      # Enable vfr 
       vfr = true
 
       # Adptative sync
@@ -121,6 +129,11 @@
       # Enable widnow swallowing
       enable_swallow = true
       swallow_regex = ^(kitty)$
+      swallow_regex = ^(foot)$
+      swallow_regex = ^(alacritty)$
+
+      # Avoid getting locked out if lockscreen app crashed
+      allow_session_lock_restore = true;
   }
 
   # Animations
@@ -178,8 +191,8 @@
   binde = ,XF86MonBrightnessDown, exec, $media_keys "bright" 10%-
 
   # Control screen temperature with hyprsunset
-  binde = $MOD ,XF86MonBrightnessUp,   exec, $media_keys "temp" +100
-  binde = $MOD ,XF86MonBrightnessDown, exec, $media_keys "temp" -100
+  binde = $MOD ,XF86MonBrightnessUp,   exec, $media_keys "temp" +1000
+  binde = $MOD ,XF86MonBrightnessDown, exec, $media_keys "temp" -1000
 
   # Volume
   binde = ,XF86AudioRaiseVolume, exec, $media_keys "vol" @DEFAULT_AUDIO_SINK@ 0.05+
@@ -269,15 +282,26 @@
   bindm = $MOD, mouse:273, resizewindow
 
   # Window rules to allow selector classes to be floating
-  windowrulev2 = float, class:^(selector)$
-  windowrulev2 = pin, class:^(selector)$
-  windowrulev2 = size 50% 50%, class:^(selector)$
-  windowrulev2 = center 1, class:^(selector)$
+  windowrule {
+    name = "Adjust terminal for selector like dialogue"
+    match:class = ^(selector)$
+    float = true
+    pin = true 
+    size = 50% 50%
+    center = true
+  }
 
   # Disable xray on terminal windows
   # This probably have some performance impact
   # Only use this while using hyprwinwrap
-  # windowrulev2 = xray 0, class:^(kitty)$
+  # windowrule = xray 0, class:^(kitty)$
+
+  # Render
+  render {
+    new_render_scheduling = true
+    direct_scanout = 2
+    
+  }
 
   debug {
     damage_tracking = 2
