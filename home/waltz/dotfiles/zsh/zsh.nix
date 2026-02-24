@@ -1,7 +1,10 @@
 { pkgs, ... }:
 {
   programs.zsh = {
-    enable = false;
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
 
     plugins = [
       {
@@ -11,8 +14,9 @@
       }
     ];
     oh-my-zsh = {
-      enable = true;
+      enable = false;
     };
+
     initContent = ''
       # Load p10k config
       source ~/.p10k.zsh
@@ -20,8 +24,10 @@
       # Allow direnv
       eval "$(direnv hook zsh)"
 
+      # Enable interactive menu for completions
+      zstyle ':completion:*' menu select
+
       # Aliases
-      alias rg="ripgrep"
       alias ls="lsd"
       alias cat="bat"
       alias df="dysk"

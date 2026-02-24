@@ -28,8 +28,9 @@
   #];
 
   # Enable zsh shell
-  #programs.zsh.enable = true;
-  programs.fish.enable = true;
+  programs.zsh.enable = true;
+  #programs.fish.enable = true;
+
   # Virt
   #virtualisation = {
   # Podman

@@ -1,7 +1,7 @@
 { ... }:
 {
   programs.fish = {
-    enable = true;
+    enable = false;
 
     shellAliases = {
       ripgrep = "rg";
