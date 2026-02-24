@@ -1,7 +1,7 @@
 { ... }:
 {
   programs.gamemode = {
-    enable = true;
+    enable = false;
     enableRenice = true;
     settings = {
       general = {

@@ -82,7 +82,7 @@
     layout = dwindle
 
     # Allow tearing
-    allow_tearing = false
+    allow_tearing = true
 
     # Border colors
     #col.active_border = $accent $accent 45deg
@@ -291,6 +291,21 @@
     center = true
   }
 
+  # Set steam games as games to enable direct_scanout
+  windowrule {
+    name = "Direct scanout for steam games"
+    match:initial_class = ^(steam_app_.*)$
+    content = game
+    immediate = true
+    no_anim = true
+    no_blur = true
+    no_dim = true
+    decorate = false
+    idle_inhibit = focus
+    fullscreen_state = 3 3
+    fullscreen = true
+  }
+
   # Disable xray on terminal windows
   # This probably have some performance impact
   # Only use this while using hyprwinwrap
@@ -300,7 +315,6 @@
   render {
     new_render_scheduling = true
     direct_scanout = 2
-    
   }
 
   debug {

@@ -7,12 +7,6 @@
 {
   imports = [ inputs.nixvim.homeModules.nixvim ];
 
-  # Neovim
-  programs.neovim = {
-    enable = false;
-    defaultEditor = true;
-  };
-
   # Nixvim
   programs.nixvim = {
     enable = true;
@@ -47,6 +41,7 @@
       number = true;
       relativenumber = true;
       shiftwidth = 2;
+      wrap = false;
     };
   };
 }
