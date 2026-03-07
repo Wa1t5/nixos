@@ -6,7 +6,7 @@
 
     # Size
     height = 1; # Waybar height (to be removed for auto height)
-    width = 1366; # Waybar width
+    #width = 1366; # Waybar width
     spacing = 4; # Gaps between modules (4px)
 
     # Modules left

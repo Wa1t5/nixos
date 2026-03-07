@@ -22,8 +22,8 @@
   $random_wallpaper = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/random_wallpaper.sh
   $update_colorscheme = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/update_colorscheme.sh
   $music_status = /etc/nixos/home/waltz/dotfiles/ncmpcpp/scripts/song_info.sh
-  #$wallpaper_picker = $(kitty --detach --class=selector yazi ~/img/wallpapers)
-  $wallpaper_picker = $(foot --app-id=selector yazi ~/img/wallpapers)
+  $wallpaper_picker = $(kitty --detach --class=selector yazi ~/img/wallpapers)
+  #$wallpaper_picker = $(foot --app-id=selector yazi ~/img/wallpapers)
   $clipboard_history = $(foot --app-id=selector clipse)
   $media_keys = /etc/nixos/home/waltz/dotfiles/hyprland/scripts/media_keys.sh
 
@@ -37,8 +37,37 @@
   exec-once = syshud &
   exec-once = sleep 30 && hyprctl hyprsunset temperature $(cat ~/.config/hypr/screen-temperature)
 
+  # Move workspace 1 to HDMI monitor
+  exec-once = hyprctl dispatch workspace 1
+  exec-once = hyprctl moveworkspacetomonitor 1 HDMI-A-1
+
+
   # Monitor
-  monitor= , highres, auto, 1
+  monitorv2 {
+    output = HDMI-A-1
+    mode = 1920x1080@120
+    position = 0x0
+    scale = 1
+  }
+
+  monitorv2 {
+    output = eDP-1
+    mode = 1366x768@60
+    position = 1920x0
+    scale = 1
+  }
+
+  # Workspaces
+  workspace = 0, monitor:eDP-1
+  workspace = 1, monitor:HDMI-A-1
+  workspace = 2, monitor:HDMI-A-1
+  workspace = 3, monitor:HDMI-A-1
+  workspace = 4, monitor:HDMI-A-1
+  workspace = 5, monitor:HDMI-A-1
+  workspace = 6, monitor:eDP-1
+  workspace = 7, monitor:eDP-1
+  workspace = 8, monitor:eDP-1
+  workspace = 9, monitor:eDP-1
 
   # Input
   input {
@@ -120,8 +149,8 @@
       # Enable vfr 
       vfr = true
 
-      # Adptative sync
-      vrr = 1
+      # Variable refresh rate
+      #vrr = 1
 
       # Animate window resizing
       animate_manual_resizes = true
