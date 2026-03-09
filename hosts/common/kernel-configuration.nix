@@ -7,7 +7,14 @@
   # boot.kernelPackages = pkgs.linuxPackages-rt_latest;
 
   # Kernel modules available on initramfs
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "cryptd" "aesni_intel" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "usb_storage"
+    "sd_mod"
+    "cryptd"
+    "aesni_intel"
+  ];
 
   # Kernel modules to force load on initramfs
   boot.initrd.kernelModules = [ ];
@@ -21,7 +28,7 @@
   # Enable ZRam
   zramSwap = {
     enable = true;
-    algorithm = "lzo-rle";
-    priority = 10;
+    algorithm = "zstd";
+    priority = 100;
   };
 }

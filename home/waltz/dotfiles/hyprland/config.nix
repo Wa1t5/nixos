@@ -39,8 +39,8 @@
 
   # Move workspace 1 to HDMI monitor
   exec-once = hyprctl dispatch workspace 1
-  exec-once = hyprctl moveworkspacetomonitor 1 HDMI-A-1
-
+  exec-once = hyprctl dispatch moveworkspacetomonitor 1 HDMI-A-1
+  exec-once = $term
 
   # Monitor
   monitorv2 {
