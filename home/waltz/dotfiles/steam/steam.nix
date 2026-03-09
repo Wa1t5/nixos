@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   # Steam
   programs.steam = lib.mkIf config.gaming.enable {
@@ -9,8 +14,8 @@
       proton-ge-bin
     ];
     package = pkgs.steam.override {
-      extraPkgs = pkgs:
-        with pkgs; [
+      extraPkgs =
+        pkgs: with pkgs; [
 
           # Requirements for gamescope xwayland
           libXcursor
@@ -24,6 +29,9 @@
 
           # Mangohud
           mangohud
+
+          # lsfg-vk
+          lsfg-vk
 
           # Usage 'gamescope -f -- %command% & sleep 2 && renice -n -11 -p $(pgrep gamescope)'
           (writeShellScriptBin "launch-gamescope" ''
