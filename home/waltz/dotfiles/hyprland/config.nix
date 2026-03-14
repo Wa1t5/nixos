@@ -13,7 +13,7 @@
   $MOD = SUPER
 
   # Applications
-  $term = ghostty 
+  $term = kitty 
   #$launcher = rofi -show drun
   $launcher-dmenu = rofi -dmenu -p
   $launcher = vicinae toggle
@@ -38,9 +38,7 @@
   exec-once = sleep 30 && hyprctl hyprsunset temperature $(cat ~/.config/hypr/screen-temperature)
 
   # Move workspace 1 to HDMI monitor
-  exec-once = hyprctl dispatch workspace 1
-  exec-once = hyprctl dispatch moveworkspacetomonitor 1 HDMI-A-1
-  exec-once = $term
+  exec-once = sleep 10 && hyprctl dispatch workspace 1 && hyprctl dispatch moveworkspacetomonitor 1 HDMI-A-1 && $term
 
   # Monitor
   monitorv2 {
@@ -48,6 +46,9 @@
     mode = 1920x1080@120
     position = 0x0
     scale = 1
+    supports_wide_color = 0
+    bitdepth = 8;
+    supports_hdr = -1
   }
 
   monitorv2 {
@@ -144,26 +145,6 @@
   layerrule = blur on, match:namespace waybar
   layerrule = blur on, match:namespace launcher
   layerrule = blur on, match:namespace vicinae
-
-  misc {
-      # Enable vfr 
-      vfr = true
-
-      # Variable refresh rate
-      #vrr = 1
-
-      # Animate window resizing
-      animate_manual_resizes = true
-
-      # Enable widnow swallowing
-      enable_swallow = true
-      swallow_regex = ^(kitty)$
-      swallow_regex = ^(foot)$
-      swallow_regex = ^(alacritty)$
-
-      # Avoid getting locked out if lockscreen app crashed
-      allow_session_lock_restore = true;
-  }
 
   # Animations
   animations {
@@ -325,14 +306,15 @@
     name = "Direct scanout for steam games"
     match:initial_class = ^(steam_app_.*)$
     content = game
-    immediate = true
+    immediate = yes
     no_anim = true
     no_blur = true
     no_dim = true
     decorate = false
     idle_inhibit = focus
-    fullscreen_state = 3 3
+    fullscreen_state = 2
     fullscreen = true
+    render_unfocused = false
   }
 
   # Disable xray on terminal windows
@@ -342,8 +324,8 @@
 
   # Render
   render {
-    new_render_scheduling = true
-    direct_scanout = 2
+    new_render_scheduling = false
+    direct_scanout = 2 # disable rn because of glitches
   }
 
   debug {
@@ -351,7 +333,27 @@
   }
 
   misc {
-    force_default_wallpaper = 0
-    animate_manual_resizes = true
+      # Enable vfr 
+      vfr = true
+
+      # Variable refresh rate
+      vrr = 0
+
+      # Animate window resizing
+      animate_manual_resizes = true
+
+      # Enable widnow swallowing
+      enable_swallow = true
+      swallow_regex = ^(kitty)$
+      swallow_regex = ^(foot)$
+      swallow_regex = ^(alacritty)$
+
+      # Avoid getting locked out if lockscreen app crashed
+      allow_session_lock_restore = true
+    
+      force_default_wallpaper = 0
+      animate_manual_resizes = true
+      mouse_move_enables_dpms = true
+      key_press_enables_dpms = true
   }
 ''

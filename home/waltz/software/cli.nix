@@ -13,7 +13,7 @@
     ../dotfiles/zsh/zsh.nix
     ../dotfiles/fish/fish.nix
     ../dotfiles/starship/starship.nix
-    ../dotfiles/ghostty/ghostty.nix
+    #../dotfiles/ghostty/ghostty.nix
     #../dotfiles/ncmpcpp/ncmpcpp.nix
 
   ];

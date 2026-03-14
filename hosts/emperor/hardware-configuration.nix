@@ -28,6 +28,13 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/5b046255-b72a-4601-990e-f6778e29a0dc";
     fsType = "ext4";
+    options = [
+      "noatime"
+      "nobarrier"
+      "commit=30"
+      "journal_async_commit"
+      "data=writeback"
+    ];
   };
 
   fileSystems."/boot" = {
