@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   home.packages = with pkgs; [
     dotnet-sdk_9
     mono
@@ -11,8 +12,8 @@
       "unity" = {
         extensions = with pkgs.vscode-extensions; [
           ms-dotnettools.csharp
-	  ms-dotnettools.vscode-dotnet-runtime
-	  ms-dotnettools.csdevkit
+          ms-dotnettools.vscode-dotnet-runtime
+          ms-dotnettools.csdevkit
           visualstudiotoolsforunity.vstuc
         ];
       };

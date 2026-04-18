@@ -18,6 +18,7 @@
       "networkmanager"
       "libvirtd"
       "gamemode"
+      "hermes"
     ];
     shell = pkgs.zsh;
   };

@@ -1,4 +1,10 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
   imports = [
     ../dotfiles/hypridle/hypridle.nix
     ../dotfiles/mako/mako.nix
@@ -13,10 +19,14 @@
     };
 
     # PSD (Profile Sync Daemon)
-    psd = { enable = true; };
+    psd = {
+      enable = false;
+    };
 
     # Syncthing
-    syncthing = { enable = true; };
+    syncthing = {
+      enable = true;
+    };
 
     # Dunst
     dunst = lib.mkIf config.wm.enable {
@@ -35,18 +45,26 @@
     # Mpd
     mpd = {
       enable = false;
-      network = { startWhenNeeded = true; };
+      network = {
+        startWhenNeeded = true;
+      };
       extraConfig = import ./dotfiles/mpd/config.nix;
       playlistDirectory = "/home/waltz/music/Playlists";
     };
 
     # Mpd mpris
-    mpd-mpris = { enable = false; };
+    mpd-mpris = {
+      enable = false;
+    };
 
     # Playerctld
-    playerctld = { enable = lib.mkIf config.wm.enable true; };
+    playerctld = {
+      enable = lib.mkIf config.wm.enable true;
+    };
 
     # Easyeffects
-    easyeffects = { enable = true; };
+    easyeffects = {
+      enable = false;
+    };
   };
 }

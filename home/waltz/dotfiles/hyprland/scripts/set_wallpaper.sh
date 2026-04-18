@@ -9,13 +9,13 @@
 pkill -9 yazi &
 
 # Edit below to control the images transition
-export SWWW_TRANSITION_FPS=60
-export SWWW_TRANSITION=grow
-export SWWW_TRANSITION_POS=top-left
-export SWWW_TRANSITION_STEP=255
-export SWWW_TRANSITION_DURATION=10
+export AWWW_TRANSITION_FPS=60
+export AWWW_TRANSITION=grow
+export AWWW_TRANSITION_POS=top-left
+export AWWW_TRANSITION_STEP=255
+export AWWW_TRANSITION_DURATION=10
 
-swww img $@ &
+awww img $@ &
 
 #cp $@ /etc/nixos/home/waltz/stylix/
 

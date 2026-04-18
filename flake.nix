@@ -46,6 +46,7 @@
     vicinae.url = "github:vicinaehq/vicinae";
     walker.url = "github:abenz1267/walker";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+    hermes-agent.url = "github:NousResearch/hermes-agent";
   };
 
   nixConfig = {

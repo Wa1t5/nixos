@@ -2,6 +2,7 @@
 {
   services.ollama = {
     enable = true;
-    package = pkgs.ollama-vulkan;
+    openFirewall = true;
+    package = pkgs.ollama-rocm;
   };
 }

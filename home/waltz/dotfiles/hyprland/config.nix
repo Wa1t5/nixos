@@ -32,7 +32,7 @@
   $get-workspace-name = hyprctl workspaces | awk '/workspace ID -[0-9]+ \(special:/ {print $4}' | sed 's/[()]//g' | sed 's/special://' | $launcher-dmenu "special workspace"
 
   # Start
-  exec-once = swww-daemon --format xrgb &
+  exec-once = awww-daemon --format xrgb &
   exec-once = hyprlock &
   exec-once = syshud &
   exec-once = sleep 30 && hyprctl hyprsunset temperature $(cat ~/.config/hypr/screen-temperature)
@@ -314,7 +314,7 @@
     idle_inhibit = focus
     fullscreen_state = 2
     fullscreen = true
-    render_unfocused = false
+    render_unfocused = true
   }
 
   # Disable xray on terminal windows

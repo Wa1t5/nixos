@@ -26,7 +26,7 @@
     slurp
     grim
     waybar
-    swww
+    awww
     syshud
 
     # Media

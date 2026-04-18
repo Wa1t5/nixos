@@ -1,11 +1,12 @@
 { ... }:
 {
   imports = [
-    ./navidrome.nix
-    ./lidarr.nix
-    ./slskd.nix
-    ./transmission.nix
-    ./i2pd.nix
-    ./ollama.nix
+    #./navidrome.nix
+    #./lidarr.nix
+    #./slskd.nix
+    #./transmission.nix
+    #./i2pd.nix
+    #./ollama.nix
+    #./hermes-agent.nix
   ];
 }

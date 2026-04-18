@@ -1,4 +1,5 @@
-{ pkgs, inputs,  ... }: {
+{ pkgs, inputs, ... }:
+{
   imports = [
     ../dotfiles/emacs/emacs.nix
     ../dotfiles/zed/zed.nix
@@ -15,7 +16,7 @@
     anki
 
     # Game dev
-    unityhub
+    #unityhub
     aseprite
   ];
 }
