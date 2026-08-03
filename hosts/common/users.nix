@@ -1,8 +1,7 @@
-{
-  pkgs,
-  sops,
-  config,
-  ...
+{ pkgs
+, sops
+, config
+, ...
 }:
 {
   # Create waltz user account

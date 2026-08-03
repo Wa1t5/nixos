@@ -3,7 +3,7 @@
 
     image {
       monitor =
-      path = /home/waltz/.config/hypr/pfp
+      path = /home/waltz/.osConfig/hypr/pfp
       size = 150
       rounding = 100
       border_size = 1

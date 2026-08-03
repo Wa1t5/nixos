@@ -1,10 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, lib, osConfig, ... }:
 {
-
-  home.packages = with pkgs; [
-    osu-lazer-bin
-    prismlauncher
-    lsfg-vk
-    lsfg-vk-ui
-  ];
+  config = lib.mkIf (!osConfig.headless.enable) {
+    home.packages = with pkgs; [
+      osu-lazer-bin
+      prismlauncher
+      lsfg-vk
+      lsfg-vk-ui
+    ];
+  };
 }

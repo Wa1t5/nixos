@@ -1,10 +1,10 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, osConfig, ... }:
 {
   imports = [
     ../dotfiles/hyprland/hyprland.nix
     ../dotfiles/ime/ime.nix
     ../dotfiles/fontconfig/fontconfig.nix
-    #../dotfiles/mako/mako.nix
+    ../dotfiles/mako/mako.nix
     ../dotfiles/hyprlock/hyprlock.nix
     ../dotfiles/vicinae/vicinae.nix
     ../dotfiles/waybar/waybar.nix
@@ -14,28 +14,30 @@
     ../dotfiles/walker/walker.nix
   ];
 
-  home.packages = with pkgs; [
-    # XDG tools
-    libnotify
-    xdg-utils
+  config = lib.mkIf (!osConfig.headless.enable) {
+    home.packages = with pkgs; [
+      # XDG tools
+      libnotify
+      xdg-utils
 
-    # Provide some DE functionalities
-    hyprsunset
-    brightnessctl
-    wl-clipboard
-    slurp
-    grim
-    waybar
-    awww
-    syshud
+      # Provide some DE functionalities
+      hyprsunset
+      brightnessctl
+      wl-clipboard
+      slurp
+      grim
+      waybar
+      awww
+      syshud
 
-    # Media
-    playerctl
+      # Media
+      playerctl
 
-    # File Manager
-    pcmanfm
+      # File Manager
+      pcmanfm
 
-    # Image viewer
-    imv
-  ];
+      # Image viewer
+      imv
+    ];
+  };
 }

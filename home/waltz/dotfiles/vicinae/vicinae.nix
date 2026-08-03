@@ -1,7 +1,7 @@
-{ ... }:
+{ lib, osConfig, ... }:
 {
   programs.vicinae = {
-    enable = true;
+    enable = lib.mkIf (!osConfig.headless.enable) true;
     systemd = {
       enable = true;
       autoStart = true;

@@ -9,8 +9,7 @@
   ];
 
   # Add vscode to path (so unity detect it)
-  environment.etc."/usr/bin/code".source = "${pkgs.vscode}/bin/code";
-
+  environment.etc."/usr/bin/code".source = if (!config.headless.enable) then "${pkgs.vscode}/bin/code" else "/";
 
   # Gnome keyring
   services.gnome.gnome-keyring = lib.mkIf config.wm.enable {

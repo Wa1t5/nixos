@@ -1,7 +1,7 @@
-{ lib, config, ... }: {
+{ lib, osConfig, ... }: {
   # reenable this after catppuccin-nix updates 
-  catppuccin.mako.enable = false;
-  services.mako = lib.mkIf config.wm.enable {
+  #catppuccin.mako.enable = false;
+  services.mako = lib.mkIf osConfig.wm.enable {
     enable = true;
     settings = {
       anchor = "top-right";

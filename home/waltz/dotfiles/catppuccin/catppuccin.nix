@@ -1,6 +1,6 @@
-{ lib, inputs, config, ... }: {
+{ lib, inputs, osConfig, ... }: {
   imports = [ inputs.catppuccin.homeModules.catppuccin ];
-  catppuccin = lib.mkIf config.themes.catppuccin.enable {
+  catppuccin = lib.mkIf osConfig.themes.catppuccin.enable {
     enable = true;
     accent = "mauve";
     flavor = "mocha";
@@ -20,6 +20,6 @@
     #gtk.enable = true;
   };
 
-  #gtk.enable = lib.mkIf config.themes.catppuccin.enable true;
-  #gtk.catppuccin.enable = lib.mkIf config.themes.catppuccin.enable true;
+  #gtk.enable = lib.mkIf osConfig.themes.catppuccin.enable true;
+  #gtk.catppuccin.enable = lib.mkIf osConfig.themes.catppuccin.enable true;
 }

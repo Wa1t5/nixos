@@ -35,7 +35,7 @@
   exec-once = awww-daemon --format xrgb &
   exec-once = hyprlock &
   exec-once = syshud &
-  exec-once = sleep 30 && hyprctl hyprsunset temperature $(cat ~/.config/hypr/screen-temperature)
+  exec-once = sleep 30 && hyprctl hyprsunset temperature $(cat ~/.osConfig/hypr/screen-temperature)
 
   # Move workspace 1 to HDMI monitor
   exec-once = sleep 10 && hyprctl dispatch workspace 1 && hyprctl dispatch moveworkspacetomonitor 1 HDMI-A-1 && $term

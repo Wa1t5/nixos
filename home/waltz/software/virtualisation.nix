@@ -1,7 +1,10 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs;
-    [
-      # Virtualisation
-      gnome-boxes
-    ];
+{ pkgs, lib, osConfig, ... }: {
+
+  config = lib.mkIf (!osConfig.headless.enable) {
+    home.packages = with pkgs;
+      [
+        # Virtualisation
+        gnome-boxes
+      ];
+  };
 }

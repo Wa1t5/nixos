@@ -1,13 +1,8 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, osConfig, ... }:
 {
-  home.packages = with pkgs; [
-    dotnet-sdk_9
-    mono
-  ];
 
   programs.vscode = {
-    enable = true;
-
+    enable = lib.mkIf (!osConfig.headless.enable) true;
     profiles = {
       "unity" = {
         extensions = with pkgs.vscode-extensions; [

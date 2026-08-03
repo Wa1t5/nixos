@@ -1,8 +1,8 @@
-{ lib, config, pkgs, ... }:
+{ lib, osConfig, pkgs, ... }:
 {
   # Gnome
   programs.gnome-shell = {
-    enable = lib.mkIf config.de.gnome.enable true;
+    enable = lib.mkIf osConfig.de.gnome.enable true;
     extensions = [
       { package = pkgs.gnomeExtensions.appindicator; }
       { package = pkgs.gnomeExtensions.media-controls; }

@@ -1,10 +1,13 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [
-    # Torrent
-    qbittorrent
+{ pkgs, lib, osConfig, ... }: {
 
-    # Sync
-    syncthing
+  config = lib.mkIf (!osConfig.headless.enable) {
+    home.packages = with pkgs; [
+      # Torrent
+      qbittorrent
 
-  ];
+      # Sync
+      syncthing
+
+    ];
+  };
 }

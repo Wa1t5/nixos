@@ -1,5 +1,6 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, osConfig, ... }:
 {
+
   imports = [
     ../dotfiles/emacs/emacs.nix
     ../dotfiles/zed/zed.nix
@@ -8,15 +9,17 @@
     ../dotfiles/obs-studio/obs-studio.nix
   ];
 
-  home.packages = with pkgs; [
-    # Text editing / Coding / RSE
-    obsidian
+  config = lib.mkIf (!osConfig.headless.enable) {
+    home.packages = with pkgs; [
+      # Text editing / Coding / RSE
+      obsidian
 
-    # Study
-    anki
+      # Study
+      anki
 
-    # Game dev
-    #unityhub
-    aseprite
-  ];
+      # Game dev
+      #unityhub
+      aseprite
+    ];
+  };
 }

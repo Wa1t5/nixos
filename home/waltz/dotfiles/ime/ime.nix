@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, osConfig, ... }:
 {
   i18n.inputMethod = {
-    enable = true;
+    enable = lib.mkIf (!osConfig.headless.enable) true;
     type = "fcitx5";
 
     fcitx5 = {
@@ -30,7 +30,7 @@
     };
   };
 
-  #home.file.".config/fcitx5/" = {
+  #home.file.".osConfig/fcitx5/" = {
   xdg.configFile."fcitx5?" = {
     source = ./fcitx5;
     force = true;

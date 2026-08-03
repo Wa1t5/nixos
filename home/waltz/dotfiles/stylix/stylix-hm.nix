@@ -1,8 +1,8 @@
 { ... }:
 {
-  stylix = {
-    targets = {
-      hyprlock.enable = false;
-    };
-  };
+  #stylix = {
+  #  targets = {
+  #hyprlock.enable = false;
+  #  };
+  #};
 }

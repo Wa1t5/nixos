@@ -1,15 +1,19 @@
-{ pkgs, ... }: {
+{ pkgs, lib, osConfig, ... }: {
+
   imports = [
     #../dotfiles/discord/discord.nix
   ];
 
-  home.packages = with pkgs; [
-    # Chat
-    vesktop
-    (pkgs.discord.override {
-      withVencord = true;
-      withOpenASAR = false;
-    })
+  config = lib.mkIf (!osConfig.headless.enable) {
+    home.packages = with pkgs; [
+      # Chat
+      vesktop
+      (pkgs.discord.override {
+        withVencord = true;
+        withOpenASAR = false;
+      })
 
-  ];
+    ];
+
+  };
 }

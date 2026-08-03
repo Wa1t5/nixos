@@ -1,9 +1,9 @@
-{ lib, config, ... }:
+{ lib, osConfig, ... }:
 {
-  programs.waybar = {
-    enable = lib.mkIf config.wm.enable true;
+  programs.waybar = lib.mkIf osConfig.wm.enable {
+    enable = true;
     style = import ./style.nix;
-    settings = import ./config.nix;
+    settings = import ./osConfig.nix;
     systemd = {
       enable = true;
       targets = [ "hyprland-session.target" ];

@@ -19,6 +19,6 @@
     ./services.nix
     ./sops.nix
     ./misc
-    ./hosting
+    #./hosting
   ];
 }

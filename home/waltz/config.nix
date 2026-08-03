@@ -8,6 +8,11 @@
       description = "Enable WM mode";
     };
 
+    headless.enable = lib.mkOption {
+      default = false;
+      type = lib.types.bool;
+    };
+
     wm.hyprland.enable = lib.mkOption {
       default = true;
       type = lib.types.bool;

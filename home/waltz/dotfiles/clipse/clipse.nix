@@ -1,6 +1,6 @@
-{ lib, config, ... }:
+{ lib, osConfig, ... }:
 {
-  services.clipse = lib.mkIf config.wm.enable {
+  services.clipse = lib.mkIf osConfig.wm.enable {
     enable = true;
     imageDisplay = {
       type = "sixel";

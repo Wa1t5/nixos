@@ -1,8 +1,7 @@
-{
-  inputs,
-  lib,
-  config,
-  ...
+{ inputs
+, lib
+, osConfig
+, ...
 }:
 {
   imports = [ inputs.nixvim.homeModules.nixvim ];

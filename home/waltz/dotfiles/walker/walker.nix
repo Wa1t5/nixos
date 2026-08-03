@@ -1,10 +1,10 @@
-{ lib, config, inputs, pkgs, ... }:
+{ lib, osConfig, inputs, pkgs, ... }:
 {
   imports = [
     inputs.walker.homeManagerModules.default
   ];
 
-  programs.walker = lib.mkIf config.wm.enable {
+  programs.walker = lib.mkIf osConfig.wm.enable {
     enable = false;
     package = pkgs.walker;
     runAsService = true;

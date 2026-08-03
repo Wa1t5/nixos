@@ -1,7 +1,6 @@
-{ config, lib, ... }:
+{ osConfig, lib, ... }:
 {
-  catppuccin.tofi.enable = false;
-  programs.tofi = lib.mkIf config.wm.enable {
+  programs.tofi = lib.mkIf osConfig.wm.enable {
     enable = true;
     settings = {
       terminal = "foot";

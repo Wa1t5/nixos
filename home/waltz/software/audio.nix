@@ -1,7 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, osConfig, ... }:
 {
-  home.packages = with pkgs; [
-    # Manage audio
-    pavucontrol
-  ];
+  config = lib.mkIf (!osConfig.headless.enable) {
+    home.packages = with pkgs; [
+      # Manage audio
+      pavucontrol
+    ];
+  };
 }

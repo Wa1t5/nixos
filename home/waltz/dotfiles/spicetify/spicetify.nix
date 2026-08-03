@@ -1,8 +1,8 @@
-{
-  pkgs,
-  lib,
-  inputs,
-  ...
+{ pkgs
+, lib
+, inputs
+, osConfig
+, ...
 }:
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
@@ -11,7 +11,7 @@ in
   imports = [ inputs.spicetify-nix.homeManagerModules.default ];
 
   programs.spicetify = {
-    enable = true;
+    enable = lib.mkIf (!osConfig.headless.enable) true;
     #theme = lib.mkForce spicePkgs.themes.defaultDynamic;
     enabledExtensions = with spicePkgs.extensions; [
       adblock

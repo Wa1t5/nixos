@@ -1,8 +1,7 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, osConfig
+, ...
 }:
 {
   imports = [
@@ -14,22 +13,22 @@
   ];
 
   services = {
-    gnome-keyring = lib.mkIf config.wm.enable {
+    gnome-keyring = lib.mkIf osConfig.wm.enable {
       enable = true;
     };
 
     # PSD (Profile Sync Daemon)
-    psd = {
+    psd = lib.mkIf (!osConfig.headless.enable) {
       enable = false;
     };
 
     # Syncthing
     syncthing = {
-      enable = true;
+      enable = lib.mkIf (osConfig.networking.hostName != "grimoire") true;
     };
 
     # Dunst
-    dunst = lib.mkIf config.wm.enable {
+    dunst = lib.mkIf osConfig.wm.enable {
       enable = false;
       settings = import ./dotfiles/dunst/dunst.nix;
     };
@@ -59,7 +58,7 @@
 
     # Playerctld
     playerctld = {
-      enable = lib.mkIf config.wm.enable true;
+      enable = lib.mkIf osConfig.wm.enable true;
     };
 
     # Easyeffects

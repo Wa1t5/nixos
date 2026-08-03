@@ -1,6 +1,6 @@
-{ services, pkgs, inputs, lib, config, ... }:
+{ services, pkgs, inputs, lib, osConfig, ... }:
 {
-  services.hypridle = lib.mkIf config.wm.hyprland.enable {
+  services.hypridle = lib.mkIf osConfig.wm.hyprland.enable {
     enable = true;
     settings = {
       general = {

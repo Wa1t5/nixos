@@ -18,7 +18,7 @@
     };
 
     initContent = ''
-      # Load p10k config
+      # Load p10k osConfig
       source ~/.p10k.zsh
 
       # Allow direnv

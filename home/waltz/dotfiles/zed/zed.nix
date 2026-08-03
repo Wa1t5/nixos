@@ -1,10 +1,10 @@
-{ lib, config, pkgs, ... }: {
+{ lib, osConfig, pkgs, ... }: {
   programs.zed-editor = {
     enable = false;
 
     extensions = [ "c" "csharp" "zig" "nix" "dart" "catppuccin-blur" ];
     userSettings = {
-      theme = lib.mkIf config.themes.catppuccin.enable {
+      theme = lib.mkIf osConfig.themes.catppuccin.enable {
         dark = lib.mkForce "Catppuccin Mocha (Blur)";
         light = lib.mkForce "Catppuccin Mocha (Blur)";
       };
@@ -20,26 +20,26 @@
           binary = {
             path = lib.getExe pkgs.zls;
           };
-	  initialization_options = {
-	    zig_exe_path = lib.getExe pkgs.zig;
-	  };
+          initialization_options = {
+            zig_exe_path = lib.getExe pkgs.zig;
+          };
         };
-	omnisharp = {
-	  binary = {
-	    path = lib.getExe pkgs.omnisharp-roslyn;
-	  };
-	};
+        omnisharp = {
+          binary = {
+            path = lib.getExe pkgs.omnisharp-roslyn;
+          };
+        };
         dart = {
           binary = {
             path = lib.getExe pkgs.dart;
             arguments = [ "language-server" ];
           };
         };
-	rust-analyzer = {
-	  binary = {
-	    path = lib.getExe pkgs.rust-analyzer;
-	  };
-	};
+        rust-analyzer = {
+          binary = {
+            path = lib.getExe pkgs.rust-analyzer;
+          };
+        };
       };
       features = { copilot = false; };
       telemetry = { metrics = false; };

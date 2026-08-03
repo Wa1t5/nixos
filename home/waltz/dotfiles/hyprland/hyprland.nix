@@ -1,17 +1,13 @@
-{
-  inputs,
-  pkgs,
-  lib,
-  config,
-  ...
+{ inputs
+, pkgs
+, lib
+, osConfig
+, ...
 }:
 {
-  imports = [
-
-  ];
 
   # Hyprland
-  wayland.windowManager.hyprland = lib.mkIf config.wm.hyprland.enable {
+  wayland.windowManager.hyprland = lib.mkIf osConfig.wm.hyprland.enable {
     enable = true;
     systemd.enable = true;
 
@@ -30,7 +26,7 @@
         # Add .local/bin to PATH
         env = PATH,/home/waltz/.local/bin:$PATH
       ''
-      + import ./config.nix;
+      + import ./osConfig.nix;
 
     plugins = [
       #inputs.Hyprspace.packages.${pkgs.system}.Hyprspace

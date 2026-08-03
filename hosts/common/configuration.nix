@@ -10,7 +10,6 @@
       "cgroups"
       "dynamic-derivations"
       "git-hashing"
-      "no-url-literals"
       "verified-fetches"
     ];
     auto-optimise-store = true;
@@ -18,6 +17,8 @@
     trusted-users = [ "waltz" ];
 
     download-buffer-size = 524288000;
+
+    #lint-url-literals = fatal;
   };
 
   nix = {
