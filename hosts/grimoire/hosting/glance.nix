@@ -65,6 +65,12 @@
                           url = "http://blocky.home";
                           icon = "sh:blocky";
                         }
+
+                        {
+                          title = "Scrutiny";
+                          url = "http://scrutiny.home";
+                          icon = "sh:scrutiny";
+                        }
                       ];
                     }
                   ];
@@ -122,6 +128,12 @@
                     {
                       title = "Blocky";
                       url = "http://blocky.home";
+                      allow-insecure = true;
+                    }
+
+                    {
+                      title = "Scrutiny";
+                      url = "http://scrutiny.home";
                       allow-insecure = true;
                     }
                   ];

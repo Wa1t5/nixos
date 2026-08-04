@@ -34,7 +34,15 @@
 
 	  @grimoire host grimoire.home
 	  handle @grimoire { reverse_proxy 127.0.0.1:9000 }
-	";
+
+	  @scrutiny host scrutiny.home
+	  handle @scrutiny { reverse_proxy 127.0.0.1:8000 }
+
+
+
+	  @shoko host shoko.home
+	  handle @shoko { reverse_proxy 127.0.0.1:8111 }
+";
       };
 
     };

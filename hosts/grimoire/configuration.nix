@@ -6,6 +6,7 @@
     ./ssh.nix
     ./hosting/default.nix
     ./hardware-configuration.nix
+    ./hardware-configuration-keep.nix
     ./media.nix
     ./network-configuration.nix
   ];
