@@ -16,15 +16,6 @@
 
 	  @kavita host kavita.home
 	  handle @kavita { reverse_proxy 127.0.0.1:5000 }
-	  
-	  @seerr host seerr.home
-	  handle @seerr { reverse_proxy 127.0.0.1:5055 }
-
-	  @sonarr host sonarr.home
-	  handle @sonarr { reverse_proxy 127.0.0.1:8989 }
-
-	  @prowlarr host prowlarr.home
-	  handle @prowlarr { reverse_proxy 127.0.0.1:9696 }
 
 	  @qbittorrent host qbittorrent.home
 	  handle @qbittorrent { reverse_proxy 127.0.0.1:8080 }
@@ -38,11 +29,13 @@
 	  @scrutiny host scrutiny.home
 	  handle @scrutiny { reverse_proxy 127.0.0.1:8000 }
 
-
-
 	  @shoko host shoko.home
 	  handle @shoko { reverse_proxy 127.0.0.1:8111 }
-";
+
+	  @files host files.home
+	  handle @files { reverse_proxy 127.0.0.1:3210 }
+
+      ";
       };
 
     };

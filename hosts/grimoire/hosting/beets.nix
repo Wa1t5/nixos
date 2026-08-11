@@ -30,6 +30,7 @@
       timid: no
       quiet: yes
       quiet_fallback: asis
+      duplicate_action: merge
 
     paths:
       default: $albumartist/$album/$track - $title
@@ -45,7 +46,7 @@
       - lastgenre
       - badfiles
       - musicbrainz
-
+      - duplicates
     match:
       strong_rec_thresh: 0.30
 
@@ -89,14 +90,17 @@
     };
   };
 
-  systemd.timers.beets-import = {
-    wantedBy = [ "timers.target" ];
+  #systemd.timers.beets-import = {
+  #  wantedBy = [ "timers.target" ];
 
-    timerConfig = {
-      OnBootSec = "5min";
-      OnUnitActiveSec = "30min";
-    };
-  };
+  #  timerConfig = {
+  #    OnBootSec = "5min";
+  #    OnUnitActiveSec = "30min";
+  #  };
+  #};
 
   users.users.beets.extraGroups = [ "media" ];
+
+  # allow other services to manage files
+  systemd.services.beets.serviceConfig.umask = "0002";
 }

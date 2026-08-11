@@ -47,6 +47,7 @@
     walker.url = "github:abenz1267/walker";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
     hermes-agent.url = "github:NousResearch/hermes-agent";
+    copyparty.url = "github:9001/copyparty";
   };
 
   nixConfig = {
@@ -131,7 +132,7 @@
           modules = [
             # Import sops-nix
             inputs.sops-nix.nixosModules.sops
-
+            inputs.copyparty.nixosModules.default
 
             # Import config.nix
             ./hosts/grimoire/configuration.nix
@@ -162,7 +163,10 @@
               de.gnome.enable = false;
               de.plasma.enable = false;
 
-              environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
+              environment.pathsToLink = [
+                "/share/applications"
+                "/share/xdg-desktop-portal"
+              ];
 
               # Import waltz's config
               home-manager.users.waltz = import ./home/waltz/home.nix;

@@ -1,6 +1,6 @@
 { config, ... }: {
   services.openssh = {
-    enable = false;
+    enable = true;
     openFirewall = config.services.openssh.enable;
     settings = {
       PasswordAuthentication = true;

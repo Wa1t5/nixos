@@ -18,6 +18,8 @@
     ./unbound.nix
     ./slskd.nix
     ./shoko.nix
+    #./homepage.nix
+    ./copyparty.nix
     #./transmission.nix
     #./i2pd.nix
     #./ollama.nix

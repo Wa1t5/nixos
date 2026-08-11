@@ -18,6 +18,7 @@
       "libvirtd"
       "gamemode"
       "hermes"
+      "media"
     ];
     shell = pkgs.zsh;
   };

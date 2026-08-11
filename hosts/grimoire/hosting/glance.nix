@@ -36,21 +36,6 @@
                           icon = "sh:jellyfin";
                         }
                         {
-                          title = "Seerr";
-                          url = "http://seerr.home";
-                          icon = "sh:jellyseerr";
-                        }
-                        {
-                          title = "Sonarr";
-                          url = "http://sonarr.home";
-                          icon = "sh:sonarr";
-                        }
-                        {
-                          title = "Prowlarr";
-                          url = "http://prowlarr.home";
-                          icon = "sh:prowlarr";
-                        }
-                        {
                           title = "qBittorrent";
                           url = "http://qbittorrent.home";
                           icon = "sh:qbittorrent";
@@ -65,11 +50,15 @@
                           url = "http://blocky.home";
                           icon = "sh:blocky";
                         }
-
                         {
                           title = "Scrutiny";
                           url = "http://scrutiny.home";
                           icon = "sh:scrutiny";
+                        }
+                        {
+                          title = "Shoko";
+                          url = "http://shoko.home";
+                          icon = "sh:shoko";
                         }
                       ];
                     }
@@ -101,21 +90,6 @@
                       allow-insecure = true;
                     }
                     {
-                      title = "Seerr";
-                      url = "http://seerr.home";
-                      allow-insecure = true;
-                    }
-                    {
-                      title = "Sonarr";
-                      url = "http://sonarr.home";
-                      allow-insecure = true;
-                    }
-                    {
-                      title = "Prowlarr";
-                      url = "http://prowlarr.home";
-                      allow-insecure = true;
-                    }
-                    {
                       title = "qBittorrent";
                       url = "http://qbittorrent.home";
                       allow-insecure = true;
@@ -130,10 +104,14 @@
                       url = "http://blocky.home";
                       allow-insecure = true;
                     }
-
                     {
                       title = "Scrutiny";
                       url = "http://scrutiny.home";
+                      allow-insecure = true;
+                    }
+                    {
+                      title = "Shoko";
+                      url = "http://shoko.home";
                       allow-insecure = true;
                     }
                   ];
