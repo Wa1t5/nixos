@@ -47,6 +47,8 @@
       - badfiles
       - musicbrainz
       - duplicates
+      - lyrics
+
     match:
       strong_rec_thresh: 0.30
 
@@ -69,6 +71,11 @@
       auto: yes
       count: 5
       source: track
+
+    lyrics:
+      auto: yes
+      sources: [lrclib, lrcmux ] 
+      synced: yes
 
     ignore:
       .DS_Store: yes
