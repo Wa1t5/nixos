@@ -1,4 +1,9 @@
-{ config, sops, ... }:
+{
+  config,
+  sops,
+  pkgs,
+  ...
+}:
 {
   # Load private keys
   sops = {
@@ -25,12 +30,15 @@
           # configuration for nixos 24.05
           {
             PublicKey = "agoivyLoPqor8MxA/s6UWJSMcA2pMl+ajO3vy/q3oWQ=";
-            AllowedIPs = [ "0.0.0.0/0" ];
+            AllowedIPs = [
+              "0.0.0.0/0"
+              "::0"
+            ];
             Endpoint = "103.125.235.18:51820";
+            RouteTable = 51820;
           }
         ];
       };
-
     };
   };
 }

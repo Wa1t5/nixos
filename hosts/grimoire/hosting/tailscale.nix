@@ -7,6 +7,8 @@
       "--accept-routes"
       "-ssh"
       "--advertise-routes=192.168.1.0/24"
+      "--advertise-exit-node"
+      "--ssh"
     ];
     useRoutingFeatures = "both";
   };

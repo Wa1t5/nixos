@@ -5,11 +5,13 @@
     openFirewall = true;
     environmentFile = "/var/lib/secrets/slskd-environment";
     settings = {
+      web = {
+        address = "0.0.0.0";
+      };
       directories = {
         incomplete = "/media/downloads/soulseek/incomplete";
         downloads = "/media/downloads/soulseek/complete";
       };
-
       shares = {
         directories = [ "/media/audio" ];
       };

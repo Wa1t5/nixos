@@ -39,14 +39,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:HyprWM/Hyprland";
-    Hyprspace = {
-      url = "github:myamusashi/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
     vicinae.url = "github:vicinaehq/vicinae";
     walker.url = "github:abenz1267/walker";
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
-    hermes-agent.url = "github:NousResearch/hermes-agent";
     copyparty.url = "github:9001/copyparty";
   };
 
@@ -101,9 +95,6 @@
             inputs.home-manager.nixosModules.home-manager
             {
               nixpkgs.overlays = [
-                inputs.nix-cachyos-kernel.overlays.pinned
-                #inputs.moonlight.overlays.default
-                #inputs.emacs-overlay.overlays.default
               ];
 
               home-manager.useGlobalPkgs = true;
@@ -130,6 +121,14 @@
 
           # Modules
           modules = [
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+
+                  #slskd = inputs.slskdn.packages.${final.system}.default;
+                })
+              ];
+            }
             # Import sops-nix
             inputs.sops-nix.nixosModules.sops
             inputs.copyparty.nixosModules.default
@@ -145,9 +144,6 @@
             inputs.home-manager.nixosModules.home-manager
             {
               nixpkgs.overlays = [
-                inputs.nix-cachyos-kernel.overlays.pinned
-                #inputs.moonlight.overlays.default
-                #inputs.emacs-overlay.overlays.default
               ];
 
               home-manager.useGlobalPkgs = true;

@@ -60,6 +60,7 @@
 
     embedart:
       auto: yes
+      ifempty: yes
 
     chroma:
       auto: yes
@@ -74,7 +75,7 @@
 
     lyrics:
       auto: yes
-      sources: [lrclib, lrcmux ] 
+      sources: [lrclib, lrcmux] 
       synced: yes
 
     ignore:
