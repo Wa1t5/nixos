@@ -1,7 +1,15 @@
-{ pkgs, inputs, lib, osConfig, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  osConfig,
+  ...
+}:
 {
   imports = [
     ../dotfiles/hyprland/hyprland.nix
+    ../dotfiles/umbriel/umbriel.nix
+    ../dotfiles/noctalia/noctalia.nix
     ../dotfiles/ime/ime.nix
     ../dotfiles/fontconfig/fontconfig.nix
     ../dotfiles/mako/mako.nix

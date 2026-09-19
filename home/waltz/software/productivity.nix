@@ -19,7 +19,7 @@
 
       # Game dev
       #unityhub
-      aseprite
+      #aseprite
     ];
   };
 }

@@ -14,9 +14,15 @@
     };
 
     wm.hyprland.enable = lib.mkOption {
-      default = true;
+      default = false;
       type = lib.types.bool;
       description = "Enable Hyprland compositor";
+    };
+
+    wm.umbriel.enable = lib.mkOption {
+      default = true;
+      type = lib.types.bool;
+      description = "Enable umbriel compositor";
     };
 
     themes.catppuccin.enable = lib.mkOption {
@@ -26,7 +32,7 @@
     };
 
     themes.stylix.enable = lib.mkOption {
-      default = true;
+      default = false;
       type = lib.types.bool;
       description = "Enable the stylix dynamic theme";
     };

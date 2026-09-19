@@ -1,12 +1,13 @@
 { lib
 , osConfig
+, config
 , pkgs
 , inputs
 , ...
 }:
 {
-  stylix = lib.mkIf osConfig.themes.stylix.enable {
-    enable = true;
+  stylix = { #lib.mkIf config.themes.stylix.enable {
+    enable = false;
     image = null;
     polarity = "dark";
     autoEnable = true;

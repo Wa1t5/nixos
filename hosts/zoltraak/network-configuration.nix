@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   # Systemd-networkd
   systemd.network = lib.mkForce {
     enable = true;

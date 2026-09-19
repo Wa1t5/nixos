@@ -26,7 +26,7 @@
         # Add .local/bin to PATH
         env = PATH,/home/waltz/.local/bin:$PATH
       ''
-      + import ./osConfig.nix;
+      + import ./config.nix;
 
     plugins = [
       #inputs.Hyprspace.packages.${pkgs.system}.Hyprspace

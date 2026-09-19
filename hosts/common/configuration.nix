@@ -17,8 +17,6 @@
     trusted-users = [ "waltz" ];
 
     download-buffer-size = 524288000;
-
-    #lint-url-literals = fatal;
   };
 
   nix = {

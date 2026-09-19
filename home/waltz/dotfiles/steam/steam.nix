@@ -1,7 +1,8 @@
-{ lib
-, pkgs
-, config
-, ...
+{
+  lib,
+  pkgs,
+  config,
+  ...
 }:
 {
   # Steam
@@ -44,7 +45,6 @@
   # Gamescope
   programs.gamescope = lib.mkIf config.gaming.enable {
     enable = true;
-    env.XKB_LAYOUT = "br";
   };
 
   environment.systemPackages = lib.mkIf config.gaming.enable [

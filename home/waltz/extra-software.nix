@@ -1,15 +1,20 @@
-{ pkgs, inputs, lib, config, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  config,
+  ...
+}:
 
 {
   imports = [
     inputs.aagl.nixosModules.default
+    inputs.umbriel.nixosModules.default
+    ./dotfiles/noctalia-greeter/noctalia-greeter.nix
     ./dotfiles/steam/steam.nix
     ./dotfiles/aagl/aagl.nix
     ./config.nix # Current file is imported by uplevel options.nix thus needing to import config manually
   ];
-
-  # Add vscode to path (so unity detect it)
-  environment.etc."/usr/bin/code".source = if (!config.headless.enable) then "${pkgs.vscode}/bin/code" else "/";
 
   # Gnome keyring
   services.gnome.gnome-keyring = lib.mkIf config.wm.enable {
@@ -24,23 +29,32 @@
   programs.dconf.enable = true;
 
   # Enable hyprland 2-nd time
-  programs.hyprland = lib.mkIf config.wm.hyprland.enable { enable = true; };
+  programs.hyprland = {
+    enable = config.wm.hyprland.enable;
+  };
+
+  # Same for umbriel
+  programs.umbriel = {
+    enable = config.wm.umbriel.enable;
+  };
 
   # Gnome desktop
   services.xserver.enable = lib.mkIf config.de.gnome.enable true;
-  services.xserver.displayManager.gdm.enable =
-    lib.mkIf config.de.gnome.enable true;
-  services.xserver.desktopManager.gnome.enable =
-    lib.mkIf config.de.gnome.enable true;
-  environment.gnome.excludePackages =
-    (with pkgs; [ gnome-tour gnome-maps totem ]);
+  services.xserver.displayManager.gdm.enable = lib.mkIf config.de.gnome.enable true;
+  services.xserver.desktopManager.gnome.enable = lib.mkIf config.de.gnome.enable true;
+  environment.gnome.excludePackages = (
+    with pkgs;
+    [
+      gnome-tour
+      gnome-maps
+      totem
+    ]
+  );
 
   # Plasma desktop
   services.displayManager.sddm.enable = lib.mkIf config.de.plasma.enable true;
-  services.displayManager.sddm.wayland.enable =
-    lib.mkIf config.de.plasma.enable true;
-  services.desktopManager.plasma6.enable =
-    lib.mkIf config.de.plasma.enable true;
+  services.displayManager.sddm.wayland.enable = lib.mkIf config.de.plasma.enable true;
+  services.desktopManager.plasma6.enable = lib.mkIf config.de.plasma.enable true;
 
   # GreetD and gnome polkit
   #systemd.user.services.polkit-gnome-authentication-agent-1 = lib.mkIf config.wm.enable {
@@ -89,20 +103,20 @@
   };
 
   # Greetd + Tuigreet
-  services.greetd = lib.mkIf config.wm.enable {
-    enable = true;
-    settings = {
-      initial_session = {
-        command = "start-hyprland";
-        user = "waltz";
-      };
-      default_session = {
-        #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd 'Hyprland'";
-        command = "Hyprland";
-        user = "waltz";
-      };
-    };
-  };
+  #services.greetd = lib.mkIf config.wm.enable {
+  #  enable = true;
+  #  settings = {
+  #    initial_session = {
+  #      command = "umbriel";
+  #      user = "waltz";
+  #    };
+  #    default_session = {
+  #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --cmd 'Hyprland'";
+  #      command = "umbriel";
+  #      user = "waltz";
+  #    };
+  #  };
+  #};
 
   # Extra packages
 

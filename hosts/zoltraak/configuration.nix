@@ -9,5 +9,5 @@
   ];
 
   # Hostname
-  networking.hostName = "emperor";
+  networking.hostName = "zoltraak";
 }

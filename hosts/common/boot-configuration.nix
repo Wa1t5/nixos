@@ -19,18 +19,20 @@
     loader = {
       # Disable systemd boot editor as it can lead to root access on boot
       systemd-boot.editor = false;
-      systemd-boot.enable = false;
+      systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
+      timeout = 0;
 
       # Limine bootloader
-      limine.enable = true;
+      limine.enable = false;
+
     };
 
     # Clean /tmp after reboot
     tmp.cleanOnBoot = true;
 
     # Mount /tmp on RAM
-    tmp.useTmpfs = false; # disable when building large packages
-    tmp.tmpfsSize = "70%";
+    tmp.useTmpfs = true; # disable when building large packages
+    tmp.tmpfsSize = "50%";
   };
 }

@@ -28,10 +28,14 @@
   # Blocked kernel modules
   boot.blacklistedKernelModules = [ "uvcvideo" ];
 
+  boot.kernelParams = [ "systemd.swap=0" ];
+
   # Enable ZRam
   zramSwap = {
     enable = true;
     algorithm = "zstd";
     priority = 100;
+    memoryPercent = 100;
+    writebackDevice = "/dev/disk/by-uuid/700eda8d-0e3e-414e-a7ad-c2d42ef27e05";
   };
 }

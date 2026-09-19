@@ -39,6 +39,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:HyprWM/Hyprland";
+    umbriel.url = "github:noctalia-dev/umbriel";
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
+    noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
     vicinae.url = "github:vicinaehq/vicinae";
     walker.url = "github:abenz1267/walker";
     copyparty.url = "github:9001/copyparty";
@@ -52,6 +55,7 @@
       "https://nix-community.cachix.org/"
       "https://hyprland.cachix.org/"
       "https://attic.xuyh0120.win/lantian/"
+      "https://noctalia.cachix.org"
       #  "https://cache.garnix.io/"
     ];
     extra-trusted-public-keys = [
@@ -59,6 +63,7 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       #  "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
     ];
   };
@@ -67,8 +72,8 @@
     { nixpkgs, ... }@inputs:
     {
       nixosConfigurations = {
-        # Emperor Host
-        "emperor" = nixpkgs.lib.nixosSystem {
+        # Zooltrak Host
+        "zoltraak" = nixpkgs.lib.nixosSystem {
 
           # System type
           system = "x86_64-linux";
@@ -82,7 +87,7 @@
             inputs.sops-nix.nixosModules.sops
 
             # Import config.nix
-            ./hosts/emperor/configuration.nix
+            ./hosts/zoltraak/configuration.nix
 
             # Softwares that need to be defined in
             # configuration.nix but I removed
