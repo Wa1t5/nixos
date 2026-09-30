@@ -1,18 +1,16 @@
-{ pkgs, inputs, lib, osConfig, ... }:
 {
-  imports = [
-    ../dotfiles/spicetify/spicetify.nix
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
+{
 
-  ];
+  imports = [ ../dotfiles/zen-browser/zen-browser.nix ];
+
   config = lib.mkIf (!osConfig.headless.enable) {
-
     home.packages = with pkgs; [
-      # Browser
-      inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
-
-      # Music
-      nicotine-plus
-
+      strawberry
     ];
   };
 }

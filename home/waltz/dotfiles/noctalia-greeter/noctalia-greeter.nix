@@ -1,8 +1,7 @@
-{
-  osConfig,
-  config,
-  inputs,
-  ...
+{ osConfig
+, config
+, inputs
+, ...
 }:
 {
   imports = [ inputs.noctalia-greeter.nixosModules.default ];

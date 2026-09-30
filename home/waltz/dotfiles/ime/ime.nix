@@ -1,4 +1,9 @@
-{ pkgs, lib, osConfig, ... }:
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
 {
   i18n.inputMethod = {
     enable = lib.mkIf (!osConfig.headless.enable) true;
@@ -31,7 +36,7 @@
   };
 
   #home.file.".osConfig/fcitx5/" = {
-  xdg.configFile."fcitx5?" = {
+  xdg.configFile."fcitx5" = {
     source = ./fcitx5;
     force = true;
     recursive = true;

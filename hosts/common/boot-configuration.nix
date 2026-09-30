@@ -1,27 +1,19 @@
 { ... }:
 {
   boot = {
-    # Enable initram
-    initrd.systemd.enable = true;
-
-    # Use boot animation
-    #plymouth.enable = true;
-
-    # Silent boot
-    #kernelParams = [
-    #  "quiet"
-    #  "udev.log_level=3"
-    #  "nowatchdog"
-    #];
-    #initrd.verbose = 0;
-    #consoleLogLevel = 0;
+    # Enable initrd
+    initrd = {
+      systemd.enable = true;
+      compressor = "zstd";
+    };
 
     loader = {
       # Disable systemd boot editor as it can lead to root access on boot
       systemd-boot.editor = false;
       systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
       timeout = 0;
+      systemd-boot.configurationLimit = 10;
+      efi.canTouchEfiVariables = true;
 
       # Limine bootloader
       limine.enable = false;
@@ -35,4 +27,7 @@
     tmp.useTmpfs = true; # disable when building large packages
     tmp.tmpfsSize = "50%";
   };
+
+  systemd.services.systemd-udev-settle.enable = false;
+  systemd.services.NetworkManager-wait-online.enable = false;
 }

@@ -1,8 +1,7 @@
-{
-  lib,
-  osConfig,
-  pkgs,
-  ...
+{ lib
+, osConfig
+, pkgs
+, ...
 }:
 {
   # XDG desktop portal

@@ -6,7 +6,8 @@
 , ...
 }:
 {
-  stylix = { #lib.mkIf config.themes.stylix.enable {
+  stylix = {
+    #lib.mkIf config.themes.stylix.enable {
     enable = false;
     image = null;
     polarity = "dark";

@@ -3,19 +3,11 @@
   imports = [
     ../dotfiles/ssh/ssh.nix
     ../dotfiles/beets/beets.nix
-    #../dotfiles/eww/eww.nix
     ../dotfiles/mpv/mpv.nix
     ../dotfiles/kitty/kitty.nix
-    #../dotfiles/foot/foot.nix
     ../dotfiles/nixvim/nixvim.nix
     ../dotfiles/gpg/gpg.nix
-    ../dotfiles/cava/cava.nix
     ../dotfiles/zsh/zsh.nix
-    ../dotfiles/fish/fish.nix
-    ../dotfiles/starship/starship.nix
-    #../dotfiles/ghostty/ghostty.nix
-    #../dotfiles/ncmpcpp/ncmpcpp.nix
-
   ];
 
   home.packages = with pkgs; [
@@ -26,7 +18,7 @@
     # CLI
     btop
     fastfetch
-    imagemagick
+    #imagemagick
     yt-dlp
     ripgrep
 

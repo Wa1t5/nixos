@@ -1,8 +1,9 @@
-{ pkgs, lib, osConfig, ... }: {
-
-  imports = [
-    #../dotfiles/discord/discord.nix
-  ];
+{ pkgs
+, lib
+, osConfig
+, ...
+}:
+{
 
   config = lib.mkIf (!osConfig.headless.enable) {
     home.packages = with pkgs; [

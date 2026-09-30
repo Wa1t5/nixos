@@ -2,7 +2,7 @@
 {
   virtualisation = {
     libvirtd = {
-      enable = true;
+      enable = false;
       qemu = {
         # Enable TPM emulation
         swtpm.enable = true;

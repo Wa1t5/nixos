@@ -1,16 +1,26 @@
 {
   inputs,
   osConfig,
-  lib,
   ...
 }:
 {
-  imports = [ inputs.noctalia.homeModules.default ];
+  imports = [
+    inputs.noctalia.homeModules.default
+    ./theme.nix
+    ./bars.nix
+    ./templates.nix
+  ];
 
   programs.noctalia = {
     enable = osConfig.wm.umbriel.enable;
     settings = {
-
+      nightlight = {
+        enabled = true;
+        force = true;
+      };
+      wallpaper = {
+        directory = "/media/data/Waltz/Pictures/Img";
+      };
     };
   };
 }

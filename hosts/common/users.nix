@@ -1,6 +1,4 @@
 { pkgs
-, sops
-, config
 , ...
 }:
 {
@@ -14,10 +12,7 @@
       "video"
       "input"
       "wireshark"
-      "networkmanager"
       "libvirtd"
-      "gamemode"
-      "hermes"
       "media"
     ];
     shell = pkgs.zsh;

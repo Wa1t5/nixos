@@ -6,18 +6,9 @@
       url = "github:Wa1t5/nixos-hardware/master";
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-aseprite-fix = {
-      url = "github:NixOS/nixpkgs/7b10b7951c1a7621289a9bae2e2a09368d7b99e3";
-      flake = false;
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
     sops-nix.url = "github:Mic92/sops-nix";
     catppuccin.url = "github:catppuccin/nix";
@@ -42,8 +33,6 @@
     umbriel.url = "github:noctalia-dev/umbriel";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
-    vicinae.url = "github:vicinaehq/vicinae";
-    walker.url = "github:abenz1267/walker";
     copyparty.url = "github:9001/copyparty";
   };
 
@@ -53,18 +42,14 @@
     extra-substituters = [
       "https://ezkea.cachix.org/"
       "https://nix-community.cachix.org/"
-      "https://hyprland.cachix.org/"
       "https://attic.xuyh0120.win/lantian/"
       "https://noctalia.cachix.org"
-      #  "https://cache.garnix.io/"
     ];
     extra-trusted-public-keys = [
       "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-      #  "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
     ];
   };
 
@@ -157,12 +142,9 @@
 
               wm.enable = false;
               headless.enable = true;
-              wm.hyprland.enable = false;
               gaming.enable = false;
               themes.catppuccin.enable = false;
               themes.stylix.enable = false;
-              de.gnome.enable = false;
-              de.plasma.enable = false;
 
               environment.pathsToLink = [
                 "/share/applications"

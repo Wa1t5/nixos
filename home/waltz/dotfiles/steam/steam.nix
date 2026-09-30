@@ -9,7 +9,7 @@
   programs.steam = lib.mkIf config.gaming.enable {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    #dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     extraCompatPackages = with pkgs; [
       proton-ge-bin
     ];
@@ -45,6 +45,7 @@
   # Gamescope
   programs.gamescope = lib.mkIf config.gaming.enable {
     enable = true;
+    capSysNice = false;
   };
 
   environment.systemPackages = lib.mkIf config.gaming.enable [

@@ -67,10 +67,10 @@
   };
 
   console = {
-    font = "Lat2-Terminus16";
-    keyMap = "br-abnt2";
+    #font = "Lat2-Terminus16";
+    keyMap = "us-acentos";
   };
 
   # Base system version
-  system.stateVersion = "26.05";
+  system.stateVersion = "26.11";
 }

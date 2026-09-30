@@ -10,12 +10,7 @@
     };
   };
 
-  # Avoid systemd spamming Tuigreet
-  systemd.services.greetd = {
-    unitConfig.After = [ "dhcpcd.service" ];
-  };
-
-  # LoginD config 
+  # LoginD config
   services.logind.settings.Login = {
     HandlePowerKey = "hybrid-sleep";
     HandleRebootKey = "hybrid-sleep";

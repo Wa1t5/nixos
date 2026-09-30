@@ -1,8 +1,5 @@
 { ... }:
 {
-  # Loose reverse path checking so wireguard works
-  networking.firewall.checkReversePath = "loose";
-
   # Use more modern firewall kernel interface
   networking.nftables.enable = true;
 
@@ -18,9 +15,6 @@
       7656
       4447
       4444
-
-      # Navidrome
-      # 4533
     ];
     allowedUDPPorts = [
       # Syncthing

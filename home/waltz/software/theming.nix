@@ -1,8 +1,13 @@
-{ pkgs, lib, osConfig, ... }: {
+{ pkgs
+, lib
+, osConfig
+, ...
+}:
+{
 
   imports = [
-    ../dotfiles/stylix/stylix-hm.nix
-    ../dotfiles/catppuccin/catppuccin.nix
+    #../dotfiles/stylix/stylix-hm.nix
+    #../dotfiles/catppuccin/catppuccin.nix
   ];
 
   config = lib.mkIf (!osConfig.headless.enable) {
@@ -17,7 +22,7 @@
       nerd-fonts.noto
 
       # icon themes
-      adwaita-icon-theme
+      #adwaita-icon-theme
     ];
   };
 }
