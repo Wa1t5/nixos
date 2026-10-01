@@ -11,11 +11,4 @@
     source = ./dotfiles/qt/qt6ct.conf;
     target = ".config/qt6ct/qt6ct.conf";
   };
-
-  # wireplumber
-  #home.file."wireplumber" = {
-  #  source = ./dotfiles/wireplumber;
-  #  target = ".config/wireplumber";
-  #  recursive = true;
-  #};
 }
