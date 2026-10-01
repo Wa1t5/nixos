@@ -4,6 +4,7 @@
       {
         blur = true;
         blur_optimized = true;
+        tearing = true;
       }
       {
         match.app_id = "^dev.noctalia.Noctalia$";
@@ -12,10 +13,6 @@
           width = 1020;
           height = 900;
         };
-      }
-      {
-        match.content_type = "game";
-        tearing = true;
       }
     ];
   };

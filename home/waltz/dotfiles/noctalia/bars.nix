@@ -6,7 +6,7 @@
       start = [ "workspaces" ];
       center = [
         "clock"
-        "audio_visualizer"
+        #        "audio_visualizer"
       ];
       end = [
         "tray"

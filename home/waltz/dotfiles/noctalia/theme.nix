@@ -5,7 +5,8 @@
       mode = "dark";
       shell_mode = "follow";
       source = "community";
-      community_pallete = "Catppuccin Mocha Lavender";
+      builtin = "Kanagawa";
+      community_palette = "Catppuccin Mocha Lavender";
       pure_black_dark = true;
     };
   };

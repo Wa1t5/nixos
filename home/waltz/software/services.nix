@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   osConfig,
   ...
@@ -11,14 +10,14 @@
   ];
 
   services = {
-    #gnome-keyring = lib.mkIf osConfig.wm.enable {
-    #  enable = true;
-    #};
+    gnome-keyring = lib.mkIf osConfig.wm.enable {
+      enable = true;
+    };
 
     # PSD (Profile Sync Daemon)
-    #psd = lib.mkIf (!osConfig.headless.enable) {
-    #  enable = false;
-    #};
+    psd = {
+      enable = lib.mkIf (!osConfig.headless.enable) true;
+    };
 
     # Syncthing
     syncthing = {

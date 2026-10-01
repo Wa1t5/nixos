@@ -48,6 +48,13 @@
     capSysNice = false;
   };
 
+  environment.variables = {
+    DXVK_CONFIG = "dxvk.enableGraphicsPipelineLibrary = True; dxvk.maxDeviceMemory = 0; dxvk.numCompilerThreads = 4;";
+    MESA_SHADER_CACHE_MAX_SIZE = "10G";
+    PROTON_USE_NTSYNC = "1";
+    DXVK_HUD = "compiler";
+  };
+
   environment.systemPackages = lib.mkIf config.gaming.enable [
     (pkgs.lutris.override {
       extraLibraries = pkgs: [

@@ -19,7 +19,7 @@
         force = true;
       };
       wallpaper = {
-        directory = "/media/data/Waltz/Pictures/Img";
+        directory = "/home/waltz/img/pics";
       };
     };
   };
