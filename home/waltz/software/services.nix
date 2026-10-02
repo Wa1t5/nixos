@@ -6,7 +6,6 @@
 {
   imports = [
     ../config.nix
-    ./servers.nix
   ];
 
   services = {

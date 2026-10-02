@@ -16,9 +16,6 @@
 
   config = lib.mkIf (!osConfig.headless.enable) {
     home.packages = with pkgs; [
-      # Provide some DE functionalities
-      hyprsunset
-      slurp
     ];
   };
 }

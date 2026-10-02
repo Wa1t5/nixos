@@ -4,7 +4,7 @@
       {
         blur = true;
         blur_optimized = true;
-        tearing = true;
+        #tearing = true;
       }
       {
         match.app_id = "^dev.noctalia.Noctalia$";

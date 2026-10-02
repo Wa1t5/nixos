@@ -18,26 +18,20 @@
         pkgs: with pkgs; [
 
           # Requirements for gamescope xwayland
-          libXcursor
-          libXi
-          libXinerama
-          libpng
-          libvorbis
-          stdenv.cc.cc.lib
-          libkrb5
-          keyutils
+          #libXcursor
+          #libXi
+          #libXinerama
+          #libpng
+          #libvorbis
+          #stdenv.cc.cc.lib
+          #libkrb5
+          #keyutils
 
           # Mangohud
           mangohud
 
           # lsfg-vk
           lsfg-vk
-
-          # Usage 'gamescope -f -- %command% & sleep 2 && renice -n -11 -p $(pgrep gamescope)'
-          (writeShellScriptBin "launch-gamescope" ''
-            (sleep 1;  pgrep gamescope | xargs renice -n -11 -p)&
-            exec gamescope "$@"
-          '')
         ];
     };
   };

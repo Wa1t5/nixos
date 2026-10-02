@@ -1,8 +1,8 @@
-{ pkgs
-, inputs
-, lib
-, osConfig
-, ...
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
 }:
 {
 
@@ -18,10 +18,6 @@
 
       # Study
       anki
-
-      # Game dev
-      #unityhub
-      #aseprite
     ];
   };
 }

@@ -25,7 +25,9 @@
   boot.kernelModules = [ "ntsync" ];
 
   # Enable fstrim
-  services.fstrim.enable = true;
+  services.fstrim = {
+    enable = true;
+  };
 
   boot.kernelParams = [
     "iommu=pt"

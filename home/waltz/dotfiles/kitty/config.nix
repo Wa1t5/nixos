@@ -1,4 +1,7 @@
 ''
+  # Noctalia theme
+  include ~/.config/kitty/themes/noctalia.conf
+
   # Disable warning when closing window
   confirm_os_window_close 0
 

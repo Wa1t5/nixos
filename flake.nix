@@ -7,7 +7,7 @@
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix.url = "github:Mic92/sops-nix";
@@ -21,17 +21,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim.url = "github:nix-community/nixvim";
-    aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:HyprWM/Hyprland";
     umbriel.url = "github:noctalia-dev/umbriel";
-    noctalia.url = "github:noctalia-dev/noctalia/cachix";
     noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
     copyparty.url = "github:9001/copyparty";
   };

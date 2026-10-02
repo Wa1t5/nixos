@@ -1,8 +1,7 @@
-{ osConfig, lib, ... }: {
+{ ... }: {
   imports = [
     ./cli.nix
     ./audio.nix
-    ./de.nix
     ./games.nix
     ./media.nix
     ./misc.nix
